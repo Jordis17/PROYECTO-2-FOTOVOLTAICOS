@@ -7,30 +7,49 @@ Cuando se tenga el consumo de la casa, se cambian E_CC y E_CA (Wh/día) y D
 import math
 
 # ---------------------------------------------------------------------------
-# 1. Matriz comparativa (datos consultados el 5 nov. 2026; ver modelos_preliminares.md)
+# 1. Matriz comparativa (datos verificados el 5 nov. 2026; ver notas/verificacion_fichas.md)
 # ---------------------------------------------------------------------------
 EUR_USD = 1 / 0.8879  # Infobae, 5 nov. 2026 (1 USD = 0.8879 EUR)
+CRC_USD = 454.41      # BCCR, tipo de cambio de referencia de venta, 5 nov. 2026 (CRC por USD)
 
 modelos = [
-    # id, nombre, V unidad, Ah (C20), unidades para 24 V, precio unitario USD, DOD de la tecnología, ciclos a esa DOD, kg por unidad
+    # id, nombre, V unidad, Ah (C20 para plomo-ácido), unidades para 24 V, precio unitario USD,
+    # DOD a la que el fabricante declara los ciclos, ciclos a esa DOD, kg por unidad
     dict(id="B1", nombre="Trojan T-105", V=6, Ah=225, n24=4, precio=225.00, dod=0.50, ciclos=1200, kg=28.0),
-    dict(id="B2", nombre="Trojan SAGM 12 205", V=12, Ah=205, n24=2, precio=799.95, dod=0.50, ciclos=1700, kg=59.0),
-    dict(id="B3", nombre="Ultracell UCG200-12", V=12, Ah=200, n24=2, precio=358.38 * EUR_USD, dod=0.50, ciclos=1200, kg=62.9),
-    dict(id="B4", nombre="Power Queen 24V 100Ah", V=25.6, Ah=100, n24=1, precio=399.99, dod=0.80, ciclos=4000, kg=20.7),
+    # B2: precio pendiente (None); ciclos declarados al 100 % de DOD
+    dict(id="B2", nombre="Trojan SAES 12 205", V=12, Ah=179, n24=2, precio=None, dod=1.00, ciclos=1200, kg=57.0),
+    dict(id="B3", nombre="Ultracell UCG200-12", V=12, Ah=206, n24=2, precio=358.38 * EUR_USD, dod=0.50, ciclos=1200, kg=62.2),
+    dict(id="B4", nombre="Power Queen 24V 100Ah", V=25.6, Ah=100, n24=1, precio=399.99, dod=0.80, ciclos=6000, kg=20.68),
     dict(id="B5", nombre="Victron 25.6V/200Ah Smart-a", V=25.6, Ah=200, n24=1, precio=2983.50, dod=0.80, ciclos=2500, kg=39.0),
 ]
 
 print("Matriz comparativa (módulo de 24 V)")
 print(f"{'':3} {'precio 24V':>10} {'E nom kWh':>9} {'E útil':>7} {'USD/kWh útil':>12} {'@70%':>7} {'USD/kWh vida':>12} {'kg':>6}")
 for m in modelos:
-    precio24 = m["precio"] * m["n24"]
     e_nom = m["V"] * m["n24"] * m["Ah"] / 1000          # kWh
     e_util = e_nom * m["dod"]
+    m.update(e_nom=e_nom, e_util=e_util, kg24=m["kg"] * m["n24"])
+    if m["precio"] is None:
+        print(f"{m['id']:3} {'n.d.':>10} {e_nom:9.2f} {e_util:7.2f} {'n.d.':>12} {'n.d.':>7} {'n.d.':>12} {m['kg24']:6.1f}")
+        continue
+    precio24 = m["precio"] * m["n24"]
     c_util = precio24 / e_util                            # ecuación (1)
     c_70 = precio24 / (e_nom * 0.70)                      # misma base que el diseño
     c_vida = precio24 / (e_util * m["ciclos"])            # USD por kWh entregado en la vida en ciclos
-    m.update(precio24=precio24, e_nom=e_nom, e_util=e_util, c_util=c_util, c_70=c_70, c_vida=c_vida, kg24=m["kg"] * m["n24"])
-    print(f"{m['id']:3} {precio24:10.2f} {e_nom:9.2f} {e_util:7.2f} {c_util:12.1f} {c_70:7.1f} {c_vida:12.3f} {m['kg']*m['n24']:6.1f}")
+    m.update(precio24=precio24, c_util=c_util, c_70=c_70, c_vida=c_vida)
+    print(f"{m['id']:3} {precio24:10.2f} {e_nom:9.2f} {e_util:7.2f} {c_util:12.1f} {c_70:7.1f} {c_vida:12.3f} {m['kg24']:6.1f}")
+
+# Precios en Costa Rica (5 nov. 2026), en colones, como referencia
+print("\nReferencia con precios de Costa Rica (CRC)")
+cr = [
+    # nombre, precio por unidad CRC, unidades para 24 V, kWh nominales del módulo de 24 V, DOD de los ciclos
+    ("B4 Power Queen 24V 100Ah (Kuat)", 400000, 1, 2.56, 0.80),
+    ("Gel 12V 200Ah C20, marca n.d. (LEDXPRES)", 395000, 2, 4.80, 0.50),
+]
+for nombre, crc, n, e_nom, dod in cr:
+    total = crc * n
+    print(f"  {nombre}: {total:,.0f} CRC = {total/CRC_USD:8.2f} USD; "
+          f"{total/(e_nom*dod):,.0f} CRC/kWh útil = {total/(e_nom*dod)/CRC_USD:6.1f} USD/kWh útil")
 
 # ---------------------------------------------------------------------------
 # 2. Dimensionamiento (procedimiento del curso, Aislado 1 y 2)
@@ -59,13 +78,20 @@ def capacidad(E_CC, E_CA, D):
 
 print("\nK_TCC, K_TCA:", {D: (round(K_T(D, False), 4), round(K_T(D, True), 4)) for D in (1, 2, 3)})
 
+# Power Queen 24V 100Ah: máximo 4 en paralelo (4P2S, manual p. 08) -> 400 Ah a 24 V
+Q_MAX_B4 = 4 * 100
+for D in (1, 2, 3):
+    E_max = Q_MAX_B4 * V_SIS * DOD / (MARGEN * D) * K_T(D, ca=True)   # Wh/día de cargas en CA
+    print(f"B4, 4 en paralelo, D={D}: consumo máximo de las cargas = {E_max:.0f} Wh/día")
+
 print("\nTabla PROVISIONAL (todas las cargas en CA)")
 consumos = [1000, 2000, 3000, 4000, 5000, 6000]   # Wh/día de las cargas
 for D in (1, 2, 3):
     fila = []
     for E in consumos:
         E_T, Q = capacidad(0, E, D)
-        fila.append(f"{E/1000:.0f} kWh: E_T={E_T:6.0f} Q={Q:6.0f} Ah ({math.ceil(Q/100)}xB4)")
+        n4 = math.ceil(Q/100)
+        fila.append(f"{E/1000:.0f} kWh: E_T={E_T:6.0f} Q={Q:6.0f} Ah ({n4}xB4{'' if n4 <= 4 else ' >4P'})")
     print(f"D={D}:", " | ".join(fila))
 
 # ---------------------------------------------------------------------------

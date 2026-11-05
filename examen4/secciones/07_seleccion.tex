@@ -2,19 +2,20 @@
 
 Se selecciona de forma preliminar la batería B4, Power Queen LiFePO\textsubscript{4} de \SI{25.6}{V} y \SI{100}{Ah}. Las razones son las siguientes:
 \begin{itemize}
-\item Tiene el menor costo por kWh útil del conjunto, \SI{195}{USD/kWh}, frente a 333 y \SI{336}{USD/kWh} de las opciones de plomo-ácido más baratas (B1 y B3) y \SI{728}{USD/kWh} de B5.
-\item Un módulo de \SI{24}{V} pesa \SI{21}{kg}, frente a 112 a \SI{126}{kg} de los módulos de plomo-ácido de capacidad nominal similar. Esto facilita instalarlo dentro de la casa.
+\item Tiene el menor costo por kWh útil del conjunto, \SI{195}{USD/kWh}, frente a 327 y \SI{333}{USD/kWh} de las opciones de plomo-ácido evaluadas (B3 y B1) y \SI{728}{USD/kWh} de B5.
+\item Declara 6000 ciclos al 80\,\% de DOD, frente a 1200 ciclos del plomo-ácido, por lo que su costo durante la vida útil es de \SI{0.03}{USD/kWh}, frente a 0.27 a \SI{0.29}{USD/kWh} de las demás.
+\item Un módulo de \SI{24}{V} pesa \SI{21}{kg}, frente a 112 a \SI{124}{kg} de los módulos de plomo-ácido. Esto facilita instalarlo dentro de la casa.
 \item No requiere mantenimiento, trae el BMS integrado y tiene cinco años de garantía.
-\item Declara más de 4000 ciclos, frente a 1200 a 1700 del plomo-ácido.
 \end{itemize}
 
-La selección tiene tres condiciones que deben verificarse antes de cerrarla:
+El modelo se vende en Costa Rica en 400\,000 colones (\SI{880.26}{USD}) \cite{kuat}, 2.2 veces el precio de Estados Unidos usado en la matriz. Con ese precio, el costo por kWh útil de B4 sube a \SI{430}{USD}. Como referencia local de plomo-ácido, una batería de gel de \SI{12}{V} y \SI{200}{Ah} se vende en 395\,000 colones por unidad \cite{ledxpres_gel}, lo que da \SI{724}{USD} por kWh útil para un módulo de \SI{24}{V} al 50\,\% de DOD. Con precios de Costa Rica, B4 sigue siendo la opción de menor costo por kWh útil. El presupuesto del proyecto usará el precio local.
+
+La selección tiene dos condiciones que deben verificarse antes de cerrarla:
 \begin{itemize}
-\item El precio corresponde a una tienda de Estados Unidos y no incluye envío ni impuestos de importación. Se debe obtener una cotización del distribuidor en Costa Rica \cite{kuat}.
-\item La ficha oficial debe confirmar a qué DOD corresponden los 4000 ciclos y cuántas unidades admite en paralelo. Como cada unidad es de \SI{100}{Ah}, un consumo de \SI{2}{kWh/día} con dos días de autonomía requiere cuatro unidades en paralelo, y uno de \SI{6}{kWh/día}, once (Tabla~\ref{tab:dim_provisional}). Si ese número supera el máximo que permite el fabricante, la alternativa de LiFePO\textsubscript{4} es B5, que reduce las unidades a la mitad, pero con un costo por kWh útil 3.7 veces mayor.
-\item Las celdas LiFePO\textsubscript{4} no deben cargarse por debajo de \SI{0}{\celsius}, por lo que hay que verificar la temperatura mínima del lugar donde se instalará el banco.
+\item El fabricante admite como máximo cuatro unidades en paralelo, es decir, \SI{400}{Ah} a \SI{24}{V} \cite{pq_manual}. Con la ecuación~\eqref{eq:capacidad} y las pérdidas típicas del curso, ese banco alcanza para un consumo de las cargas de hasta \SI{4.61}{kWh/día} con un día de autonomía, \SI{2.29}{kWh/día} con dos días y \SI{1.51}{kWh/día} con tres días. Si el consumo de la casa supera ese valor, la alternativa de LiFePO\textsubscript{4} es B5, que admite hasta 20 unidades, pero con un costo por kWh útil 3.7 veces mayor y un BMS externo que se compra aparte.
+\item B4 se carga entre 0 y \SI{50}{\celsius} y no tiene protección de carga a baja temperatura \cite{pq}. Hay que verificar la temperatura mínima del lugar donde se instalará el banco.
 \end{itemize}
 
-Si alguna de estas condiciones no se cumple, la alternativa en plomo-ácido es B3, de gel. Tiene casi el mismo costo por kWh útil que B1 (\SI{336}{USD/kWh} frente a \SI{333}{USD/kWh}) y no requiere reposición de agua ni ventilación.
+Si alguna de estas condiciones no se cumple, la alternativa en plomo-ácido es B3. Tiene el menor costo por kWh útil del plomo-ácido evaluado (\SI{327}{USD/kWh} frente a \SI{333}{USD/kWh} de B1) y no requiere reposición de agua ni ventilación. B1, en cambio, pierde la garantía en América Latina si se descarga más del 50\,\%.
 
 La cantidad de baterías y la configuración del banco se confirmarán cuando el grupo tenga la caracterización del consumo de la casa y los días de autonomía, con la ecuación~\eqref{eq:capacidad} y la verificación de corriente con el inversor seleccionado. El regulador de carga deberá tener un perfil de carga para LiFePO\textsubscript{4}. \pendiente{número de unidades en paralelo y configuración final del banco}

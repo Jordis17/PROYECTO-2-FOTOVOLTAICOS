@@ -52,7 +52,12 @@ Decisiones del grupo (5 nov. 2026):
 - LEDXPRES, gel tubular EM200PT 12 V 200 Ah C20: ₡405 000, en stock. 1500 ciclos al 80 % de DOD y autodescarga <2 %/mes según la tienda. Marca no declarada.
 - Purasol: no publica precios, solo cotización.
 
+## Resultado con los PDF de Trojan y el BCCR (5 nov. 2026)
+- T-105: la ficha oficial (`Trojan_T105_datasheet.pdf`, T-105.DS_020819) y la guía de especificaciones 2026 **no declaran ciclos**. Los 1200 ciclos al 50 % se mantienen desde el folleto Signature Line alojado por un distribuidor, con el mismo criterio que B3.
+- T-105, garantía: la garantía de Trojan para América Latina (`Trojan_garantia_LATAM_2020.pdf`) es de **12 meses** para toda batería Trojan vendida en la región, y excluye aplicaciones que superan el 50 % de DOD. Antes figuraba como "1 o 5 años".
+- SAES 12 205: la ficha oficial (`Trojan_SAES_12_205_datasheet.pdf`) y la guía 2026 dan **179 Ah a C20 y 57 kg**. La página web da 175 Ah y 59 kg; se usa la ficha. Autodescarga <3 %/mes; vida IEC 61427 de 8 años o más. La gráfica de ciclos contra DOD no se puede leer en el PDF, así que se usan los 1200 ciclos al 100 % de la página oficial.
+- SAES 12 205, garantía: 3 años con DOD máxima de 80 % (`Trojan_garantia_AES_2023.pdf`). Hay que confirmarla en CR, porque la garantía LATAM es de 12 meses.
+- BCCR, 5 nov. 2026: compra ₡449.63 y venta ₡454.41 por dólar. Se usa la venta (`BCCR_tipo_cambio_2026-11-05.txt`). ₡400 000 = 880.26 USD.
+
 ## Pendiente
-1. PDF de Trojan T-105 y SAES 12 205 (assets.ctfassets.net): ciclos por DOD y garantía de la T-105, ciclos al 50 % de la SAES.
-2. Precio de EE. UU. de la SAES 12 205.
-3. Tipo de cambio del BCCR del 5 nov. 2026 para convertir los precios en colones.
+1. Precio de EE. UU. de la SAES 12 205. RES Supply no la vende y solar-electric.com responde con una verificación anti-bots.

@@ -1,5 +1,7 @@
 # Examen corto 4: lista de modelos (aprobada por el grupo)
 
+> **Actualización 5 nov. 2026:** los datos se verificaron contra las fuentes oficiales. Ver `verificacion_fichas.md`. B2 cambió a Trojan SAES 12 205 (la SAGM 12 205 está descontinuada). Esta tabla queda como registro de la búsqueda inicial.
+
 Precios usados en la matriz (`calculos/baterias.py`): B1 225.00 USD (RES Supply), B2 799.95 USD (Air One Solar), B3 358.38 EUR = 403.63 USD (1 USD = 0.8879 EUR, Infobae, 5 nov. 2026), B4 399.99 USD (Walmart), B5 2983.50 USD (solar-electric.com).
 
 Consulta: 5 nov. 2026. Los datos técnicos vienen de los buscadores (fichas o tiendas que reproducen la ficha). **No se pudieron descargar las fichas oficiales** porque la red de esta sesión bloquea los sitios de los fabricantes y de las tiendas de Costa Rica. Antes de pasarlos al informe hay que revisar cada dato contra el PDF oficial.
