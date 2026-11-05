@@ -1,0 +1,113 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={.},group-separator={\,},group-minimum-digits=4,detect-all}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{etoolbox}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\AtBeginEnvironment{thebibliography}{\raggedright}
+\usepackage{geometry}
+\geometry{letterpaper,left=25mm,right=25mm,top=30mm,bottom=25mm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{EL-5854 Sistemas Fotovoltaicos}
+\lhead{ITCR $\vert$ Escuela de Ingeniería Electrónica}
+\rfoot{Pág.\ \thepage}
+\lfoot{II Semestre 2026}
+\setlength{\headheight}{14pt}
+\graphicspath{{figuras/}}
+\newlength{\anchofig}\setlength{\anchofig}{0.72\textwidth}
+\newcommand{\kwhmd}{kWh/(m\textsuperscript{2}$\cdot$día)}
+\newenvironment{IEEEkeywords}{\par\smallskip\noindent\textbf{Palabras clave:} }{\par}
+\renewcommand{\thetable}{\arabic{table}}
+
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\let\figorig\figure \let\endfigorig\endfigure
+\renewenvironment{figure}[1][]{\figorig[!htbp]}{\endfigorig}
+\let\taborig\table \let\endtaborig\endtable
+\renewenvironment{table}[1][]{\taborig[!htbp]}{\endtaborig}
+\renewenvironment{figure*}[1][]{\begin{figure}}{\end{figure}}
+\renewenvironment{table*}[1][]{\begin{table}}{\end{table}}
+
+\begin{document}
+
+\title{Diseño de un sistema fotovoltaico conectado a red para un establecimiento de CoopeAgri R.L. en Pérez Zeledón}
+\author{A. López, S. Rojas, J. Segura\\[2pt]
+\small Escuela de Ingeniería Electrónica, Instituto Tecnológico de Costa Rica}
+\date{II Semestre 2026}
+\thispagestyle{fancy}
+\maketitle
+\thispagestyle{fancy}
+
+\input{secciones/00_resumen}
+\input{secciones/01_introduccion}
+
+\input{secciones/02_lugar}
+\input{secciones/03_recurso}
+\input{secciones/04_modulo}
+\input{secciones/05_red}
+\input{secciones/06_instalacion}
+\input{secciones/07_economia}
+\input{secciones/08_conclusiones}
+
+\section*{Herramientas de apoyo}
+
+Durante el proyecto se utilizó inteligencia artificial para revisar partes de la redacción y ayudar a preparar algunas gráficas, diagramas y scripts de cálculo. Antes de incluir los resultados en el informe, fueron revisados con los datos del sitio y las especificaciones de los equipos. La configuración propuesta y las conclusiones fueron decisiones del grupo.
+
+\begin{thebibliography}{99}
+\bibitem{ice_facturas} Instituto Costarricense de Electricidad, ``Facturas eléctricas del servicio NISE 2471778, COOPEAGRI EL GENERAL R.L., meses de cobro noviembre 2025, abril 2026 y agosto 2026,'' 2025--2026.
+\bibitem{nasa_power} NASA Langley Research Center, ``POWER Climatology API v2.10.1, promedios 2001--2025,'' [En línea]. Disponible: \url{https://power.larc.nasa.gov/}. Consultado: 9 oct. 2026.
+\bibitem{nasa_power_horario} NASA Langley Research Center, ``POWER Hourly API: ALLSKY\_SFC\_SW\_DWN y T2M (2015--2024) y T2M (2005--2025), hora estándar local,'' [En línea]. Disponible: \url{https://power.larc.nasa.gov/}. Consultado: 10 oct. 2026.
+\bibitem{uoregon} University of Oregon Solar Radiation Monitoring Laboratory, ``Sun path chart program,'' [En línea]. Disponible: \url{http://solardata.uoregon.edu/SunChartProgram.php}. Consultado: 9 oct. 2026.
+\bibitem{pvgis} European Commission, Joint Research Centre, ``Photovoltaic Geographical Information System (PVGIS) v5.3, base PVGIS-ERA5 2005--2023,'' [En línea]. Disponible: \url{https://re.jrc.ec.europa.eu/pvg_tools/en/}. Consultado: 9 oct. 2026.
+\bibitem{imn_castro} V. Castro, ``Radiación solar global en Costa Rica,'' Nota de Investigación N.\textsuperscript{o} 6, Instituto Meteorológico Nacional, Ministerio de Agricultura y Ganadería, San José, Costa Rica, 1987.
+\bibitem{nasa_power_diario} NASA Langley Research Center, ``POWER Data Access Viewer: series diarias de ALLSKY\_SFC\_SW\_DWN, ALLSKY\_SFC\_SW\_DNI y ALLSKY\_SFC\_SW\_DIFF, 2025 (CERES SYN1deg Ed.~4.1),'' [En línea]. Disponible: \url{https://power.larc.nasa.gov/data-access-viewer/}. Consultado: 11 oct. 2026.
+\bibitem{factores_k} Cleanergysolar, ``Tablas: factor de corrección $K$ para superficies inclinadas,'' [En línea]. Disponible: \url{https://www.cleanergysolar.com}.
+\bibitem{aiko_manual} Shenzhen Aiko Digital Energy Technology Co., Ltd., ``PV module installation manual (single glass),'' rev.~1.9, abr. 2024. [En línea]. Disponible: \url{https://aikosolar.com/wp-content/uploads/2024/04/PV-Module-Installation-Manual-Single-Glass-EN.pdf}. Consultado: 27 oct. 2026.
+\bibitem{aiko_ds} AIKO, ``Neostar 2S AIKO-A-MAH54Mb, 440--470 W: hoja de datos,'' versión V6.3. [En línea]. Disponible: \url{https://www.solartraders.com/uploads/production/data_sheet/file/37607/data_sheet_aiko_a_mah54mb_glas_folie_neostar_2s_de_01-12-2024.pdf}. Consultado: 9 oct. 2026.
+\bibitem{decreto43879} Costa Rica, Decreto Ejecutivo N.\textsuperscript{o} 43879-MINAE, ``Reglamento a la Ley N.\textsuperscript{o} 10086 de promoción y regulación de recursos energéticos distribuidos a partir de fuentes renovables,'' 2023.
+\bibitem{cps_ds} CPS Chint Power Systems America, ``SCA25KTL-DO/US-208: 25 kW three-phase string inverter, hoja de datos,'' jul. 2025. [En línea]. Disponible: \url{https://www.solarelectricsupply.com/media/sparsh/product_attachment/CPS-SCA25KTL-DO-US-208-Datasheet-7-30-2025.pdf}. Consultado: 9 oct. 2026.
+\bibitem{unirac_design} Unirac, ``U-Builder: herramienta de diseño,'' [En línea]. Disponible: \url{https://design.unirac.com/}. Consultado: 9 oct. 2026.
+\bibitem{unirac_tilt} Unirac, ``Adjustable tilt legs,'' [En línea]. Disponible: \url{https://unirac.com/products/attachments/adjustable-tilt-legs/}. Consultado: 9 oct. 2026.
+\bibitem{codigo_electrico} Costa Rica, Decreto Ejecutivo N.\textsuperscript{o} 36979-MEIC, ``RTCR 458:2011 Reglamento de oficialización del Código Eléctrico de Costa Rica para la seguridad de la vida y de la propiedad,'' y sus reformas (Decreto 43418-MEIC).
+\bibitem{nec2014} National Fire Protection Association, \textit{NFPA 70: National Electrical Code}, ed. 2014. Quincy, MA, EE.\,UU.: NFPA, 2014.
+\bibitem{tipo_cambio} Telediario, ``Dólar en Costa Rica: tipo de cambio para este viernes 9 de octubre,'' 9 oct. 2026. [En línea]. Disponible: \url{https://telediario.cr/nacional/dolar-costa-rica-tipo-cambio-viernes-9-octubre}.
+\bibitem{precio_modulo} Cambio Energético, ``Panel solar AIKO Neostar 2S 450 W,'' [En línea]. Disponible: \url{https://www.cambioenergetico.com/producto/aiko-neostar-2s-450w/}. Consultado: 9 oct. 2026.
+\bibitem{precio_inversor} Solar Cellz USA, ``CPS SCA25KTL-DO/US-208-APS 25 kW 3-phase string inverter with APS RSD wirebox,'' [En línea]. Disponible: \url{https://shop.solarcellzusa.com/products/cps-sca25ktl-do-us-208-aps-25-kw-3-phase-string-inverter-with-aps-rsd-wirebox}. Consultado: 9 oct. 2026.
+\bibitem{precios_bos} Precios consultados el 9 y el 11 oct. 2026 en: PES Supply (\url{https://www.portlandiaelectric.supply}): Unirac 303019M y 307107M, S-5-U Mini, PV Wire 10 AWG; Elliott Electric Supply (\url{https://www.elliottelectric.com}): THHN 3 AWG, 3/0 AWG y 250 kcmil; SuperBreakers (\url{https://superbreakers.com}): Square D QDL32090, LAL36175 y MAL36450; SupplyHouse (\url{https://www.supplyhouse.com}): Square D D324N; Standard Electric Supply (\url{https://www.standardelectricsupply.com}): Square D HU366.
+\bibitem{cfia_arancel} Costa Rica, Decreto Ejecutivo N.\textsuperscript{o} 18636-MOPT, ``Arancel de servicios profesionales de consultoría para edificaciones,'' \textit{La Gaceta} N.\textsuperscript{o} 225, 25 nov. 1988. [En línea]. Disponible: \url{https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/reglamentos/ejercicio/arancel-de-servicios-profesionales-de-consultoria-para-edificaciones.pdf}. Consultado: 11 oct. 2026.
+\bibitem{cfia_registro} Colegio Federado de Ingenieros y de Arquitectos de Costa Rica, ``Registro de responsabilidad por consultorías varias,'' Centro de ayuda CFIA. [En línea]. Disponible: \url{https://centrodeayuda.cfia.or.cr/hc/es/articles/360025821333}. Consultado: 11 oct. 2026.
+\bibitem{cfia_resumen} Bitántica, ``Aranceles CFIA 2026: tabla de honorarios profesionales para ingenieros y arquitectos,'' 2026. [En línea]. Disponible: \url{https://bitantica.com/blog/aranceles-cfia-2026-honorarios-profesionales}. Consultado: 11 oct. 2026.
+\bibitem{ice_der} Instituto Costarricense de Electricidad, ``Tarifas aplicables a recursos energéticos distribuidos: cargos de interconexión, tarifa de acceso, compra-venta de excedentes 2026 y tarifa TDER,'' actualizado 29 jul. 2026. [En línea]. Disponible: \url{https://www.grupoice.com/wps/wcm/connect/6b387ffa-400d-41dd-85aa-76e36daffb20/TARIFAS_APLICABLES_A_RECURSOS_ENERGETICOS_DISTRIBUIDOS_ENERO_2025.pdf}. Consultado: 10 oct. 2026.
+\bibitem{ice_guia2021} Instituto Costarricense de Electricidad, División Distribución y Comercialización, ``Guía para el proceso de solicitud de instalación de sistemas de generación distribuida, modalidad neta sencilla,'' set. 2021. [En línea]. Disponible: \url{https://www.grupoice.com/wps/wcm/connect/4cc0b3e7-fa48-4c7c-ac75-b112d4ae9448/Gui%CC%81a+de+Interconexio%CC%81n+Generacio%CC%81n+Distribuida.pdf}. Consultado: 11 oct. 2026.
+\bibitem{nrel_benchmark} V. Ramasamy, J. Zuboy, E. O'Shaughnessy, D. Feldman, J. Desai, M. Woodhouse, P. Basore y R. Margolis, ``U.S. solar photovoltaic system and energy storage cost benchmarks, with minimum sustainable price analysis: Q1 2022,'' National Renewable Energy Laboratory, Golden, CO, EE.\,UU., Rep. técnico NREL/TP-7A40-83586, set. 2022. [En línea]. Disponible: \url{https://docs.nlr.gov/docs/fy22osti/83586.pdf}. Consultado: 27 oct. 2026.
+\bibitem{sunshine_precios} Sunshine Tech, ``Precio de paneles solares en Costa Rica'' y ``Paneles solares industriales en Costa Rica,'' 2025. [En línea]. Disponible: \url{https://sunshine.tech/precios/}. Consultado: 11 oct. 2026.
+\bibitem{aresep_metodologia} Autoridad Reguladora de los Servicios Públicos, ``RE-0076-JD-2023: Metodología tarifaria derivada de la Ley 10086 (ajustada con RE-0126-JD-2024),'' [En línea]. Disponible: \url{https://www.grupoice.com/wps/wcm/connect/e9837ac4-70b5-44cc-8eca-84e05a425beb/RE-0076-JD-2023+Metodolog%C3%ADa+tarifaria+derivada+de+la+Ley+10.086+(ajustada+con+RE-0126-JD-2024).pdf}. Consultado: 10 oct. 2026.
+\bibitem{ice_guia} Instituto Costarricense de Electricidad, ``DC-03-PR-21-001: Guía de requisitos para la conexión de generación distribuida para autoconsumo,'' ver.\ 2.2. [En línea]. Disponible: \url{https://www.grupoice.com/wps/wcm/connect/256f8300-e62b-4b0e-8988-075794aa5c0c/DC-03-PR-21-001_2023FINALver.+2.2.pdf}. Consultado: 10 oct. 2026.
+\bibitem{bccr_tbp} Banco Central de Costa Rica, ``Tasa básica pasiva y tasa efectiva en dólares,'' 10 set. 2026. [En línea]. Disponible: \url{https://www.bccr.fi.cr/cr/es/noticias/listado-de-noticias/2026/tasa-basica-pasiva-y-tasa-efectiva-en-dolares5.html}. Consultado: 11 oct. 2026.
+\bibitem{bccr_tan} Banco Central de Costa Rica, ``Tasa activa negociada (TAN), por actividad económica y por grupo de intermediario financiero, en colones,'' semana del 27 may. al 2 jun. 2026. [En línea]. Disponible: \url{https://gee.bccr.fi.cr/indicadoreseconomicos/Cuadros/frmVerCatCuadro.aspx?idioma=1&CodCuadro=4863}. Consultado: 11 oct. 2026.
+\bibitem{bancopopular} Banco Popular y de Desarrollo Comunal, ``Créditos verdes: qué son y cómo pueden ayudarte a cuidar el planeta,'' 2025. [En línea]. Disponible: \url{https://www.bancopopular.fi.cr/creditos-verdes-que-son-y-como-pueden-ayudarte-a-cuidar-el-planeta/}. Consultado: 11 oct. 2026.
+\bibitem{avolta} Avolta Energy, ``Financiamiento para instalación de paneles solares en Costa Rica,'' 2026. [En línea]. Disponible: \url{https://www.avoltaenergy.com/financiamiento/}. Consultado: 11 oct. 2026.
+\end{thebibliography}
+
+\end{document}

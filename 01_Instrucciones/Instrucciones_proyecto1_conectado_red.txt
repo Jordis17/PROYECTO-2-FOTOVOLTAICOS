@@ -1,0 +1,60 @@
+Herramientas recomendadas por el profesor para el desarrollo del proyecto:
+
+Herramienta para la posición Solar 
+http://solardata.uoregon.edu/SunChartProgram.php 
+https://www.sunearthtools.com/dp/tools/pos_sun.php 
+
+- Portal de la base de datos de la NASA 
+https://power.larc.nasa.gov/data-access-viewer/  
+
+- Bases de datos del Instituto Meteorológico Nacional 
+https://www .imn.ac.cr/estaciones-automaticas 
+
+- Base de datos de la Agencia Espacial Europea 
+https://re.jrc.ec.europa.eu/pvg_tools/en/  
+
+- Un portal en línea donde pueden consultar todos los conceptos del curso (Disponible en Español, pero está más completa en inglés) 
+https://www.pveducation.org/es 
+
+- Portal para la conversión de coordenadas decimales a coordenadas en grados minutos y segundos.  
+https://es.planetcalc.com/1129/  
+
+- Tiendas en línea de componentes fotovoltaicos 
+https://www.altestore.com/store/ 
+https://unboundsolar.com/  
+
+- Diseño para el sistema de montaje 
+https://design.unirac.com/  
+
+- Conceptos y elementos básicos sobre baterías 
+https://batteryuniversity.com/ 
+
+Proyecto Conectado a Red 
+En este proyecto los estudiantes deben diseñar un sistema solar foto-voltaico que permita reducir la factura eléctrica de una vivienda*, comercio o industria. Para poder estimar el ahorro los estudiantes deben de disponer del consumo eléctrico del sitio en estudio de cada mes en un periodo de por lo menos un año. Al finalizar este proyecto, los estudiantes determinarán la cantidad, el tipo y la forma correcta de instalar los distintos paneles y equipos electrónicos que hacen parte de la instalación solar. Aportarán una memoria técnica con esta información y un diagrama eléctrico simplificado del diseño. Los resultados principales serán presentados en una presentación de 10 minutos.  
+  
+El proyecto debe contener 
+
+- Descripción del lugar de estudio  
+- Características de la zona 
+- Ubicación (vista satelital) 
+- Caracterización del consumo eléctrico (Tablas y Gráficos que lo representen)  
+- Diagramas cilíndricos del sitio 
+- Componentes de radiación del sistema   
+- Descripción de las bases de datos meteorológicas usadas 
+- Gráficos y tablas que representen los distintos tipos de radiación encontrados 
+- Cálculo del ángulo óptimo para el sistema y la comparación con el ángulo disponible. 
+- Módulo fotovoltaicos  
+- Descripción de los módulos (tecnología) a utilizar 
+- Tabla resumen con las principales características eléctrica.  
+- Estimaciones de la variación de los parámetros eléctricos en función de las características 
+- Sistema conectado a red  
+- Dimensionamiento de cantidad de paneles (en serie y paralelo) 
+- Selección del inversor (Tabla resumen con las principales características) 
+- Cálculos para el dimensionamiento del inversor.  
+- Gráfico de Área de Operación Segura (SOA) 
+- Estimación energética esperada (Tablas y Gráficos) 
+- Lista de materiales de la estructura de montaje 
+- Lista de protecciones eléctricas 
+- Dimensionamiento del cableado en distintos tramos de la instalación 
+- Diagrama Unifilar detallado con la instalación diseñada. 
+- Estimación Económica del retorno. 

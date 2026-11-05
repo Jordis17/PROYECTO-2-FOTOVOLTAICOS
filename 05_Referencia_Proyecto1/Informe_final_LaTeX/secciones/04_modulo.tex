@@ -1,0 +1,81 @@
+\section{Módulo fotovoltaico}\label{sec:modulo}
+
+\subsection{Descripción del módulo y tecnología}
+
+Se seleccionó el módulo AIKO Neostar 2S AIKO-A450-MAH54Mb, de \SI{450}{W}, por su eficiencia de 22.6\,\%, su bajo coeficiente de temperatura de potencia (\SI{-0.26}{\%/\celsius}) y su baja degradación garantizada, de 1\,\% el primer año y 0.35\,\% por año después \cite{aiko_ds}.
+
+El módulo es de silicio monocristalino tipo n con celdas ABC (\emph{all back contact}), que tienen los dos contactos en la cara posterior; así la cara frontal no tiene rejilla metálica que haga sombra sobre la celda. El módulo está formado por 108 medias celdas, tiene vidrio templado de \SI{3.2}{mm}, marco de aluminio y tres diodos de paso \cite{aiko_ds}. El uso de medias celdas reduce la corriente en cada celda y, con ello, las pérdidas resistivas.
+
+\subsection{Tabla resumen de características eléctricas}
+
+La Tabla~\ref{tab:modulo} reúne los datos de la ficha técnica en condiciones estándar de prueba (STC) y NOCT. El fusible máximo en serie se usa en la Sección~\ref{sec:instalacion} para elegir los fusibles de cadena.
+
+\begin{table}[!htb]
+\caption{Características del módulo AIKO-A450-MAH54Mb \cite{aiko_ds}}
+\label{tab:modulo}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l c c}
+\toprule
+Parámetro & STC & NOCT \\
+\midrule
+Potencia máxima, $P_{\max}$ & \SI{450}{W} & \SI{339}{W} \\
+Tensión de máx. potencia, $V_{mp}$ & \SI{33.70}{V} & \SI{31.83}{V} \\
+Corriente de máx. potencia, $I_{mp}$ & \SI{13.36}{A} & \SI{10.66}{A} \\
+Tensión de circuito abierto, $V_{oc}$ & \SI{40.69}{V} & \SI{38.43}{V} \\
+Corriente de cortocircuito, $I_{sc}$ & \SI{14.12}{A} & \SI{11.42}{A} \\
+\midrule
+Eficiencia del módulo & \multicolumn{2}{c}{22.6\,\%} \\
+Coef. de temperatura de $P_{\max}$ & \multicolumn{2}{c}{\SI{-0.26}{\%/\celsius}} \\
+Coef. de temperatura de $V_{oc}$ & \multicolumn{2}{c}{\SI{-0.22}{\%/\celsius}} \\
+Coef. de temperatura de $I_{sc}$ & \multicolumn{2}{c}{\SI[retain-explicit-plus]{+0.05}{\%/\celsius}} \\
+Tensión máxima del sistema & \multicolumn{2}{c}{\SI{1500}{V} DC} \\
+Fusible máximo en serie & \multicolumn{2}{c}{\SI{25}{A}} \\
+Dimensiones & \multicolumn{2}{c}{\SI{1757}{} $\times$ \SI{1134}{} $\times$ \SI{30}{mm}} \\
+Masa & \multicolumn{2}{c}{\SI{21.5}{kg}} \\
+Cable de salida & \multicolumn{2}{c}{\SI{4}{mm^2} (12 AWG), conector MC4} \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+{\footnotesize STC (\textit{Standard Test Conditions}): \SI{1000}{W/m^2}, \SI{25}{\celsius} en la celda, AM 1.5. NOCT (\textit{Nominal Operating Cell Temperature}): \SI{800}{W/m^2}, \SI{20}{\celsius} ambiente, viento de \SI{1}{m/s}. Los coeficientes de temperatura están declarados a STC.}
+\end{table}
+
+\subsection{Estimación de la variación de los parámetros eléctricos}
+
+Los parámetros se corrigieron para la temperatura mínima de la celda, que da la mayor tensión, y para la máxima, que da la menor tensión y la menor potencia.
+
+La temperatura de la celda se estimó con
+\begin{equation}
+T_{\mathrm{celda}} = T_{\mathrm{amb}} + \frac{\mathrm{NOCT}-20}{800}\,G,
+\label{eq:tcelda}
+\end{equation}
+donde $G$ es la irradiancia en \si{W/m^2}. La ficha técnica no da la temperatura NOCT de la celda, por lo que se estimó con los valores NOCT de la Tabla~\ref{tab:modulo}. Con \SI{800}{W/m^2} y la celda a \SI{25}{\celsius}, el módulo daría \SI{360}{W} ($0.8\times\SI{450}{W}$); para que la potencia baje a los \SI{339}{W} de la ficha, según el coeficiente de potencia, la celda debe estar a \SI{47.4}{\celsius}. Con la corriente se obtiene \SI{47.0}{\celsius}. Se usó un NOCT estimado de \SI{47}{\celsius}.
+
+La temperatura mínima de la celda se tomó igual a la mínima ambiente, \SI{14.1}{\celsius}, porque al amanecer, con muy poca irradiancia, la celda está prácticamente a la temperatura del aire. Para la máxima se usó la ambiente máxima de \SI{30.5}{\celsius} con $G=\SI{1000}{W/m^2}$, lo que según \eqref{eq:tcelda} da \SI{64.3}{\celsius}. Ambas temperaturas provienen de \textit{NASA POWER} \cite{nasa_power}.
+
+Cada parámetro se corrigió con
+\begin{equation}
+X(T) = X_{\mathrm{STC}}\left[1 + \frac{\gamma_X}{100}\,(T_{\mathrm{celda}} - 25)\right],
+\label{eq:correccion}
+\end{equation}
+donde $\gamma_X$ es el coeficiente de temperatura del parámetro en \si{\%/\celsius}. La ficha no da coeficientes para $V_{mp}$ e $I_{mp}$. Para $I_{mp}$ se usó el de $I_{sc}$, y para $V_{mp}$ se estimó $\gamma_{V_{mp}}\approx\gamma_{P}-\gamma_{I_{sc}}=\SI{-0.31}{\%/\celsius}$, de modo que el producto $V_{mp}\cdot I_{mp}$ concuerde con la potencia corregida. Este coeficiente es una aproximación y no un dato del fabricante. Los resultados se presentan en la Tabla~\ref{tab:temperatura}.
+
+\begin{table}[!htb]
+\caption{Parámetros del módulo corregidos por temperatura (\SI{1000}{W/m^2})}
+\label{tab:temperatura}
+\centering
+\small
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{l S[table-format=2.2] S[table-format=2.2] S[table-format=2.2] S[table-format=2.2] S[table-format=3.1]}
+\toprule
+{$T_{\mathrm{celda}}$} & {$V_{oc}$ [V]} & {$V_{mp}$ [V]} & {$I_{sc}$ [A]} & {$I_{mp}$ [A]} & {$P$ [W]} \\
+\midrule
+\SI{14.1}{\celsius} (mín.) & 41.67 & 34.84 & 14.04 & 13.29 & 462.8 \\
+\SI{25}{\celsius} (STC)     & 40.69 & 33.70 & 14.12 & 13.36 & 450.0 \\
+\SI{64.3}{\celsius} (máx.) & 37.18 & 29.59 & 14.40 & 13.62 & 404.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Entre los dos extremos, $V_{oc}$ varía cerca de 11\,\% y $V_{mp}$ cerca de 15\,\%; la potencia cae a \SI{404}{W} con la celda a \SI{64.3}{\celsius}, mientras que la corriente casi no cambia. La tensión a \SI{14.1}{\celsius} limita el número máximo de módulos en serie, la de \SI{64.3}{\celsius} el mínimo, y las corrientes a \SI{64.3}{\celsius} se usan para revisar los límites de corriente del inversor y dimensionar los conductores.

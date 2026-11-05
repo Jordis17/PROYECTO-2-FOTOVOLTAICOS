@@ -1,0 +1,40 @@
+Proyecto Sistema Aislado FV
+(Transcrito del Loop "Cronograma de clase" del profesor Hugo Sánchez)
+
+En este proyecto los estudiantes deben diseñar un sistema solar fotovoltaico para alimentar un conjunto de equipos eléctricos que, debido a su ubicación remota, no tienen posibilidad de conectarse a la red eléctrica. Otra aplicación posible es para sistemas en donde el fluido eléctrico no es muy estable y por lo tanto se desea tener un sistema energético de respaldo alimentado con paneles solares. Para poder estimar la cantidad de energía que el sistema solar debe proveer a estos equipos es necesario tener una información técnica de los mismos, esto es, tensión de operación, potencia pico de consumo, potencia nominal, corriente máxima y nominal y horas de uso en un día. Al finalizar este proyecto, los estudiantes determinarán la cantidad, el tipo y la forma correcta de instalar los distintos paneles y equipos electrónicos que hacen parte de la instalación solar aislada. Aportarán una memoria técnica con esta información y un diagrama eléctrico simplificado del diseño. Los resultados principales serán presentados en una [presentación] de 7 minutos.
+
+El proyecto debe contener
+
+- Descripción del lugar de estudio
+  - Características de la zona
+  - Ubicación (vista satelital)
+  - Caracterización del consumo eléctrico (Tablas y Gráficos que lo representen)
+- Diagramas cilíndricos del sitio
+- Componentes de radiación del sistema
+  - Descripción de las bases de datos meteorológicas usadas
+  - Gráficos y tablas que representen los distintos tipos de radiación encontrados
+  - Cálculo del ángulo óptimo para el sistema.
+- Módulo fotovoltaicos
+  - Descripción de los módulos a utilizar
+  - Tabla resumen con las principales características eléctrica.
+  - Estimaciones de la variación de los parámetros eléctricos en función de las características
+- Baterías
+  - Descripción de las baterías a utilizar
+  - Tabla resumen con las principales características eléctrica.
+  - Estimación de la cantidad y configuración de las baterías.
+- Sistema Aislado
+  - Dimensionamiento de cantidad de paneles (en serie y paralelo)
+  - Selección del regulador
+  - Cálculos para el dimensionamiento del regulador.
+  - Selección del inversor (Tabla resumen con las principales características)
+  - Cálculos para el dimensionamiento del inversor.
+  - Gráfico de Área de Operación Segura (SOA)
+  - Estimación energética esperada (Tablas y Gráficos)
+  - Lista de materiales de la estructura de montaje
+  - Lista de protecciones eléctricas
+  - Dimensionamiento del cableado
+  - Costos del sistema
+  - Estimación de la proyección financiera del sistema.
+  - Diagrama Unifilar detallado con la instalación diseñada.
+
+Formato del informe: el mismo del Proyecto 1 (plantilla en Overleaf: https://www.overleaf.com/read/nppvngyxwrzz).
