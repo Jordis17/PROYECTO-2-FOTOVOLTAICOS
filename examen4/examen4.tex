@@ -1,0 +1,74 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={.},group-separator={\,},group-minimum-digits=4,detect-all}
+\usepackage{url}
+\usepackage{xurl}
+
+% Marca visible para lo que falta (se elimina en la versión final)
+\newcommand{\pendiente}[1]{\textcolor{red}{\textbf{[PENDIENTE: #1]}}}
+
+\begin{document}
+
+\title{Tecnologías de baterías y selección del banco de almacenamiento para un sistema fotovoltaico aislado}
+
+\author{\IEEEauthorblockN{Abner López}
+\IEEEauthorblockA{\textit{Ingeniería Electrónica} \\
+\textit{Tecnológico de Costa Rica}\\
+Cartago, Costa Rica}
+\and
+\IEEEauthorblockN{Sebastián Rojas}
+\IEEEauthorblockA{\textit{Ingeniería Electrónica} \\
+\textit{Tecnológico de Costa Rica}\\
+Cartago, Costa Rica}
+\and
+\IEEEauthorblockN{Jordi Segura}
+\IEEEauthorblockA{\textit{Ingeniería Electrónica} \\
+\textit{Tecnológico de Costa Rica}\\
+Cartago, Costa Rica}
+}
+
+\maketitle
+
+\input{secciones/00_resumen}
+\input{secciones/01_introduccion}
+\input{secciones/02_parametros}
+\input{secciones/03_tecnologias}
+\input{secciones/04_opciones}
+\input{secciones/05_matriz}
+\input{secciones/06_dimensionamiento}
+\input{secciones/07_seleccion}
+
+\begin{thebibliography}{99}
+
+\bibitem{linden} T.~B. Reddy, Ed., \emph{Linden's Handbook of Batteries}, 4th~ed. New York, NY, USA: McGraw-Hill, 2011.
+
+\bibitem{pavlov} D.~Pavlov, \emph{Lead-Acid Batteries: Science and Technology}, 2nd~ed. Amsterdam, The Netherlands: Elsevier, 2017.
+
+\bibitem{may2018} G.~J. May, A.~Davidson y B.~Monahov, ``Lead batteries for utility energy storage: A review,'' \emph{J. Energy Storage}, vol.~15, pp.~145--157, 2018.
+
+\bibitem{tarascon2001} J.-M. Tarascon y M.~Armand, ``Issues and challenges facing rechargeable lithium batteries,'' \emph{Nature}, vol.~414, pp.~359--367, 2001.
+
+\bibitem{padhi1997} A.~K. Padhi, K.~S. Nanjundaswamy y J.~B. Goodenough, ``Phospho-olivines as positive-electrode materials for rechargeable lithium batteries,'' \emph{J. Electrochem. Soc.}, vol.~144, no.~4, pp.~1188--1194, 1997.
+
+\bibitem{zubi2018} G.~Zubi, R.~Dufo-López, M.~Carvalho y G.~Pasaoglu, ``The lithium-ion battery: State of the art and future perspectives,'' \emph{Renew. Sustain. Energy Rev.}, vol.~89, pp.~292--308, 2018.
+
+\bibitem{ieee1013} \emph{IEEE Recommended Practice for Sizing Lead-Acid Batteries for Stand-Alone Photovoltaic (PV) Systems}, IEEE Std 1013-2019, 2019.
+
+\bibitem{iec61427} \emph{Secondary cells and batteries for renewable energy storage -- General requirements and methods of test -- Part~1: Photovoltaic off-grid application}, IEC 61427-1:2013, 2013.
+
+\end{thebibliography}
+
+\end{document}
