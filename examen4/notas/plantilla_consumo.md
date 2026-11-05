@@ -10,8 +10,8 @@ Datos que pide el instructivo para cada equipo: tensión, potencia nominal y pic
 | 2 | | | | | | | | | | | |
 
 Decisiones previas del grupo:
-- ¿Toda la casa (respaldo) o solo un grupo de cargas críticas?
-- Días de autonomía a usar (en el ejemplo de clase se usaron 2).
+- Decidido (5 nov. 2026): respaldo de un grupo de **cargas críticas**.
+- Decidido (5 nov. 2026): **2 días de autonomía**.
 
 ## Equipos típicos de una casa para revisar con el grupo
 Es solo una lista para no olvidar equipos. No contiene datos.

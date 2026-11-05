@@ -39,18 +39,18 @@ lines = [
     ("1. En la hoja «Cargas», llenar una fila por tipo de equipo. Solo se editan las celdas amarillas con texto azul; las demás se calculan solas.", f_base),
     ("2. Tomar los datos de la placa o etiqueta del equipo y fotografiarla. Anotar en «Fuente del dato» de dónde salió cada valor (placa, manual o ficha, medición o supuesto).", f_base),
     ("3. Si un dato no aparece en la placa, dejar la celda vacía o marcar la fuente como «Supuesto» y explicarlo en «Observaciones». No estimar sin indicarlo.", f_base),
-    ("4. En «¿Se alimenta con el sistema?» poner «Sí» solo para las cargas que el grupo decida conectar al sistema aislado. Las de «No» quedan registradas pero no se suman.", f_base),
+    ("4. En «¿Carga crítica?» poner «Sí» solo para las cargas que el sistema debe respaldar. Las de «No» quedan registradas pero no se suman.", f_base),
     ("5. En «Perfil horario», para cada equipo, anotar qué fracción de cada hora está encendido (1 = toda la hora, 0.5 = media hora, vacío = apagado). La suma debe coincidir con las horas/día de «Cargas»; la columna de verificación lo indica.", f_base),
-    ("6. En «Resumen», revisar los días de autonomía (celda amarilla). El resto sale de las fórmulas del curso (Aislado 1 y 2) con las pérdidas típicas de clase.", f_base),
+    ("6. «Resumen» usa 2 días de autonomía, definidos por el grupo. El resto sale de las fórmulas del curso (Aislado 1 y 2) con las pérdidas típicas de clase.", f_base),
     ("La fila 5 de «Cargas» y de «Perfil horario» es un EJEMPLO (televisor de 100 W, 3 h/día, del ejemplo de clase de Aislado 2). No se suma: se puede dejar o borrar.", f_base),
     ("", f_base),
     ("Datos que pide el instructivo para cada equipo", f_b),
     ("Tensión de operación, potencia nominal, potencia pico, corriente nominal, corriente máxima y horas de uso en un día.", f_base),
     ("La potencia pico o de arranque importa en motores y compresores (refrigeradora, bomba de agua, lavadora): define la sobrecarga que debe soportar el inversor.", f_base),
     ("", f_base),
-    ("Decisiones del grupo antes de llenar", f_b),
-    ("• ¿Respaldo de toda la casa o solo de un grupo de cargas que se alimentan con el sistema aislado?", f_base),
-    ("• Días de autonomía (en el ejemplo de clase se usaron 2).", f_base),
+    ("Decisiones del grupo (5 nov. 2026)", f_b),
+    ("• El sistema es de respaldo para un grupo de cargas críticas de la casa (la casa tiene servicio eléctrico).", f_base),
+    ("• Días de autonomía: 2.", f_base),
     ("", f_base),
     ("Equipos típicos para revisar en la casa (lista de control, sin datos)", f_b),
 ]
@@ -83,11 +83,11 @@ ws.append(["Texto gris en cursiva: fila de ejemplo, no se suma."]); ws.cell(ws.m
 wc = wb.create_sheet("Cargas")
 hdr = ["#", "Zona o cuarto", "Equipo", "Marca y modelo", "Cant. N", "Tipo (CA/CC)", "Tensión [V]",
        "P nominal [W]", "P pico o arranque [W]", "I nominal [A]", "I máx. [A]", "Horas/día H [h]",
-       "¿Se alimenta con el sistema? (Sí/No)", "Energía N·P·H [Wh/día]", "Fuente del dato",
+       "¿Carga crítica? (Sí/No)", "Energía N·P·H [Wh/día]", "Fuente del dato",
        "Foto (archivo)", "Observaciones"]
 widths = [5, 14, 22, 20, 8, 9, 9, 10, 11, 9, 9, 10, 13, 12, 15, 14, 30]
 wc["A1"] = "Levantamiento de cargas: casa de Abner López"; wc["A1"].font = f_t
-wc["A2"] = "Llenar solo las celdas amarillas. Energía = N·P·H (Aislado 1), sumada solo si la carga se alimenta con el sistema."; wc["A2"].font = f_base
+wc["A2"] = "Llenar solo las celdas amarillas. Energía = N·P·H (Aislado 1), sumada solo si la carga es crítica."; wc["A2"].font = f_base
 for j, (h, w) in enumerate(zip(hdr, widths), 1):
     c = wc.cell(4, j, h); c.font = f_b; c.fill = fill_hd; c.alignment = center; c.border = box
     wc.column_dimensions[L(j)].width = w
@@ -116,8 +116,8 @@ for r in range(REX, R1 + 1):
     for j in (10, 11, 12): wc.cell(r, j).number_format = '0.00;-0.00;""'
 
 RT = R1 + 2
-wc.cell(RT, 3, "Total incluido en el sistema").font = f_b
-for (lbl, crit, row) in [("Total incluido en el sistema", None, RT),
+wc.cell(RT, 3, "Total de cargas críticas").font = f_b
+for (lbl, crit, row) in [("Total de cargas críticas", None, RT),
                          ("   en CA", "CA", RT + 1), ("   en CC", "CC", RT + 2)]:
     wc.cell(row, 3, lbl).font = f_b
     if crit:
@@ -138,13 +138,13 @@ wc.add_data_validation(dv_num); dv_num.add(f"E{R0}:K{R1}")
 wc.add_data_validation(dv_h); dv_h.add(f"L{R0}:L{R1}")
 wc.freeze_panes = "D5"
 wc["I4"].comment = Comment("Potencia de arranque de motores y compresores. Si la placa no la indica, dejar vacío y anotarlo en Observaciones.", "Grupo")
-wc["M4"].comment = Comment("Sí: la carga se conecta al sistema aislado y se suma. No: queda registrada pero no se suma.", "Grupo")
+wc["M4"].comment = Comment("Sí: carga crítica, se respalda con el sistema y se suma. No: queda registrada pero no se suma.", "Grupo")
 
 # ---------------------------------------------------------------- Perfil horario
 wp = wb.create_sheet("Perfil horario")
 wp["A1"] = "Perfil horario de uso"; wp["A1"].font = f_t
 wp["A2"] = "Fracción de cada hora en que el equipo está encendido (1 = toda la hora; 0.5 = media hora; vacío = apagado). Sirve para el gráfico de consumo y para la potencia simultánea del inversor."; wp["A2"].font = f_base
-ph = ["#", "Equipo", "Tipo", "N", "P nominal [W]", "¿Sistema?", "H en «Cargas» [h]"] + [f"{h:02d}–{h+1:02d}" for h in range(24)] + ["Suma [h]", "Verificación"]
+ph = ["#", "Equipo", "Tipo", "N", "P nominal [W]", "¿Crítica?", "H en «Cargas» [h]"] + [f"{h:02d}–{h+1:02d}" for h in range(24)] + ["Suma [h]", "Verificación"]
 for j, h in enumerate(ph, 1):
     c = wp.cell(4, j, h); c.font = f_b; c.fill = fill_hd; c.alignment = center; c.border = box
     wp.column_dimensions[L(j)].width = 6.5 if 8 <= j <= 31 else 10
@@ -172,7 +172,7 @@ dvf = DataValidation(type="decimal", operator="between", formula1="0", formula2=
 wp.add_data_validation(dvf); dvf.add(f"{L(H0)}{R0}:{L(H1)}{R1}")
 
 rows = [
-    ("Energía de las cargas incluidas [Wh]", None, "frac"),
+    ("Energía de las cargas críticas [Wh]", None, "frac"),
     ("   en CA [Wh]", "CA", "frac"),
     ("   en CC [Wh]", "CC", "frac"),
     ("Potencia CA conectada [W]", "CA", "on"),
@@ -225,7 +225,7 @@ def row(key, label, val, unit, note, kind="calc", fmt="0.000"):
     cells[key] = f"$B${r}"; r += 1
 
 head("Datos de diseño")
-row("D", "Días de autonomía D", 2, "días", "SUPUESTO: valor del ejemplo de clase. El grupo debe definirlo.", "in", "0")
+row("D", "Días de autonomía D", 2, "días", "Definido por el grupo (5 nov. 2026).", "in", "0")
 row("V", "Tensión del banco V", 24, "V", "Indicado en clase.", "in", "0")
 row("DOD", "Profundidad de descarga de diseño DOD", 0.7, "", "Indicado en clase (70 %).", "in", "0%")
 row("M", "Margen de seguridad", 1.1, "", "Factor 1.1 de la fórmula del curso.", "in", "0.0")
@@ -241,8 +241,8 @@ row("Imax", "Corriente continua máxima de descarga por módulo", 100, "A", "Man
 row("Npmax", "Máximo de módulos en paralelo", 4, "", "Manual del fabricante: 4P2S.", "in", "0")
 row("Vmod", "Tensión nominal del módulo", 25.6, "V", "Ficha del fabricante.", "in", "0.0")
 head("Consumo (de la hoja «Cargas» y «Perfil horario»)")
-row("ECC", "Energía diaria de las cargas en CC, E_CC", f'=SUMIFS(Cargas!{RNG("N")},Cargas!{RNG("F")},"CC")', "Wh/día", "Σ N·P·H de las cargas CC incluidas.", "link", "#,##0")
-row("ECA", "Energía diaria de las cargas en CA, E_CA", f'=SUMIFS(Cargas!{RNG("N")},Cargas!{RNG("F")},"CA")', "Wh/día", "Σ N·P·H de las cargas CA incluidas.", "link", "#,##0")
+row("ECC", "Energía diaria de las cargas en CC, E_CC", f'=SUMIFS(Cargas!{RNG("N")},Cargas!{RNG("F")},"CC")', "Wh/día", "Σ N·P·H de las cargas críticas en CC.", "link", "#,##0")
+row("ECA", "Energía diaria de las cargas en CA, E_CA", f'=SUMIFS(Cargas!{RNG("N")},Cargas!{RNG("F")},"CA")', "Wh/día", "Σ N·P·H de las cargas críticas en CA.", "link", "#,##0")
 row("E", "Energía diaria de las cargas, E_CC + E_CA", f"={cells['ECC']}+{cells['ECA']}", "Wh/día", "", "calc", "#,##0")
 row("Eperf", "Energía según el perfil horario", f"='Perfil horario'!AF{RP_TOT}", "Wh/día", "Debe coincidir con la fila anterior si el perfil está completo.", "link", "#,##0")
 row("nrev", "Equipos con perfil horario por revisar", f"=COUNTIF('Perfil horario'!AG{R0}:AG{R1},\"Revisar\")", "", "Debe ser 0.", "link", "0")
