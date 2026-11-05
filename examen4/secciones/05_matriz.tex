@@ -1,3 +1,50 @@
 \section{Matriz comparativa}\label{sec:matriz}
 
-\pendiente{matriz con costo por kWh útil (ecuación~\eqref{eq:costo_util}, con la DOD de cada tecnología), ciclos, eficiencia, mantenimiento, peso y garantía.}
+La Tabla~\ref{tab:matriz} compara las cinco opciones con un módulo de \SI{24}{V} armado con cada modelo, es decir, con las unidades en serie de la Tabla~\ref{tab:opciones}. El costo por kWh útil se calculó con la ecuación~\eqref{eq:costo_util}, usando la DOD a la que cada fabricante declara sus ciclos: 50\,\% para el plomo-ácido y 80\,\% para el LiFePO\textsubscript{4}. También se incluye el costo con la DOD de diseño del curso, 70\,\%, y el costo por kWh entregado durante toda la vida en ciclos,
+\begin{equation}
+c_{\text{vida}} = \frac{c_{\text{útil}}}{N_{\text{ciclos}}},
+\label{eq:costo_vida}
+\end{equation}
+que reúne en una cifra el precio, la DOD y los ciclos. Los cálculos están en \texttt{calculos/baterias.py}.
+
+\begin{table*}[!t]
+\caption{Matriz comparativa de las baterías (módulo de \SI{24}{V})}
+\label{tab:matriz}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l r c c r r c r c >{\raggedright\arraybackslash}p{0.17\textwidth} r c}
+\toprule
+Ref. & Precio & $E_{\text{nom}}$ & DOD & \multicolumn{2}{c}{Costo por kWh útil [USD]} & Ciclos & $c_{\text{vida}}$ & Eficiencia & Mantenimiento & Masa & Garantía \\
+\cmidrule(lr){5-6}
+ & [USD] & [kWh] & tecnol. & DOD tecnol. & DOD 70\,\% & & [USD/kWh] & [\%] & & [kg] & [años] \\
+\midrule
+B1 & 900.00 & 5.40 & 50\,\% & 333 & 238 & 1200 & 0.28 & n.d. & Agua, ecualización, ventilación & 112 & n.c.\textsuperscript{a} \\
+B2 & 1599.90 & 4.92 & 50\,\% & 650 & 465 & 1700 & 0.38 & n.d. & Ninguno; tensiones de carga AGM & 118 & 2\textsuperscript{b} \\
+B3 & 807.25 & 4.80 & 50\,\% & 336 & 240 & 1200 & 0.28 & n.d. & Ninguno; tensiones de carga gel & 126 & n.d. \\
+B4 & 399.99 & 2.56 & 80\,\% & 195 & 223 & $>$4000\textsuperscript{c} & 0.05\textsuperscript{c} & n.d. & Ninguno; BMS integrado & 21 & 5 \\
+B5 & 2983.50 & 5.12 & 80\,\% & 728 & 832 & 2500 & 0.29 & 92 & Ninguno; confirmar si requiere BMS externo & 39 & 5\textsuperscript{d} \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+{\footnotesize Precio y masa del conjunto de unidades que forma \SI{24}{V}. n.d.: no declarado en la documentación consultada. n.c.: datos contradictorios.
+\textsuperscript{a}Los distribuidores indican 1 o 5 años. \textsuperscript{b}Según distribuidor \cite{solaris_sagm}. \textsuperscript{c}La DOD de los 4000 ciclos no está declarada; $c_{\text{vida}}$ se calculó suponiendo que corresponden al 80\,\%. \textsuperscript{d}Valor más repetido entre distribuidores; algunos indican 3 años.}
+\end{table*}
+
+\subsection{Costo por kWh útil}
+
+Por precio total, B4 es la opción más barata, con \SI{399.99}{USD}, y B5 la más cara, con \SI{2983.50}{USD}. Sin embargo, B4 almacena \SI{2.56}{kWh}, mientras que los módulos de plomo-ácido almacenan entre 4.80 y \SI{5.40}{kWh}, por lo que el precio total no basta para comparar. Por kWh útil, B4 cuesta \SI{195}{USD}, B1 y B3 cuestan 333 y \SI{336}{USD}, y B2 y B5 cuestan 650 y \SI{728}{USD}. La diferencia entre B4 y el plomo-ácido viene de la DOD: el plomo-ácido solo entrega la mitad de su capacidad nominal sin acortar su vida, y el LiFePO\textsubscript{4} entrega el 80\,\%.
+
+Con la DOD de diseño del curso, 70\,\%, B1, B3 y B4 quedan entre 223 y \SI{240}{USD/kWh} útil. Esa comparación favorece al plomo-ácido, porque descargarlo al 70\,\% le resta ciclos respecto a los declarados al 50\,\%.
+
+\subsection{Ciclos y costo durante la vida útil}
+
+Los modelos de plomo-ácido declaran entre 1200 y 1700 ciclos al 50\,\% de DOD. B5 declara 2500 ciclos al 80\,\%, y B4 más de 4000 sin indicar la DOD. Con un ciclo por día, 1200 ciclos equivalen a unos 3.3 años y 2500 ciclos a unos 6.8 años. El costo por kWh entregado en la vida útil, ecuación~\eqref{eq:costo_vida}, es de 0.28 a \SI{0.38}{USD/kWh} para el plomo-ácido y de \SI{0.29}{USD/kWh} para B5. Para B4 resulta de \SI{0.05}{USD/kWh} si los 4000 ciclos corresponden al 80\,\% de DOD; esta cifra es la más incierta de la matriz y debe confirmarse con la ficha oficial.
+
+\subsection{Eficiencia y autodescarga}
+
+Solo B5 declara la eficiencia de ida y vuelta, 92\,\% \cite{victron_ds}. Para las demás se usan como referencia los valores por tecnología de May \emph{et al.}: 85\,\% para el plomo-ácido y 90\,\% para el ion-litio \cite{may2018}. Con esos valores, por cada kWh que entregan, las baterías de plomo-ácido requieren unos \SI{1.18}{kWh} de carga, frente a \SI{1.09}{kWh} de B5. En autodescarga, B1 pierde de 5 a 15\,\% por mes \cite{trojan_t105}, mientras que B3 puede almacenarse nueve meses antes de recargarla \cite{ultracell}. En un sistema que se carga todos los días, la autodescarga está cubierta por el factor $K_a$ del balance de energía.
+
+\subsection{Mantenimiento, peso y garantía}
+
+B1 es la única que requiere reposición de agua, ecualización y un lugar ventilado. Las demás no tienen mantenimiento periódico, pero B2 y B3 exigen que el regulador use las tensiones de carga de su tecnología. El banco de plomo-ácido de \SI{24}{V} pesa entre 112 y \SI{126}{kg} en dos o cuatro unidades de 28 a \SI{63}{kg} cada una. B4 pesa \SI{21}{kg} y B5 \SI{39}{kg}, con un solo bloque. En garantía, B4 y B5 ofrecen cinco años, B2 dos años, y para B1 y B3 los datos son contradictorios o no aparecen.

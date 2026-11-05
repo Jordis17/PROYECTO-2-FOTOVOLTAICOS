@@ -1,3 +1,20 @@
 \section{Selección preliminar}\label{sec:seleccion}
 
-\pendiente{batería seleccionada y justificación; la cantidad y la configuración del banco se confirman con el consumo.}
+Se selecciona de forma preliminar la batería B4, Power Queen LiFePO\textsubscript{4} de \SI{25.6}{V} y \SI{100}{Ah}. Las razones son las siguientes:
+\begin{itemize}
+\item Tiene el menor costo por kWh útil del conjunto, \SI{195}{USD/kWh}, frente a 333 y \SI{336}{USD/kWh} de las opciones de plomo-ácido más baratas (B1 y B3) y \SI{728}{USD/kWh} de B5.
+\item Un módulo de \SI{24}{V} pesa \SI{21}{kg}, frente a 112 a \SI{126}{kg} de los módulos de plomo-ácido de capacidad nominal similar. Esto facilita instalarlo dentro de la casa.
+\item No requiere mantenimiento, trae el BMS integrado y tiene cinco años de garantía.
+\item Declara más de 4000 ciclos, frente a 1200 a 1700 del plomo-ácido.
+\end{itemize}
+
+La selección tiene tres condiciones que deben verificarse antes de cerrarla:
+\begin{itemize}
+\item El precio corresponde a una tienda de Estados Unidos y no incluye envío ni impuestos de importación. Se debe obtener una cotización del distribuidor en Costa Rica \cite{kuat}.
+\item La ficha oficial debe confirmar a qué DOD corresponden los 4000 ciclos y cuántas unidades admite en paralelo. Como cada unidad es de \SI{100}{Ah}, un consumo de \SI{2}{kWh/día} con dos días de autonomía requiere cuatro unidades en paralelo, y uno de \SI{6}{kWh/día}, once (Tabla~\ref{tab:dim_provisional}). Si ese número supera el máximo que permite el fabricante, la alternativa de LiFePO\textsubscript{4} es B5, que reduce las unidades a la mitad, pero con un costo por kWh útil 3.7 veces mayor.
+\item Las celdas LiFePO\textsubscript{4} no deben cargarse por debajo de \SI{0}{\celsius}, por lo que hay que verificar la temperatura mínima del lugar donde se instalará el banco.
+\end{itemize}
+
+Si alguna de estas condiciones no se cumple, la alternativa en plomo-ácido es B3, de gel. Tiene casi el mismo costo por kWh útil que B1 (\SI{336}{USD/kWh} frente a \SI{333}{USD/kWh}) y no requiere reposición de agua ni ventilación.
+
+La cantidad de baterías y la configuración del banco se confirmarán cuando el grupo tenga la caracterización del consumo de la casa y los días de autonomía, con la ecuación~\eqref{eq:capacidad} y la verificación de corriente con el inversor seleccionado. El regulador de carga deberá tener un perfil de carga para LiFePO\textsubscript{4}. \pendiente{número de unidades en paralelo y configuración final del banco}

@@ -1,3 +1,44 @@
 \section{Opciones comerciales}\label{sec:opciones}
 
-\pendiente{esta sección se redacta cuando el grupo apruebe la lista de modelos (ver \texttt{notas/modelos\_preliminares.md}). Para cada modelo: ficha técnica oficial, precio con fuente, moneda y fecha de consulta, y número de unidades para formar \SI{24}{V}.}
+La búsqueda se orientó a modelos de ciclo profundo que permitan formar un banco de \SI{24}{V}. Se eligieron cinco modelos de dos tecnologías del curso: uno de cada variante de plomo-ácido y dos de LiFePO\textsubscript{4}, uno de bajo costo y otro de un fabricante de equipos para sistemas aislados. Los precios se consultaron el 5 de noviembre de 2026. Se priorizaron tiendas de Costa Rica, pero solo se encontró una referencia local, para B4, y sin el modelo exacto. Por eso se usan precios minoristas de Estados Unidos y, cuando no los hubo, de Europa. Los euros se convirtieron con 1~USD = 0.8879~EUR \cite{eurusd}. La Tabla~\ref{tab:opciones} resume las especificaciones.
+
+\subsection{B1: Trojan T-105}
+
+Batería de plomo-ácido inundada de \SI{6}{V}, de placas gruesas para ciclo profundo. Su capacidad es de \SI{225}{Ah} a $C_{20}$ y \SI{250}{Ah} a $C_{100}$, con 1200 ciclos al 50\,\% de DOD y una masa cercana a \SI{28}{kg} \cite{trojan_sig}. La autodescarga declarada es de 5 a 15\,\% por mes, según la temperatura de almacenamiento \cite{trojan_t105}. Requiere reposición de agua y cargas de ecualización. Para \SI{24}{V} se necesitan cuatro en serie. Precio: \SI{225.00}{USD} por unidad \cite{res_t105}.
+
+\subsection{B2: Trojan SAGM 12 205}
+
+Batería de plomo-ácido regulada por válvula, con separador AGM, de la línea solar de Trojan. Tiene \SI{12}{V} y \SI{205}{Ah} a $C_{20}$, 1700 ciclos al 50\,\% de DOD, una masa de \SI{59}{kg} y dimensiones de $380 \times 176 \times \SI{357}{mm}$ \cite{trojan_sagm}. Para \SI{24}{V} se necesitan dos en serie. Precio: \SI{799.95}{USD} por unidad \cite{air1_sagm}.
+
+\subsection{B3: Ultracell UCG200-12}
+
+Batería de plomo-ácido regulada por válvula, con electrolito en gel, de \SI{12}{V} y \SI{200}{Ah}. Resiste unos 1200 ciclos al 50\,\% de DOD y 2400 al 30\,\%. Puede almacenarse hasta nueve meses a \SI{25}{\celsius} antes de requerir una carga de refresco, conserva el 86\,\% de su capacidad a \SI{0}{\celsius} y su masa es de \SI{62.9}{kg} \cite{ultracell}. Para \SI{24}{V} se necesitan dos en serie. Precio: 358.38~EUR con IVA europeo incluido, equivalentes a \SI{403.63}{USD} \cite{wattuneed}.
+
+\subsection{B4: Power Queen LiFePO\textsubscript{4} 24V 100Ah}
+
+Batería de LiFePO\textsubscript{4} de \SI{25.6}{V} y \SI{100}{Ah} (\SI{2.56}{kWh}), formada por ocho celdas en serie, con un BMS integrado de \SI{100}{A} de descarga continua y \SI{280}{A} durante \SI{5}{s}. El fabricante declara más de 4000 ciclos y una garantía de cinco años, y su masa es de unos \SI{20.7}{kg} \cite{pq}. La documentación encontrada no indica a qué DOD corresponden los 4000 ciclos. Una sola unidad forma el banco de \SI{24}{V}. Precio: \SI{399.99}{USD} \cite{pq_walmart}. En Costa Rica, el distribuidor oficial de la marca anuncia baterías de litio de \SI{24}{V} desde 400\,000 colones \cite{kuat}, sin indicar el modelo.
+
+\subsection{B5: Victron LiFePO\textsubscript{4} 25.6V/200Ah Smart-a}
+
+Batería de LiFePO\textsubscript{4} de \SI{25.6}{V} y \SI{200}{Ah} (\SI{5.12}{kWh}), con balanceo de celdas y monitoreo por Bluetooth. Resiste 2500 ciclos al 80\,\% de DOD, 3000 al 70\,\% y 5000 al 50\,\%, y su masa es de \SI{39}{kg} \cite{victron_200}. La eficiencia de ida y vuelta declarada para la línea es de 92\,\% \cite{victron_ds}. Una unidad forma el banco de \SI{24}{V}. Precio: \SI{2983.50}{USD} \cite{victron_precio}.
+
+\begin{table}[!t]
+\caption{Especificaciones de las opciones comerciales}
+\label{tab:opciones}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{l l c c c c c}
+\toprule
+Ref. & Tecnología & $V$ [V] & $C$ [Ah] & Unid. 24\,V & Ciclos (DOD) & Masa [kg] \\
+\midrule
+B1 & Inundada & 6 & 225 & 4 & 1200 (50\,\%) & 28 \\
+B2 & AGM & 12 & 205 & 2 & 1700 (50\,\%) & 59 \\
+B3 & Gel & 12 & 200 & 2 & 1200 (50\,\%) & 62.9 \\
+B4 & LiFePO\textsubscript{4} & 25.6 & 100 & 1 & $>$4000 (n.d.) & 20.7 \\
+B5 & LiFePO\textsubscript{4} & 25.6 & 200 & 1 & 2500 (80\,\%) & 39 \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+{\footnotesize Capacidad a $C_{20}$ para B1 a B3. n.d.: no declarado en la documentación consultada.}
+\end{table}
