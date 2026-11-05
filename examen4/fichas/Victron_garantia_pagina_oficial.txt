@@ -1,0 +1,4 @@
+Fuente: https://www.victronenergy.com/support/warranty-and-repairs
+Extracto de texto de la página, consultada el 5 nov. 2026
+---
+Victron Energy offers 5 years standard warranty on power products except on our batteries: on lead-acid batteries we offer 2 years warranty and 3 years on Lithium*. This is upgradable to 10 years by an additional 10% of the initial investment. Contact your dealer for more info or submit a dealer support request for the handling of warranty cases. | * This warranty may be provided by Victron Energy's direct customers or directly by Victron Energy and is subject to the following | warranty policy 

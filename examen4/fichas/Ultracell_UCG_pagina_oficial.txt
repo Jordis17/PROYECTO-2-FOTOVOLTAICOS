@@ -1,0 +1,22 @@
+Fuente: https://ultracell.co.uk/ucg-hybrid-series
+Extracto de texto de la página, consultada el 5 nov. 2026
+---
+Features
+Hybrid Design
+Combines AGM reliability with gel cycling capability.
+Deep Cycle
+Optimised for repeated discharge and recharge cycles.
+Optimised Construction
+Enhanced plate design for superior performance.
+Maintenance Free
+Sealed VRLA construction requires no topping up.
+Reliable Power
+Consistent voltage and dependable output.
+Proven Quality
+Trusted by customers worldwide.
+GEL Batteries (Hybrid VRLA) full specifications
+2V GEL Battery Specifications
+Model
+V
+12V GEL Battery Specifications ; Model ; Voltage (V) ; Capacity 20HR (Ah) ; Capacity 10HR (Ah) ; Length (mm) ; Width (mm) ; Height (mm) ; Total Height (mm) ; Weight (kg) ; Terminal ; Design Life (Years) ; UCG5-12 ; 12 ; 5 ; 4.73 ; 90 ; 70 ; 101 ; 107 ; 1.45 ; 
+UCG200-12 ; 12 ; 206 ; 200 ; 522 ; 240 ; 218 ; 224 ; 62.2 ; F11 ; 10 ; UCG225-12 ; 12 ; - 

@@ -1,0 +1,54 @@
+Fuente: https://www.trojanbattery.com/products/solar-saes-12-205-12v-aes-battery
+Extracto de texto de la página, consultada el 5 nov. 2026
+---
+SAES 12 205 12V AES AGM Battery 
+SAES 12 205 12V AGM Battery 
+Award winner 
+Solar SAES 12 205 12V AES AGM Battery 
+The Solar SAES 12 205 12V AES AGM battery offers high-quality energy storage for different applications, such as renewable energy and backup power. Trojan AES delivers up to 3x the cycle life of standard AGM with high sustained performance. Trojan AES AGM batteries maintain high capacity in extreme deep cycling (up to 100% DoD), challenging temperatures and partial charging conditions. 
+WHERE TO BUY 
+View datasheet 
+BAttery Quick Facts 
+Capacity Minutes 
+N/A 
+Capacity Amp-Hours 
+10-Hr Rate / 159 Ah 20-Hr Rate / 175 Ah 48-Hr Rate / 210 Ah 72-Hr Rate / 213 Ah 100-Hr Rate / 216 Ah 
+Energy (kWh) 
+2.10 
+Dimensions inches (mm) 
+Length / 14.97 (380) Width / 6.94 (176) Height / 14.07 (357) 
+Weight lbs. (kg) 
+131 (59) 
+Operating Temperature 
+-40°F to 140°F (-40°C to 60°C) 
+Features & Benefits 
+Terminal Types 
+Documents 
+Applications 
+Where to Buy 
+Features & Benefits 
+Lasts Longer: 
+Up to 3x longer cycle life than standard AGM. Validated at 1,200 cycles at 100% DoD vs. 400 cycles for AGM. 
+Performs in harsh conditions: 
+Robust performance in extreme temperatures and conditions. Temperature range from -40°F to 140°F (-40°C to 60°C). 
+Delivers harmless PSoC: 
+Tested to withstand partial state of charge, again and again. 
+Maintenance Free: 
+Virtually no maintenance as watering is not required. 
+Safe and Sustainable: 
+Trojan AES is classified as non-spillable and can be safely mounted horizontally to fit difficult locations. It’s made using 80% recycled materials and is 99% recyclable. 
+Rugged Design: 
+Designed and manufactured to absorb vibration and shock. 
+Warranty: 
+This VRLA battery is backed by a three-year warranty. 
+AGM Charger: 
+Charge with existing AGM charger and profiles. 
+TERMINAL TYPES 
+M8 Insert 
+M8 with LT Adapter 
+Documents 
+Datasheet for the Trojan SAES 12 205 AGM Battery 
+Applications 
+Solar & Renewable Energy 
+Solar & Renewable Energy 
+Solar & Renewable Energy 

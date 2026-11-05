@@ -1,0 +1,97 @@
+Fuente: https://ipowerqueen.com/products/power-queen-24v-100ah-lifepo4-battery
+Extracto de texto de la página, consultada el 5 nov. 2026
+---
+Specs 
+BATTERY 
+Cell Type： 
+LiFePO4 
+Warranty： 
+5 Years 
+Cycle Life： 
+4000 cycles at 100% DOD, 6000 cycles at 80% DOD, 15,000 cycles at 60% DOD 
+Nominal Voltage： 
+25.6V 
+Rated Capacity： 
+100Ah 
+Energy： 
+2560Wh 
+Max. Expansion (Parallel & Series)： 
+4P2S 
+Internal Resistance： 
+≤40mΩ 
+Certifications： 
+FCC,CE,RoHS,UN38.3 certified 
+Model Number： 
+ED-514C14N-11 
+BMS 
+BMS： 
+100A 
+Max. Continuous Output Power： 
+2560W 
+Max. Continuous Charge Current： 
+100A 
+Max. Continuous Discharge Current： 
+100A 
+Smart Bluetooth： 
+/ 
+CHARGE 
+Charge Method： 
+CC/CV 
+Charge Voltage： 
+28.8V ± 0.4V 
+Recommend Charge Current： 
+20A (0.2C) 
+TEMPERATURE 
+Charge Temperature： 
+0℃ to 50℃ / 32℉ to 122℉ 
+Discharge Temperature： 
+-20℃ to 60℃ / -4℉ to 140℉ 
+Storage Temperature： 
+-10℃ to 50℃ / 14℉ to 122℉ 
+Low-Temperature Protection： 
+/ 
+Low-Temperature Charging Protection Auto Recovery： 
+/ 
+SELF-HEATING 
+Heating Temperature： 
+/ 
+Approx. Heating Time： 
+/ 
+Required Minimum Charge Current for Heating Function： 
+/ 
+OTHERS 
+Terminals： 
+M8*16 mm 
+Weight Approx.： 
+45.59lbs (20.68kg) 
+Size： 
+L20.95*W8.15*H8.5 inch ( L532*W 207*H216 mm ) 
+Housing Material： 
+ABS 
+Protection Class： 
+IP65 
+View all 
+Compare 
+Product 
+24V 100Ah 
+$413.99 
+$539.99 
+Add to cart 
+12V 410Ah 
+$719.99 
+$1,099.99 
+Sold out 
+24V 200Ah 
+$809.99 
+$1,299.99 
+Add to cart 
+Cell Type 
+LiFePO4 
+LiFePO4 
+LiFePO4 
+Warranty 
+5 Years 
+5 Years 
+5 Years 
+Cycle Life 
+4000 cyc
