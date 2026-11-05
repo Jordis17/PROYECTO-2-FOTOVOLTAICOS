@@ -20,7 +20,12 @@ Indicación del profesor: seleccionar las baterías del Proyecto 2 con la **mism
 - Informe corto en la plantilla IEEE, formato y bibliografía IEEE.
 - Para el dimensionamiento usar lo indicado en clase: banco de **24 V y 70 % de profundidad de descarga**.
 
-Como la selección depende del consumo, antes de comparar baterías necesitamos definir el **sitio y la carga** del proyecto. Proponeme 2 o 3 opciones de sitio aislado realistas en Costa Rica con su lista de equipos (tensión, potencia nominal y pico, corriente y horas de uso), y esperá que elijamos una.
+## Sitio del proyecto
+- **Casa de Abner López**, en Santa Rosa, distrito del cantón de Oreamuno, provincia de Cartago, Costa Rica.
+- Coordenadas exactas, características del techo y lista de equipos: **pendientes**, el grupo las aporta. No las inventes; pedilas.
+- Como la casa tiene servicio eléctrico, el proyecto puede plantearse como el segundo caso del instructivo (sistema de respaldo) o como un conjunto de cargas que se alimentan solo con el sistema aislado. Esa decisión la toma el grupo.
+
+Como la selección de baterías depende del consumo, antes de compararlas hace falta la **lista de equipos** (tensión, potencia nominal y pico, corriente nominal y máxima, y horas de uso al día). Si todavía no la tenemos, prepará una plantilla de tabla para llenarla y una lista de los equipos típicos de una casa para revisarlos con el grupo.
 
 ## Después: Proyecto 2 completo
 Trabajá por etapas y pedí aprobación al final de cada una:
