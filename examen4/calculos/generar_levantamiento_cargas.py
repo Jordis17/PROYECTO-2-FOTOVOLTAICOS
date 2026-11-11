@@ -258,7 +258,7 @@ row("ET", "Energía total corregida, E_T", f"={p['ECC']}/{cells['KTCC']}+{p['ECA
 head("Capacidad del banco")
 row("Q", "Capacidad necesaria Q", f"={p['M']}*{cells['ET']}*{p['D']}/({p['V']}*{p['DOD']})", "Ah", "Q = 1.1·E_T·D/(V·DOD)", "calc", "#,##0")
 row("NpE", "Módulos en paralelo por energía", f"=ROUNDUP({cells['Q']}/{p['C24']},0)", "", "⌈Q/C_24⌉", "calc", "0")
-row("Ibat", "Corriente de descarga del banco I_bat", f"={cells['PCA']}*(1+{p['pi']})/{p['V']}", "A", "I_bat = P_CA[1 + (1 − η_i)]/V, con η_i = 1 − p_i", "calc", "0.0")
+row("Ibat", "Corriente de descarga del banco I_bat", f"={cells['PCA']}/({p['V']}*(1-{p['pi']}))", "A", "I_bat = P_CA/(V·η_i), con η_i = 1 − p_i", "calc", "0.0")
 row("NpI", "Módulos en paralelo por corriente", f"=ROUNDUP({cells['Ibat']}/{p['Imax']},0)", "", "⌈I_bat/I_máx⌉", "calc", "0")
 row("Np", "Módulos en paralelo N_p", f"=MAX({cells['NpE']},{cells['NpI']})", "", "El mayor de los dos.", "calc", "0")
 row("chk", "Verificación del máximo en paralelo", f'=IF({cells["Np"]}<={p["Npmax"]},"Cumple","Excede: revisar alternativa B5 o B3")', "", "El fabricante admite hasta 4 en paralelo.", "calc", "@")

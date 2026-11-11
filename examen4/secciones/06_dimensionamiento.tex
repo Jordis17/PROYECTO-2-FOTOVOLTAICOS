@@ -28,7 +28,7 @@ con $V = \SI{24}{V}$, $\mathrm{DOD} = 0.7$ y $D$ los días de autonomía. El fac
 
 Con $Q$ se obtiene el número de ramas en paralelo, $N_p = \lceil Q / C_{24} \rceil$, donde $C_{24}$ es la capacidad de un módulo de \SI{24}{V} del modelo elegido. Además, el banco debe entregar la corriente que pide el inversor. Si $P_{CA}$ es la potencia continua de las cargas en CA y $\eta_i$ la eficiencia del inversor, la corriente de descarga es
 \begin{equation}
-I_{bat} = \frac{P_{CA}\,[1+(1-\eta_i)]}{V},
+I_{bat} = \frac{P_{CA}}{V\,\eta_i},
 \end{equation}
 y el número de ramas debe cumplir también $N_p \geq I_{bat}/I_{\max}$, con $I_{\max}$ la corriente máxima de descarga de cada módulo. Se usa el mayor de los dos valores.
 
@@ -48,7 +48,7 @@ Equipo & $N$ & $P$ [W] & $H$ [h] & $E$ [Wh/día] \\
 \midrule
 Refrigerador Atlas AC12SSAAWA & 1 & 196.7 & 9 & 1770 \\
 Congelador Daytron MCHF90 & 1 & 130 & 10 & 1300 \\
-Bombillos LED Sylvania & 3 & 15 & 5 & 225 \\
+Bombillos LED Sylvania (8 en 3 grupos) & 3 & 15 & 5 & 225 \\
  & 4 & 15 & 2 & 120 \\
  & 1 & 15 & 3 & 45 \\
 Cargadores de celular\textsuperscript{a} & 1 & 35 & 12 & 420 \\
@@ -66,11 +66,11 @@ La lista del grupo incluye también una cámara de refrigeración comercial que 
 
 \subsection{Capacidad del banco}
 
-Con las pérdidas típicas del curso, $p_c = 0.02$, $p_d = 0.04$, $p_s = 0.05$, $p_{mppt} = 0.02$, $p_R = 0.05$, $p_b = 0.01$, $p_i = 0.05$ y $K_a = 0.005$, y un día de autonomía, $K_{TCA} = 0.755$. La energía corregida es $E_T = 4334/0.755 = 5744$~Wh/día y la capacidad necesaria es
+Con las pérdidas típicas del curso, $p_c = 0.02$, $p_d = 0.04$, $p_s = 0.05$, $p_{mppt} = 0.02$, $p_R = 0.05$, $p_b = 0.01$, $p_i = 0.05$ y $K_a = 0.005$, y un día de autonomía, $K_{TCA} = 0.7546$. El valor $p_b = 0.01$ es la pérdida de rendimiento de la batería que usa el curso dentro de este balance; la eficiencia de ida y vuelta de la Sección~\ref{sec:matriz} es otra magnitud. La energía corregida es $E_T = 4334/0.7546 = 5744$~Wh/día y la capacidad necesaria es
 \begin{equation}
 Q = \frac{1.1 \times 5744 \times 1}{24 \times 0.7} = \SI{376}{Ah}.
 \end{equation}
-Con módulos B4 de \SI{100}{Ah} se requieren $N_p = \lceil 376/100 \rceil = 4$ unidades en paralelo, es decir, \SI{400}{Ah} y \SI{10.24}{kWh} nominales. Es el máximo que admite el fabricante. Si todas las cargas críticas funcionan a la vez, la potencia es de \SI{783}{W} y la corriente del banco es $I_{bat} = 783 \times 1.05/24 = \SI{34}{A}$, muy por debajo de los \SI{400}{A} continuos que entregan cuatro módulos, por lo que la corriente no aumenta el número de ramas.
+Con módulos B4 de \SI{100}{Ah} se requieren $N_p = \lceil 376/100 \rceil = 4$ unidades en paralelo, es decir, \SI{400}{Ah}. Es el máximo que admite el fabricante. El cálculo usa $V = \SI{24}{V}$, la tensión nominal del banco indicada en clase. Las baterías LiFePO\textsubscript{4} de \SI{24}{V} tienen ocho celdas y una tensión nominal de \SI{25.6}{V}, que no cambia al conectarlas en paralelo; por eso el banco almacena $25.6 \times 400 = \SI{10.24}{kWh}$ nominales. Calcular $Q$ con \SI{24}{V} en lugar de \SI{25.6}{V} da una capacidad 6.7\,\% mayor, es decir, queda del lado seguro. Para la corriente se considera que las cargas críticas funcionan a la vez con todos los cargadores conectados al mismo tiempo, es decir, los cinco de celular y los tres de laptop por separado y no con la potencia promedio de la Tabla~\ref{tab:cargas}. La potencia es entonces de \SI{783}{W} y, con $\eta_i = 1 - p_i = 0.95$, la corriente del banco es $I_{bat} = 783/(24 \times 0.95) = \SI{34}{A}$, muy por debajo de los \SI{400}{A} continuos que entregan cuatro módulos, por lo que la corriente no aumenta el número de ramas.
 
 El grupo había planteado dos días de autonomía. Con ese valor, $Q = \SI{758}{Ah}$ y harían falta ocho B4, el doble del máximo en paralelo. Por eso el diseño usa un día de autonomía, que en un sistema de respaldo cubre un corte de la red de \SI{24}{h}. Por la misma razón se excluye la cámara de refrigeración: con un día de autonomía, cuatro B4 cubren hasta \SI{4610}{Wh}/día de consumo de las cargas, lo que deja un margen de \SI{276}{Wh}/día, y cualquier equipo con compresor que trabaje \SI{14}{h} al día con una potencia media mayor que \SI{20}{W} supera ese margen.
 

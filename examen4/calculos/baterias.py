@@ -124,7 +124,7 @@ D = 1   # días de autonomía definidos el 11 nov. 2026
 E_T, Q = capacidad(E_CC, E_CA, D)
 Np = math.ceil(Q / 100)
 P_CA = sum(N * P for N, P, H in cargas.values()) - 51.7 - 35 + (45.1 + 65.0 + 45.0) + (40 + 35 + 35 + 45 + 20)
-I_bat = P_CA * (1 + p["pi"]) / V_SIS
+I_bat = P_CA / (V_SIS * (1 - p["pi"]))   # I = P_CA/(V·η_i), η_i = 1 − p_i
 print(f"\nDiseño: D = {D}, Q = {Q:.0f} Ah, {Np} B4 en paralelo = {Np*100} Ah, {Np*2.56:.2f} kWh nominales")
 print(f"  P_CA con todas las cargas críticas encendidas = {P_CA:.0f} W, I_bat = {I_bat:.1f} A (límite {Np*100} A)")
 print(f"  Costo: {Np} x 400000 CRC = {Np*400000:,} CRC = {Np*400000/CRC_USD:.2f} USD (Kuat); {Np} x 399.99 = {Np*399.99:.2f} USD (EE. UU.)")

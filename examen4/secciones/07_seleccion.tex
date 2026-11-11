@@ -1,6 +1,6 @@
-\section{Selección preliminar}\label{sec:seleccion}
+\section{Selección de la batería}\label{sec:seleccion}
 
-Se selecciona de forma preliminar la batería B4, Power Queen LiFePO\textsubscript{4} de \SI{25.6}{V} y \SI{100}{Ah}. Las razones son las siguientes:
+Se selecciona la batería B4, Power Queen LiFePO\textsubscript{4} de \SI{25.6}{V} y \SI{100}{Ah}. Las razones son las siguientes:
 \begin{itemize}
 \item Tiene el menor costo por kWh útil del conjunto, \SI{195}{USD/kWh}, frente a 327 y \SI{333}{USD/kWh} de las opciones de plomo-ácido evaluadas (B3 y B1) y \SI{728}{USD/kWh} de B5.
 \item Declara 6000 ciclos al 80\,\% de DOD, frente a 1200 ciclos del plomo-ácido, por lo que su costo durante la vida útil es de \SI{0.03}{USD/kWh}, frente a 0.27 a \SI{0.29}{USD/kWh} de las demás.
@@ -14,10 +14,10 @@ Con el consumo de las cargas críticas, el banco queda formado por cuatro B4 en 
 
 La selección tiene dos condiciones:
 \begin{itemize}
-\item El banco usa las cuatro unidades en paralelo que admite el fabricante \cite{pq_manual}, de modo que no admite ampliaciones. Si en el futuro se agregan cargas críticas, como la cámara de refrigeración, habría que pasar a B5, que admite hasta 20 unidades.
+\item El banco usa las cuatro unidades en paralelo que admite el fabricante \cite{pq_manual}, de modo que no admite ampliaciones. Si en el futuro se agregan cargas críticas, como la cámara de refrigeración, habría que redimensionar el banco; B5 admite hasta 20 unidades por sistema.
 \item B4 se carga entre 0 y \SI{50}{\celsius} y no tiene protección de carga a baja temperatura \cite{pq}. Hay que verificar la temperatura mínima del lugar donde se instalará el banco.
 \end{itemize}
 
 Si alguna de estas condiciones no se cumple, la alternativa en plomo-ácido es B3. Tiene el menor costo por kWh útil del plomo-ácido evaluado (\SI{327}{USD/kWh} frente a \SI{333}{USD/kWh} de B1) y no requiere reposición de agua ni ventilación. B1, en cambio, pierde la garantía en América Latina si se descarga más del 50\,\%.
 
-El regulador de carga deberá tener un perfil de carga para LiFePO\textsubscript{4}, y el inversor deberá entregar al menos los \SI{783}{W} de las cargas críticas encendidas a la vez.
+El regulador de carga deberá ser de \SI{24}{V} nominales con un perfil de carga para LiFePO\textsubscript{4}, con la tensión de carga de \SI{28.8}{V} que indica el fabricante \cite{pq_manual}, y el inversor deberá entregar al menos los \SI{783}{W} de las cargas críticas encendidas a la vez.
