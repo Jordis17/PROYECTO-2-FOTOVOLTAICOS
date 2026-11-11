@@ -95,15 +95,36 @@ for D in (1, 2, 3):
     print(f"D={D}:", " | ".join(fila))
 
 # ---------------------------------------------------------------------------
-# 3. Consumo real (PENDIENTE: llenar con el levantamiento de cargas)
+# 3. Consumo real (levantamiento de cargas del 11 nov. 2026; ver levantamiento_cargas_casa.xlsx)
 # ---------------------------------------------------------------------------
-E_CC = None   # Wh/día de cargas en CC
-E_CA = None   # Wh/día de cargas en CA
-D = None      # días de autonomía
-if None not in (E_CC, E_CA, D):
+# Cargas críticas (todas en CA): N, P [W], H [h/día]
+cargas = {
+    "Refrigerador Atlas AC12SSAAWA (115 V x 1.71 A)": (1, 115 * 1.71, 9),
+    "Congelador Daytron MCHF90": (1, 130, 10),
+    "Bombillos LED Sylvania 15 W, grupo 1": (3, 15, 5),
+    "Bombillos LED Sylvania 15 W, grupo 2": (4, 15, 2),
+    "Bombillo LED Sylvania 15 W, grupo 3": (1, 15, 3),
+    "Cargadores de laptop (promedio de 45.1, 65.0 y 45.0 W)": (1, (45.1 + 65.0 + 45.0) / 3, 6),
+    "Cargadores de celular (promedio de 40, 35, 35, 45 y 20 W)": (1, 35, 12),
+    "Módem (aproximación: adaptador 12 V, 0.5 A)": (1, 6, 24),
+}
+camara = 115 * 4.5 * 14   # Wh/día, aproximación con Fogel VR-12-US; excluida del respaldo
+E_CC = 0.0
+E_CA = sum(N * P * H for N, P, H in cargas.values())
+print("\nCargas críticas:")
+for k, (N, P, H) in cargas.items():
+    print(f"  {k}: {N} x {P:.1f} W x {H} h = {N*P*H:.0f} Wh/día")
+print(f"  E_CA = {E_CA:.0f} Wh/día; cámara de refrigeración (excluida) = {camara:.0f} Wh/día")
+for D in (1, 2):
     E_T, Q = capacidad(E_CC, E_CA, D)
-    print(f"\nConsumo real: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah a 24 V")
-    for m in modelos:
-        Ah_24 = m["Ah"]  # capacidad de un módulo de 24 V
-        n_par = math.ceil(Q / Ah_24)
-        print(f"  {m['id']}: {n_par} en paralelo x {m['n24']} en serie = {n_par*m['n24']} unidades")
+    print(f"  D={D}: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah -> {math.ceil(Q/100)} B4 (máx. 4), {math.ceil(Q/200)} B5")
+E_T, Q = capacidad(E_CC, E_CA + camara, 1)
+print(f"  Con la cámara y D=1: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah -> {math.ceil(Q/100)} B4")
+D = 1   # días de autonomía definidos el 11 nov. 2026
+E_T, Q = capacidad(E_CC, E_CA, D)
+Np = math.ceil(Q / 100)
+P_CA = sum(N * P for N, P, H in cargas.values()) - 51.7 - 35 + (45.1 + 65.0 + 45.0) + (40 + 35 + 35 + 45 + 20)
+I_bat = P_CA * (1 + p["pi"]) / V_SIS
+print(f"\nDiseño: D = {D}, Q = {Q:.0f} Ah, {Np} B4 en paralelo = {Np*100} Ah, {Np*2.56:.2f} kWh nominales")
+print(f"  P_CA con todas las cargas críticas encendidas = {P_CA:.0f} W, I_bat = {I_bat:.1f} A (límite {Np*100} A)")
+print(f"  Costo: {Np} x 400000 CRC = {Np*400000:,} CRC = {Np*400000/CRC_USD:.2f} USD (Kuat); {Np} x 399.99 = {Np*399.99:.2f} USD (EE. UU.)")

@@ -1,6 +1,6 @@
 \section{Dimensionamiento del banco}\label{sec:dimensionamiento}
 
-El banco debe almacenar la energía diaria de las cargas, más las pérdidas del sistema, durante los días de autonomía, sin que la descarga supere la DOD de diseño. Se usa el procedimiento del curso con un banco de \SI{24}{V}, una DOD del 70\,\% y dos días de autonomía. El banco respalda solo las cargas críticas de la casa, cuyo consumo todavía no se ha medido, por lo que esta sección deja el cálculo planteado y presenta una tabla provisional para consumos de referencia.
+El banco debe almacenar la energía diaria de las cargas, más las pérdidas del sistema, durante los días de autonomía, sin que la descarga supere la DOD de diseño. Se usa el procedimiento del curso con un banco de \SI{24}{V} y una DOD del 70\,\%. El banco respalda las cargas críticas de la casa, identificadas con el levantamiento de cargas del grupo.
 
 \subsection{Procedimiento}
 
@@ -32,34 +32,46 @@ I_{bat} = \frac{P_{CA}\,[1+(1-\eta_i)]}{V},
 \end{equation}
 y el número de ramas debe cumplir también $N_p \geq I_{bat}/I_{\max}$, con $I_{\max}$ la corriente máxima de descarga de cada módulo. Se usa el mayor de los dos valores.
 
-\subsection{Valores provisionales}
+\subsection{Consumo de las cargas críticas}
 
-Mientras no se tengan las fichas del regulador y del inversor, se usan los valores típicos de pérdidas del curso: $p_c = 0.02$, $p_d = 0.04$, $p_s = 0.05$, $p_{mppt} = 0.02$, $p_R = 0.05$, $p_b = 0.01$, $p_i = 0.05$ y $K_a = 0.005$. Con ellos, $K_{TCA}$ vale 0.755, 0.749 y 0.744 para uno, dos y tres días de autonomía. Estos valores se reemplazarán por los de las fichas técnicas de los equipos seleccionados.
-
-La Tabla~\ref{tab:dim_provisional} da la capacidad necesaria para consumos diarios de 1 a \SI{6}{kWh}, suponiendo que todas las cargas son de CA. \textbf{Estos consumos son valores de referencia elegidos para cubrir un rango amplio y no corresponden a la casa del proyecto}. Por ejemplo, para \SI{2}{kWh/día} y dos días de autonomía, $E_T = 2000/0.749 = 2670$~Wh/día y $Q = 1.1 \times 2670 \times 2 / (24 \times 0.7) = \SI{350}{Ah}$. La capacidad crece en proporción directa al consumo y a los días de autonomía, de modo que cada día adicional de autonomía suma unos \SI{88}{Ah} por cada kWh/día de consumo.
+El grupo definió como críticas la refrigeración, la iluminación y la comunicación. La Tabla~\ref{tab:cargas} resume esas cargas, con la potencia tomada de la placa de cada equipo y las horas de uso que indicó el grupo. Todas se alimentan en CA, por lo que $E_{CC} = 0$. En el refrigerador la placa solo indica la corriente, y la potencia se calculó como $115~\text{V} \times 1.71~\text{A} = \SI{196.7}{W}$; la etiqueta del mismo equipo declara 54~kWh de consumo, valor que coincide con los \SI{53}{kWh} al mes que dan \SI{196.7}{W} durante \SI{9}{h} diarias. En los compresores, $H$ es el tiempo de trabajo y no el tiempo enchufado. Para los cargadores de celular y de laptop se usó el promedio de la potencia de placa de los cargadores, con las horas de carga totales que indicó el grupo.
 
 \begin{table}[!t]
-\caption{Capacidad del banco de \SI{24}{V} (PROVISIONAL)}
-\label{tab:dim_provisional}
+\caption{Cargas críticas de la casa}
+\label{tab:cargas}
 \centering
 \footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{c c c c c}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.42\columnwidth} c r r r}
 \toprule
-Consumo de las & $E_T$ ($D=2$) & \multicolumn{3}{c}{$Q$ [Ah] a \SI{24}{V}, DOD 70\,\%} \\
-\cmidrule(lr){3-5}
-cargas [kWh/día] & [Wh/día] & $D=1$ & $D=2$ & $D=3$ \\
+Equipo & $N$ & $P$ [W] & $H$ [h] & $E$ [Wh/día] \\
 \midrule
-1 & 1335 & 87 & 175 & 264 \\
-2 & 2670 & 174 & 350 & 528 \\
-3 & 4005 & 260 & 524 & 792 \\
-4 & 5339 & 347 & 699 & 1056 \\
-5 & 6674 & 434 & 874 & 1321 \\
-6 & 8009 & 521 & 1049 & 1585 \\
+Refrigerador Atlas AC12SSAAWA & 1 & 196.7 & 9 & 1770 \\
+Congelador Daytron MCHF90 & 1 & 130 & 10 & 1300 \\
+Bombillos LED Sylvania & 3 & 15 & 5 & 225 \\
+ & 4 & 15 & 2 & 120 \\
+ & 1 & 15 & 3 & 45 \\
+Cargadores de celular\textsuperscript{a} & 1 & 35 & 12 & 420 \\
+Cargadores de laptop\textsuperscript{b} & 1 & 51.7 & 6 & 310 \\
+Módem Nexxt Nebula N300\textsuperscript{c} & 1 & 6 & 24 & 144 \\
+\midrule
+Total $E_{CA}$ & & & & 4334 \\
 \bottomrule
 \end{tabular}
 \\[2pt]
-{\footnotesize Valores de referencia, no medidos en la casa. Todas las cargas en CA y pérdidas típicas del curso. Se recalcula con el levantamiento de cargas.}
+{\footnotesize \textsuperscript{a}Promedio de cinco cargadores de 40, 35, 35, 45 y \SI{20}{W}; \SI{12}{h} de carga en total. \textsuperscript{b}Promedio de tres cargadores de 45.1, 65.0 y \SI{45.0}{W}; \SI{6}{h} de carga en total. \textsuperscript{c}Supuesto: adaptador de \SI{12}{V} y \SI{0.5}{A}; debe confirmarse con su etiqueta.}
 \end{table}
 
-\pendiente{reemplazar la tabla provisional por el cálculo con el consumo real ($E_{CC}$, $E_{CA}$) de las cargas críticas y las pérdidas de las fichas del regulador y del inversor.}
+La lista del grupo incluye también una cámara de refrigeración comercial que trabaja \SI{14}{h} al día y no tiene placa. Se excluye del respaldo por la razón que se explica en la siguiente subsección.
+
+\subsection{Capacidad del banco}
+
+Con las pérdidas típicas del curso, $p_c = 0.02$, $p_d = 0.04$, $p_s = 0.05$, $p_{mppt} = 0.02$, $p_R = 0.05$, $p_b = 0.01$, $p_i = 0.05$ y $K_a = 0.005$, y un día de autonomía, $K_{TCA} = 0.755$. La energía corregida es $E_T = 4334/0.755 = 5744$~Wh/día y la capacidad necesaria es
+\begin{equation}
+Q = \frac{1.1 \times 5744 \times 1}{24 \times 0.7} = \SI{376}{Ah}.
+\end{equation}
+Con módulos B4 de \SI{100}{Ah} se requieren $N_p = \lceil 376/100 \rceil = 4$ unidades en paralelo, es decir, \SI{400}{Ah} y \SI{10.24}{kWh} nominales. Es el máximo que admite el fabricante. Si todas las cargas críticas funcionan a la vez, la potencia es de \SI{783}{W} y la corriente del banco es $I_{bat} = 783 \times 1.05/24 = \SI{34}{A}$, muy por debajo de los \SI{400}{A} continuos que entregan cuatro módulos, por lo que la corriente no aumenta el número de ramas.
+
+El grupo había planteado dos días de autonomía. Con ese valor, $Q = \SI{758}{Ah}$ y harían falta ocho B4, el doble del máximo en paralelo. Por eso el diseño usa un día de autonomía, que en un sistema de respaldo cubre un corte de la red de \SI{24}{h}. Por la misma razón se excluye la cámara de refrigeración: con un día de autonomía, cuatro B4 cubren hasta \SI{4610}{Wh}/día de consumo de las cargas, lo que deja un margen de \SI{276}{Wh}/día, y cualquier equipo con compresor que trabaje \SI{14}{h} al día con una potencia media mayor que \SI{20}{W} supera ese margen.
+
+Las pérdidas del regulador y del inversor se reemplazarán por las de sus fichas técnicas cuando se seleccionen esos equipos en el Proyecto~2.
