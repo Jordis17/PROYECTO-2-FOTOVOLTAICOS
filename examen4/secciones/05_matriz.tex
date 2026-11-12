@@ -1,6 +1,6 @@
 \section{Matriz comparativa}\label{sec:matriz}
 
-La Tabla~\ref{tab:matriz} compara las cinco opciones con un módulo de \SI{24}{V} armado con cada modelo, es decir, con las unidades en serie de la Tabla~\ref{tab:opciones}. El costo por kWh útil se calculó con la ecuación~\eqref{eq:costo_util}, usando la DOD a la que cada fabricante declara sus ciclos: 50\,\% para B1 y B3, 100\,\% para B2 y 80\,\% para el LiFePO\textsubscript{4}. También se incluye el costo con la DOD de 70\,\%, y el costo por kWh entregado durante toda la vida en ciclos,
+La Tabla~\ref{tab:matriz} compara las cinco opciones con un módulo de \SI{24}{V} armado con cada modelo, es decir, con las unidades en serie de la Tabla~\ref{tab:opciones}. El costo por kWh útil se calculó con la ecuación~\eqref{eq:costo_util}, usando la DOD a la que cada fabricante declara sus ciclos: 50\,\% para B1 y B3, 100\,\% para B2 y 80\,\% para el LiFePO\textsubscript{4}. También se incluye el costo con la DOD de diseño, 70\,\%, y el costo por kWh entregado durante toda la vida en ciclos,
 \begin{equation}
 c_{\text{vida}} = \frac{c_{\text{útil}}}{N_{\text{ciclos}}},
 \label{eq:costo_vida}
@@ -20,28 +20,27 @@ Ref. & Precio & $E_{\text{nom}}$ & DOD & \multicolumn{2}{c}{Costo por kWh útil 
  & [USD] & [kWh] & tecnol. & DOD tecnol. & DOD 70\,\% & & [USD/kWh] & [\%] & & [kg] & [años] \\
 \midrule
 B1 & 900.00 & 5.40 & 50\,\% & 333 & 238 & 1200 & 0.28 & n.d. & Agua, ecualización, ventilación & 112 & 1\textsuperscript{a} \\
-B2 & 1278.40 & 4.30 & 100\,\% & 297 & 425 & 1200 & 0.25 & n.d. & Ninguno; tensiones de carga AGM & 114 & 3\textsuperscript{b} \\
+B2 & 1278.40 & 4.30 & 100\,\% & 298 & 425 & 1200 & 0.25 & n.d. & Ninguno; tensiones de carga AGM & 114 & 3\textsuperscript{b} \\
 B3 & 807.25 & 4.94 & 50\,\% & 327 & 233 & 1200 & 0.27 & n.d. & Ninguno; tensiones de carga gel & 124 & n.d. \\
 B4 & 399.99 & 2.56 & 80\,\% & 195 & 223 & 6000 & 0.03 & n.d. & Ninguno; BMS integrado & 21 & 5 \\
 B5 & 2983.50 & 5.12 & 80\,\% & 728 & 832 & 2500 & 0.29 & 92 & Ninguno; requiere BMS externo de Victron & 39 & 3 \\
 \bottomrule
 \end{tabular}
 \\[2pt]
-{\footnotesize Precio y masa del conjunto de unidades que forma \SI{24}{V}. n.d.: no declarado por el fabricante. El precio de B2 es el de oferta (\$639.20 por unidad) y no incluye flete.
+{\footnotesize Precio y masa del conjunto de unidades que forma \SI{24}{V}. n.d.: no declarado por el fabricante. El precio de B2 es el de oferta (\SI{639.20}{USD} por unidad) y no incluye flete.
 \textsuperscript{a}Garantía de Trojan para América Latina, válida solo con DOD de hasta 50\,\%. \textsuperscript{b}Garantía de la línea AES; en Costa Rica debe confirmarse con el distribuidor.}
 \end{table*}
 
-\newpage
 
 \subsection{Costo por kWh útil}
 
-Por precio total, B4 es la opción más barata, con \SI{399.99}{USD}, y B5 la más cara, con \SI{2983.50}{USD}. Sin embargo, B4 almacena \SI{2.56}{kWh}, mientras que los módulos de plomo-ácido almacenan entre 4.30 y \SI{5.40}{kWh}, por lo que el precio total no basta para comparar. Por kWh útil, B4 cuesta \SI{195}{USD}, B3 y B1 cuestan 327 y \SI{333}{USD}, y B5 cuesta \SI{728}{USD}. La diferencia entre B4 y el plomo-ácido viene de la DOD: B1 y B3 declaran sus ciclos al 50\,\% de su capacidad nominal, y el LiFePO\textsubscript{4} al 80\,\%.
+Por precio total, B4 es la opción más barata, con \SI{399.99}{USD}, y B5 la más cara, con \SI{2983.50}{USD}. Sin embargo, B4 almacena \SI{2.56}{kWh}, mientras que los módulos de plomo-ácido almacenan entre 4.30 y \SI{5.40}{kWh}, por lo que el precio total no basta para comparar. Por kWh útil, B4 cuesta \SI{195}{USD}, B3 y B1 cuestan 327 y \SI{333}{USD}, B2 cuesta \SI{298}{USD} con la DOD de 100\,\% a la que declara sus ciclos, y B5 cuesta \SI{728}{USD}. La diferencia entre B4 y el plomo-ácido viene de la DOD: B1 y B3 declaran sus ciclos al 50\,\% de su capacidad nominal, y el LiFePO\textsubscript{4} al 80\,\%.
 
-Con la DOD contemplada de 70\,\%, B1, B3 y B4 quedan entre 223 y \SI{238}{USD/kWh} útil. Esa comparación favorece al plomo-ácido: el costo al 70\,\% no incluye la reducción de ciclos que sufren B1 y B3 al descargarse más que el 50\,\% al que el fabricante los declara. En el caso de B1, además, la garantía de Trojan para América Latina no cubre descargas mayores al 50\,\% \cite{trojan_latam}.
+Con la DOD de diseño, 70\,\%, B1, B3 y B4 quedan entre 223 y \SI{238}{USD/kWh} útil. Esa comparación favorece al plomo-ácido: el costo al 70\,\% no incluye la reducción de ciclos que sufren B1 y B3 al descargarse más que el 50\,\% al que el fabricante los declara. En el caso de B1, además, la garantía de Trojan para América Latina no cubre descargas mayores al 50\,\% \cite{trojan_latam}.
 
 \subsection{Ciclos y costo durante la vida útil}
 
-B1 y B3 declaran 1200 ciclos al 50\,\% de DOD, y B2 1200 ciclos al 100\,\%. B5 declara 2500 ciclos al 80\,\% y B4, 6000 al 80\,\%. Con un ciclo por día, 1200 ciclos equivalen a unos 3.3 años, 2500 a unos 6.8 años y 6000 a unos 16.4 años. Ningún fabricante de LiFePO\textsubscript{4} declara la vida calendario, de modo que la cifra de B4 corresponde solo al desgaste por ciclos. El costo por kWh entregado en la vida útil, ecuación~\eqref{eq:costo_vida}, es de 0.27 a \SI{0.28}{USD/kWh} para B3 y B1, de \SI{0.29}{USD/kWh} para B5 y de \SI{0.03}{USD/kWh} para B4.
+B1 y B3 declaran 1200 ciclos al 50\,\% de DOD, y B2 1200 ciclos al 100\,\%. B5 declara 2500 ciclos al 80\,\% y B4, 6000 al 80\,\%. Con un ciclo por día, 1200 ciclos equivalen a unos 3.3 años, 2500 a unos 6.8 años y 6000 a unos 16.4 años. Ningún fabricante de LiFePO\textsubscript{4} declara la vida calendario, de modo que la cifra de B4 corresponde solo al desgaste por ciclos. El costo por kWh entregado en la vida útil, ecuación~\eqref{eq:costo_vida}, es de \SI{0.25}{USD/kWh} para B2, de 0.27 a \SI{0.28}{USD/kWh} para B3 y B1, de \SI{0.29}{USD/kWh} para B5 y de \SI{0.03}{USD/kWh} para B4.
 
 \subsection{Eficiencia y autodescarga}
 

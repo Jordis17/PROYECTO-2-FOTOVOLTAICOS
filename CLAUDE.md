@@ -22,7 +22,8 @@ Indicación del profesor: seleccionar las baterías del Proyecto 2 con la **mism
 
 ## Sitio del proyecto
 - **Casa de Abner López**, en Santa Rosa, distrito del cantón de Oreamuno, provincia de Cartago, Costa Rica.
-- Coordenadas exactas, características del techo y lista de equipos: **pendientes**, el grupo las aporta. No las inventes; pedilas.
+- Coordenadas (dadas por el grupo en el informe del examen 4): **9.938834° N, 83.831893° O**.
+- Características del techo: **pendientes**, el grupo las aporta. No las inventes; pedilas. La lista de equipos ya está en `examen4/calculos/levantamiento_cargas_casa.xlsx`.
 - Como la casa tiene servicio eléctrico, el proyecto puede plantearse como el segundo caso del instructivo (sistema de respaldo) o como un conjunto de cargas que se alimentan solo con el sistema aislado. Esa decisión la toma el grupo.
 - **Decidido por el grupo (5 nov. 2026):** sistema de **respaldo de cargas críticas** con **2 días de autonomía**.
 - **Actualizado (11 nov. 2026):** cargas críticas = refrigerador, congelador, 8 bombillos LED, cargadores de celular y laptop, módem (4.33 kWh/día; ver `examen4/calculos/levantamiento_cargas_casa.xlsx`). La cámara de refrigeración queda excluida y se usa **1 día de autonomía**: con 2 días harían falta 8 B4 y el fabricante admite 4 en paralelo. Banco: 4 Power Queen 24 V 100 Ah en paralelo (400 Ah).

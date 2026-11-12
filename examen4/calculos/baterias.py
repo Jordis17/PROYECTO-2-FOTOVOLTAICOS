@@ -16,8 +16,8 @@ modelos = [
     # id, nombre, V unidad, Ah (C20 para plomo-ácido), unidades para 24 V, precio unitario USD,
     # DOD a la que el fabricante declara los ciclos, ciclos a esa DOD, kg por unidad
     dict(id="B1", nombre="Trojan T-105", V=6, Ah=225, n24=4, precio=225.00, dod=0.50, ciclos=1200, kg=28.0),
-    # B2: precio pendiente (None); ciclos declarados al 100 % de DOD
-    dict(id="B2", nombre="Trojan SAES 12 205", V=12, Ah=179, n24=2, precio=None, dod=1.00, ciclos=1200, kg=57.0),
+    # B2: precio de oferta en Solarflexion (sin flete); ciclos declarados al 100 % de DOD
+    dict(id="B2", nombre="Trojan SAES 12 205", V=12, Ah=179, n24=2, precio=639.20, dod=1.00, ciclos=1200, kg=57.0),
     dict(id="B3", nombre="Ultracell UCG200-12", V=12, Ah=206, n24=2, precio=358.38 * EUR_USD, dod=0.50, ciclos=1200, kg=62.2),
     dict(id="B4", nombre="Power Queen 24V 100Ah", V=25.6, Ah=100, n24=1, precio=399.99, dod=0.80, ciclos=6000, kg=20.68),
     dict(id="B5", nombre="Victron 25.6V/200Ah Smart-a", V=25.6, Ah=200, n24=1, precio=2983.50, dod=0.80, ciclos=2500, kg=39.0),
