@@ -1,0 +1,95 @@
+Fuente: https://ipowerqueen.com/products/power-queen-24v-200ah-lifepo4-battery
+Extracto de texto de la página, consultada el 12 nov. 2026
+---
+Specs 
+BATTERY 
+Cell Type： 
+LiFePO4 
+Warranty： 
+5 Years 
+Cycle Life： 
+4000 cycles at 100% DOD, 6000 cycles at 80% DOD, 15,000 cycles at 60% DOD 
+Nominal Voltage： 
+25.6V 
+Rated Capacity： 
+200Ah 
+Energy： 
+5120Wh 
+Max. Expansion (Parallel & Series)： 
+4P2S 
+Internal Resistance： 
+≤40mΩ 
+Certifications： 
+FCC,CE,RoHS,UN38.3 
+Model Number： 
+ED-A28C28N-13 
+BMS 
+BMS： 
+200A 
+Max. Continuous Output Power： 
+5120W 
+Max. Continuous Charge Current： 
+200A 
+Max. Continuous Discharge Current： 
+200A 
+CHARGE 
+Charge Method： 
+CC/CV 
+Charge Voltage： 
+28.8V ± 0.4V 
+Recommend Charge Current： 
+40A (0.2C) 
+TEMPERATURE 
+Charge Temperature： 
+0℃ to 50℃ / 32℉ to 122℉ 
+Discharge Temperature： 
+-20℃ to 60℃ / -4℉ to 140℉ 
+Storage Temperature： 
+-10℃ to 50℃ / 14℉ to 122℉ 
+Low-Temperature Protection： 
+/ 
+Low-Temperature Charging Protection Auto Recovery： 
+/ 
+SELF-HEATING 
+Heating Temperature： 
+/ 
+Approx. Heating Time： 
+/ 
+Required Minimum Charge Current for Heating Function： 
+/ 
+OTHERS 
+Terminals： 
+M8*16 mm 
+Weight Approx.： 
+82.67 lbs 
+Size： 
+20.47*10.55*8.66 inch 
+Housing Material： 
+ABS 
+Protection Class： 
+IP65 
+View all 
+Compare 
+Product 
+24V 200Ah 
+$809.99 
+$1,299.99 
+Add to cart 
+24V 100Ah 
+$413.99 
+$539.99 
+Add to cart 
+24V 125Ah Ultimate 
+$609.99 
+$679.99 
+Add to cart 
+Cell Type 
+LiFePO4 
+LiFePO4 
+LiFePO4 
+Warranty 
+5 Years 
+5 Years 
+5 years 
+Cycle Life 
+4000 cycles at 100% DOD, 6000 cycles at 80% DOD, 15,000 cycles a
