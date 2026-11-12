@@ -51,3 +51,4 @@ Trabajá por etapas y pedí aprobación al final de cada una:
 - Sin expresiones vagas como «influye menos», «ligeramente», «algo mayor», «reduce el margen»: dar la cifra.
 - No repetir datos que ya están en tablas; no listas en negrita con fórmulas; evitar cadenas de datos con punto y coma.
 - Cambios solo si corrigen algo real (error, ambigüedad, repetición); no agregar texto para que parezca más completo.
+- **Texto escrito por el grupo: no se reformula.** Solo se corrigen ortografía, frases gramaticalmente rotas y datos o cifras incorrectos, cambiando lo mínimo. No se cambian palabras por estilo ni se agregan o quitan frases sin preguntar; si algo parece mejorable, se propone y el grupo decide.
