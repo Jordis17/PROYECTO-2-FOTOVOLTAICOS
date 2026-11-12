@@ -22,7 +22,7 @@ Ref. & Precio & $E_{\text{nom}}$ & DOD & \multicolumn{2}{c}{Costo por kWh útil 
 B1 & 900.00 & 5.40 & 50\,\% & 333 & 238 & 1200 & 0.28 & n.d. & Agua, ecualización, ventilación & 112 & 1\textsuperscript{a} \\
 B2 & 1278.40 & 4.30 & 100\,\% & 298 & 425 & 1200 & 0.25 & n.d. & Ninguno; tensiones de carga AGM & 114 & 3\textsuperscript{b} \\
 B3 & 807.25 & 4.94 & 50\,\% & 327 & 233 & 1200 & 0.27 & n.d. & Ninguno; tensiones de carga gel & 124 & n.d. \\
-B4 & 399.99 & 2.56 & 80\,\% & 195 & 223 & 6000 & 0.03 & n.d. & Ninguno; BMS integrado & 21 & 5 \\
+B4 & 809.99 & 5.12 & 80\,\% & 198 & 226 & 6000 & 0.03 & n.d. & Ninguno; BMS integrado & 38 & 5 \\
 B5 & 2983.50 & 5.12 & 80\,\% & 728 & 832 & 2500 & 0.29 & 92 & Ninguno; requiere BMS externo de Victron & 39 & 3 \\
 \bottomrule
 \end{tabular}
@@ -34,9 +34,9 @@ B5 & 2983.50 & 5.12 & 80\,\% & 728 & 832 & 2500 & 0.29 & 92 & Ninguno; requiere 
 
 \subsection{Costo por kWh útil}
 
-Por precio total, B4 es la opción más barata, con \SI{399.99}{USD}, y B5 la más cara, con \SI{2983.50}{USD}. Sin embargo, B4 almacena \SI{2.56}{kWh}, mientras que los módulos de plomo-ácido almacenan entre 4.30 y \SI{5.40}{kWh}, por lo que el precio total no basta para comparar. Por kWh útil, B4 cuesta \SI{195}{USD}, B3 y B1 cuestan 327 y \SI{333}{USD}, B2 cuesta \SI{298}{USD} con la DOD de 100\,\% a la que declara sus ciclos, y B5 cuesta \SI{728}{USD}. La diferencia entre B4 y el plomo-ácido viene de la DOD: B1 y B3 declaran sus ciclos al 50\,\% de su capacidad nominal, y el LiFePO\textsubscript{4} al 80\,\%.
+Por precio total, B3 es la opción más barata, con \SI{807.25}{USD}, seguida de B4, con \SI{809.99}{USD}, y B5 es la más cara, con \SI{2983.50}{USD}. Los módulos almacenan entre 4.30 y \SI{5.40}{kWh}, pero no se pueden descargar a la misma profundidad, por lo que el precio total no basta para comparar. Por kWh útil, B4 cuesta \SI{198}{USD}, B3 y B1 cuestan 327 y \SI{333}{USD}, B2 cuesta \SI{298}{USD} con la DOD de 100\,\% a la que declara sus ciclos, y B5 cuesta \SI{728}{USD}. La diferencia entre B4 y el plomo-ácido viene de la DOD: B1 y B3 declaran sus ciclos al 50\,\% de su capacidad nominal, y el LiFePO\textsubscript{4} al 80\,\%.
 
-Con la DOD de diseño, 70\,\%, B1, B3 y B4 quedan entre 223 y \SI{238}{USD/kWh} útil. Esa comparación favorece al plomo-ácido: el costo al 70\,\% no incluye la reducción de ciclos que sufren B1 y B3 al descargarse más que el 50\,\% al que el fabricante los declara. En el caso de B1, además, la garantía de Trojan para América Latina no cubre descargas mayores al 50\,\% \cite{trojan_latam}.
+Con la DOD de diseño, 70\,\%, B1, B3 y B4 quedan entre 226 y \SI{238}{USD/kWh} útil. Esa comparación favorece al plomo-ácido: el costo al 70\,\% no incluye la reducción de ciclos que sufren B1 y B3 al descargarse más que el 50\,\% al que el fabricante los declara. En el caso de B1, además, la garantía de Trojan para América Latina no cubre descargas mayores al 50\,\% \cite{trojan_latam}.
 
 \subsection{Ciclos y costo durante la vida útil}
 
@@ -48,4 +48,4 @@ Solo B5 declara la eficiencia de ida y vuelta, 92\,\% \cite{victron_ds}. Para la
 
 \subsection{Mantenimiento, peso y garantía}
 
-B1 es la única que requiere reposición de agua, ecualización y un lugar ventilado. Las demás no tienen mantenimiento periódico, pero B2 y B3 exigen que el regulador use las tensiones de carga de su tecnología, y B5 necesita un BMS de Victron que se compra aparte. El banco de plomo-ácido de \SI{24}{V} pesa entre 112 y \SI{124}{kg} en dos o cuatro unidades de 28 a \SI{62}{kg} cada una. B4 pesa \SI{21}{kg} y B5 \SI{39}{kg}, con un solo bloque. En garantía, B4 ofrece cinco años, B2 y B5 tres años, B1 un año en América Latina y B3 no la declara.
+B1 es la única que requiere reposición de agua, ecualización y un lugar ventilado. Las demás no tienen mantenimiento periódico, pero B2 y B3 exigen que el regulador use las tensiones de carga de su tecnología, y B5 necesita un BMS de Victron que se compra aparte. El banco de plomo-ácido de \SI{24}{V} pesa entre 112 y \SI{124}{kg} en dos o cuatro unidades de 28 a \SI{62}{kg} cada una. B4 pesa \SI{37.5}{kg} y B5 \SI{39}{kg}, con un solo bloque. En garantía, B4 ofrece cinco años, B2 y B5 tres años, B1 un año en América Latina y B3 no la declara.

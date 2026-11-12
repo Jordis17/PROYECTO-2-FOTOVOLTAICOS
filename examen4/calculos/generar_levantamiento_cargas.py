@@ -206,7 +206,7 @@ wr = wb.create_sheet("Resumen")
 wr.column_dimensions["A"].width = 52; wr.column_dimensions["B"].width = 14
 wr.column_dimensions["C"].width = 10; wr.column_dimensions["D"].width = 70
 wr["A1"] = "Resumen del consumo y capacidad del banco"; wr["A1"].font = f_t
-wr["A2"] = "Procedimiento del curso (Aislado 1 y 2). Banco de 24 V, DOD de 70 % y batería B4 (Power Queen 25.6 V 100 Ah)."; wr["A2"].font = f_base
+wr["A2"] = "Procedimiento del curso (Aislado 1 y 2). Banco de 24 V, DOD de 70 % y batería B4 (Power Queen 25.6 V 200 Ah)."; wr["A2"].font = f_base
 r = 4
 cells = {}
 def head(t):
@@ -225,7 +225,7 @@ def row(key, label, val, unit, note, kind="calc", fmt="0.000"):
     cells[key] = f"$B${r}"; r += 1
 
 head("Datos de diseño")
-row("D", "Días de autonomía D", 2, "días", "Definido por el grupo (5 nov. 2026).", "in", "0")
+row("D", "Días de autonomía D", 2, "días", "Decisión del grupo (12 nov. 2026): 2 días, con la Power Queen 24 V 200 Ah.", "in", "0")
 row("V", "Tensión del banco V", 24, "V", "Indicado en clase.", "in", "0")
 row("DOD", "Profundidad de descarga de diseño DOD", 0.7, "", "Indicado en clase (70 %).", "in", "0%")
 row("M", "Margen de seguridad", 1.1, "", "Factor 1.1 de la fórmula del curso.", "in", "0.0")
@@ -236,9 +236,9 @@ for k, lbl, v in [("pc", "Caída de tensión en cables p_c", 0.02), ("pd", "Disp
                   ("pi", "Inversor p_i (solo CA)", 0.05), ("Ka", "Autodescarga diaria K_a", 0.005)]:
     row(k, lbl, v, "", "Valor típico de clase.", "in", "0.000")
 head("Batería seleccionada (B4)")
-row("C24", "Capacidad de un módulo de 24 V, C_24", 100, "Ah", "Power Queen 25.6 V 100 Ah (manual del fabricante).", "in", "0")
-row("Imax", "Corriente continua máxima de descarga por módulo", 100, "A", "Manual del fabricante.", "in", "0")
-row("Npmax", "Máximo de módulos en paralelo", 4, "", "Manual del fabricante: 4P2S.", "in", "0")
+row("C24", "Capacidad de un módulo de 24 V, C_24", 200, "Ah", "Power Queen 25.6 V 200 Ah (manual del fabricante).", "in", "0")
+row("Imax", "Corriente continua máxima de descarga por módulo", 200, "A", "Manual del fabricante.", "in", "0")
+row("Npmax", "Máximo de módulos en paralelo", 4, "", "Manual del fabricante: 4 en paralelo (800 Ah).", "in", "0")
 row("Vmod", "Tensión nominal del módulo", 25.6, "V", "Ficha del fabricante.", "in", "0.0")
 head("Consumo (de la hoja «Cargas» y «Perfil horario»)")
 row("ECC", "Energía diaria de las cargas en CC, E_CC", f'=SUMIFS(Cargas!{RNG("N")},Cargas!{RNG("F")},"CC")', "Wh/día", "Σ N·P·H de las cargas críticas en CC.", "link", "#,##0")

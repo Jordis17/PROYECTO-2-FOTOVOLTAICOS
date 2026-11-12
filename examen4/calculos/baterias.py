@@ -19,7 +19,7 @@ modelos = [
     # B2: precio de oferta en Solarflexion (sin flete); ciclos declarados al 100 % de DOD
     dict(id="B2", nombre="Trojan SAES 12 205", V=12, Ah=179, n24=2, precio=639.20, dod=1.00, ciclos=1200, kg=57.0),
     dict(id="B3", nombre="Ultracell UCG200-12", V=12, Ah=206, n24=2, precio=358.38 * EUR_USD, dod=0.50, ciclos=1200, kg=62.2),
-    dict(id="B4", nombre="Power Queen 24V 100Ah", V=25.6, Ah=100, n24=1, precio=399.99, dod=0.80, ciclos=6000, kg=20.68),
+    dict(id="B4", nombre="Power Queen 24V 200Ah", V=25.6, Ah=200, n24=1, precio=809.99, dod=0.80, ciclos=6000, kg=37.5),
     dict(id="B5", nombre="Victron 25.6V/200Ah Smart-a", V=25.6, Ah=200, n24=1, precio=2983.50, dod=0.80, ciclos=2500, kg=39.0),
 ]
 
@@ -43,7 +43,7 @@ for m in modelos:
 print("\nReferencia con precios de Costa Rica (CRC)")
 cr = [
     # nombre, precio por unidad CRC, unidades para 24 V, kWh nominales del módulo de 24 V, DOD de los ciclos
-    ("B4 Power Queen 24V 100Ah (Kuat)", 400000, 1, 2.56, 0.80),
+    ("B4 Power Queen 24V 200Ah (Kuat)", 850000, 1, 5.12, 0.80),
     ("Gel 12V 200Ah C20, marca n.d. (LEDXPRES)", 395000, 2, 4.80, 0.50),
 ]
 for nombre, crc, n, e_nom, dod in cr:
@@ -78,8 +78,8 @@ def capacidad(E_CC, E_CA, D):
 
 print("\nK_TCC, K_TCA:", {D: (round(K_T(D, False), 4), round(K_T(D, True), 4)) for D in (1, 2, 3)})
 
-# Power Queen 24V 100Ah: máximo 4 en paralelo (4P2S, manual p. 08) -> 400 Ah a 24 V
-Q_MAX_B4 = 4 * 100
+# Power Queen 24V 200Ah: máximo 4 en paralelo (manual p. 08) -> 800 Ah a 24 V
+Q_MAX_B4 = 4 * 200
 for D in (1, 2, 3):
     E_max = Q_MAX_B4 * V_SIS * DOD / (MARGEN * D) * K_T(D, ca=True)   # Wh/día de cargas en CA
     print(f"B4, 4 en paralelo, D={D}: consumo máximo de las cargas = {E_max:.0f} Wh/día")
@@ -90,7 +90,7 @@ for D in (1, 2, 3):
     fila = []
     for E in consumos:
         E_T, Q = capacidad(0, E, D)
-        n4 = math.ceil(Q/100)
+        n4 = math.ceil(Q/200)
         fila.append(f"{E/1000:.0f} kWh: E_T={E_T:6.0f} Q={Q:6.0f} Ah ({n4}xB4{'' if n4 <= 4 else ' >4P'})")
     print(f"D={D}:", " | ".join(fila))
 
@@ -117,14 +117,18 @@ for k, (N, P, H) in cargas.items():
 print(f"  E_CA = {E_CA:.0f} Wh/día; cámara de refrigeración (excluida) = {camara:.0f} Wh/día")
 for D in (1, 2):
     E_T, Q = capacidad(E_CC, E_CA, D)
-    print(f"  D={D}: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah -> {math.ceil(Q/100)} B4 (máx. 4), {math.ceil(Q/200)} B5")
+    print(f"  D={D}: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah -> {math.ceil(Q/100)} PQ 100 Ah, {math.ceil(Q/200)} B4 de 200 Ah (máx. 4), {math.ceil(Q/200)} B5")
 E_T, Q = capacidad(E_CC, E_CA + camara, 1)
-print(f"  Con la cámara y D=1: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah -> {math.ceil(Q/100)} B4")
-D = 1   # días de autonomía definidos el 11 nov. 2026
+print(f"  Con la cámara y D=1: E_T = {E_T:.0f} Wh/día, Q = {Q:.0f} Ah -> {math.ceil(Q/200)} B4")
+E_T, Q = capacidad(E_CC, E_CA + camara, 2)
+print(f"  Con la cámara y D=2: Q = {Q:.0f} Ah -> {math.ceil(Q/200)} B4")
+D = 2   # días de autonomía (decisión del grupo, 12 nov. 2026)
 E_T, Q = capacidad(E_CC, E_CA, D)
-Np = math.ceil(Q / 100)
+Np = math.ceil(Q / 200)
 P_CA = sum(N * P for N, P, H in cargas.values()) - 51.7 - 35 + (45.1 + 65.0 + 45.0) + (40 + 35 + 35 + 45 + 20)
 I_bat = P_CA / (V_SIS * (1 - p["pi"]))   # I = P_CA/(V·η_i), η_i = 1 − p_i
-print(f"\nDiseño: D = {D}, Q = {Q:.0f} Ah, {Np} B4 en paralelo = {Np*100} Ah, {Np*2.56:.2f} kWh nominales")
-print(f"  P_CA con todas las cargas críticas encendidas = {P_CA:.0f} W, I_bat = {I_bat:.1f} A (límite {Np*100} A)")
-print(f"  Costo: {Np} x 400000 CRC = {Np*400000:,} CRC = {Np*400000/CRC_USD:.2f} USD (Kuat); {Np} x 399.99 = {Np*399.99:.2f} USD (EE. UU.)")
+print(f"\nDiseño: D = {D}, Q = {Q:.0f} Ah, {Np} B4 en paralelo = {Np*200} Ah, {Np*5.12:.2f} kWh nominales")
+print(f"  P_CA con todas las cargas críticas encendidas = {P_CA:.0f} W, I_bat = {I_bat:.1f} A (límite {Np*200} A)")
+E_max = Q_MAX_B4 * V_SIS * DOD / (MARGEN * D) * K_T(D, ca=True)
+print(f"  Consumo máximo con 4 B4 y D={D}: {E_max:.0f} Wh/día; margen {E_max-E_CA:.0f} Wh/día ({(E_max-E_CA)/14:.1f} W medios en 14 h)")
+print(f"  Costo: {Np} x 850000 CRC = {Np*850000:,} CRC = {Np*850000/CRC_USD:.2f} USD (Kuat); {Np} x 809.99 = {Np*809.99:.2f} USD (EE. UU.)")

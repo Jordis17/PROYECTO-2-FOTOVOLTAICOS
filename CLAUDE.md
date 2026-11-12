@@ -27,6 +27,7 @@ Indicación del profesor: seleccionar las baterías del Proyecto 2 con la **mism
 - Como la casa tiene servicio eléctrico, el proyecto puede plantearse como el segundo caso del instructivo (sistema de respaldo) o como un conjunto de cargas que se alimentan solo con el sistema aislado. Esa decisión la toma el grupo.
 - **Decidido por el grupo (5 nov. 2026):** sistema de **respaldo de cargas críticas** con **2 días de autonomía**.
 - **Actualizado (11 nov. 2026):** cargas críticas = refrigerador, congelador, 8 bombillos LED, cargadores de celular y laptop, módem (4.33 kWh/día; ver `examen4/calculos/levantamiento_cargas_casa.xlsx`). La cámara de refrigeración queda excluida y se usa **1 día de autonomía**: con 2 días harían falta 8 B4 y el fabricante admite 4 en paralelo. Banco: 4 Power Queen 24 V 100 Ah en paralelo (400 Ah).
+- **Actualizado (12 nov. 2026, decisión del grupo):** B4 pasa a ser la **Power Queen 24 V 200 Ah** (Kuat ₡850 000) y se vuelve a **2 días de autonomía**: Q = 758 Ah → **4 en paralelo (800 Ah, 20.48 kWh), ₡3 400 000**. Sigue en el máximo de 4 en paralelo; la cámara de refrigeración sigue excluida.
 
 Como la selección de baterías depende del consumo, antes de compararlas hace falta la **lista de equipos** (tensión, potencia nominal y pico, corriente nominal y máxima, y horas de uso al día). Si todavía no la tenemos, prepará una plantilla de tabla para llenarla y una lista de los equipos típicos de una casa para revisarlos con el grupo.
 
