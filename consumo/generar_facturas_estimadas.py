@@ -1,10 +1,14 @@
 """Facturas mensuales estimadas de 2026 (casa de Abner López, JASEC, tarifa T-RE).
 
 Dato real: la factura de octubre de 2026 es de 19 175 colones, que con la tarifa
-de JASEC equivale a 275 kWh. Los otros 11 meses se estiman con la variación
-relativa mes a mes del ejemplo de JASEC de la hoja de escenarios del curso
-(fila "EC Energía consumida por el cliente", Mes 1 = enero, supuesto),
-escalada para que octubre dé 275 kWh.
+de JASEC equivale a 275 kWh. El grupo indica que las facturas han estado entre
+16 000 y 22 000 colones. Los otros 11 meses siguen el patrón mes a mes del
+ejemplo de JASEC de la hoja de escenarios del curso (fila "EC Energía consumida
+por el cliente", Mes 1 = enero, supuesto):
+- meses con consumo del ejemplo mayor o igual al de octubre: misma proporción
+  que en el ejemplo (275 kWh x consumo del mes / consumo de octubre);
+- meses por debajo de octubre: la diferencia con octubre se reduce en la misma
+  proporción para que el mes más bajo dé 235.3 kWh, es decir, unos 16 000 colones.
 
 Uso: python3 generar_facturas_estimadas.py  ->  facturas_estimadas_2026.xlsx
 (después recalcular el archivo para que las fórmulas tengan valores guardados).
@@ -73,8 +77,8 @@ wt.cell(16, 1, "Criterio de IVA igual al del Proyecto 1: se aplica al cargo de e
 # ------------------------------------------------------------------ Facturas
 wf = wb.create_sheet("Facturas")
 wf["A1"] = "Facturas mensuales de 2026: octubre real, demás meses estimados"; wf["A1"].font = f_t
-wf["A2"] = ("Consumo estimado = 275 kWh × (consumo del ejemplo del mes / consumo del ejemplo de octubre). "
-            "Patrón: ejemplo de JASEC de la hoja de escenarios del curso (Mes 1 = enero, supuesto).")
+wf["A2"] = ("Patrón: ejemplo de JASEC de la hoja de escenarios del curso (Mes 1 = enero, supuesto). Meses por encima de octubre: "
+            "misma proporción que el ejemplo. Meses por debajo: diferencia con octubre reducida para que el mínimo dé unos ₡16 000.")
 wf["A2"].font = f_n
 wf["A3"] = "Factura real de octubre:"; wf["A3"].font = f_b
 wf["C3"] = 19175; wf["C3"].font = f_in; wf["C3"].fill = fill_in; wf["C3"].number_format = "#,##0"
@@ -82,6 +86,9 @@ wf["D3"] = "₡ (dato del grupo)"; wf["D3"].font = f_n
 wf["E3"] = "kWh de octubre:"; wf["E3"].font = f_b
 wf["F3"] = 275; wf["F3"].font = f_in; wf["F3"].fill = fill_in
 wf["G3"] = "obtenido de la tarifa (ver comprobación en la columna K)"; wf["G3"].font = f_n
+wf["A4"] = "Consumo del mes más bajo:"; wf["A4"].font = f_b
+wf["C4"] = 235.3; wf["C4"].font = f_in; wf["C4"].fill = fill_in
+wf["D4"] = "kWh (≈ ₡16 000, mínimo indicado por el grupo)"; wf["D4"].font = f_n
 
 H = ["Mes", "Origen", "Consumo del ejemplo del curso [kWh]", "Factor respecto a octubre",
      "Consumo [kWh]", "Energía [₡]", "Alumbrado público [₡]", "Bomberos [₡]", "IVA [₡]", "Total [₡]", "Comprobación"]
@@ -101,7 +108,7 @@ for i in range(12):
     wf.cell(r, 2, "Real" if real else "Estimado")
     c = wf.cell(r, 3, EC[i]); c.font = f_in; c.fill = fill_in; c.number_format = "0.0"
     wf.cell(r, 4, f"=C{r}/$C${OCT}").number_format = "0.000"
-    wf.cell(r, 5, f"=ROUND($F$3*D{r},1)").number_format = "0.0"
+    wf.cell(r, 5, f"=ROUND(IF(C{r}>=$C${OCT},$F$3*D{r},$F$3-($F$3-$C$4)*($C${OCT}-C{r})/($C${OCT}-MIN($C${R0}:$C${R0+11}))),1)").number_format = "0.0"
     e = f"E{r}"
     wf.cell(r, 6, f"={ref['fijo']}+{ref['b1']}*MAX(0,MIN({e},200)-30)+{ref['b2']}*MAX(0,{e}-200)").number_format = "#,##0"
     wf.cell(r, 7, f"={ref['ap0']}+{ref['ap1']}*MAX(0,{e}-30)").number_format = "#,##0"
@@ -125,6 +132,9 @@ for col in "EJ":
     c.number_format = "0.0" if col == "E" else "#,##0"
 wf.cell(RT + 3, 1, "Meses con IVA (consumo mayor a 280 kWh):").font = f_n
 wf.cell(RT + 3, 5, f'=COUNTIF(E{R0}:E{RT-1},">"&{ref["ivamin"]})').font = f_b
+wf.cell(RT + 3, 7, "Factura mínima y máxima:").font = f_n
+wf.cell(RT + 3, 9, f"=MIN(J{R0}:J{RT-1})").number_format = "#,##0"
+wf.cell(RT + 3, 10, f"=MAX(J{R0}:J{RT-1})").number_format = "#,##0"
 wf.cell(RT + 4, 1, "Leyenda: amarillo con texto azul = dato de entrada; verde = mes con factura real.").font = f_n
 wf.freeze_panes = "A6"
 
