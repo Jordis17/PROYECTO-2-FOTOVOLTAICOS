@@ -114,9 +114,9 @@ for i in range(12):
     wf.cell(r, 7, f"={ref['ap0']}+{ref['ap1']}*MAX(0,{e}-30)").number_format = "#,##0"
     wf.cell(r, 8, f"=IF({e}>{ref['bmin']},{ref['bomb']}*F{r},0)").number_format = "#,##0"
     wf.cell(r, 9, f"=IF({e}>{ref['ivamin']},{ref['iva']}*F{r},0)").number_format = "#,##0;-#,##0;\"-\""
-    wf.cell(r, 10, f"=F{r}+G{r}+H{r}+I{r}").number_format = "#,##0"
+    wf.cell(r, 10, f"=ROUND((F{r}+G{r}+H{r}+I{r})/5,0)*5").number_format = "#,##0"
     if real:
-        wf.cell(r, 11, f'=IF(ABS(J{r}-$C$3)<1,"Coincide con la factura","Revisar")')
+        wf.cell(r, 11, f'=IF(J{r}=$C$3,"Coincide con la factura","Revisar")')
     for j in range(1, 12):
         c = wf.cell(r, j); c.border = box
         if j != 3: c.font = f_n
@@ -135,6 +135,7 @@ wf.cell(RT + 3, 5, f'=COUNTIF(E{R0}:E{RT-1},">"&{ref["ivamin"]})').font = f_b
 wf.cell(RT + 3, 7, "Factura mínima y máxima:").font = f_n
 wf.cell(RT + 3, 9, f"=MIN(J{R0}:J{RT-1})").number_format = "#,##0"
 wf.cell(RT + 3, 10, f"=MAX(J{R0}:J{RT-1})").number_format = "#,##0"
+wf.cell(RT + 5, 1, "El total de cada factura se redondea al múltiplo de ₡5 más cercano, como en las facturas de JASEC.").font = f_n
 wf.cell(RT + 4, 1, "Leyenda: amarillo con texto azul = dato de entrada; verde = mes con factura real.").font = f_n
 wf.freeze_panes = "A6"
 
