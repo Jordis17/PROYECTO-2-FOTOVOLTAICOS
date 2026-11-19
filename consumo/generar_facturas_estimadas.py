@@ -8,7 +8,7 @@ por el cliente", Mes 1 = enero, supuesto):
 - meses con consumo del ejemplo mayor o igual al de octubre: misma proporción
   que en el ejemplo (275 kWh x consumo del mes / consumo de octubre);
 - meses por debajo de octubre: la diferencia con octubre se reduce en la misma
-  proporción para que el mes más bajo dé 235.3 kWh, es decir, unos 16 000 colones;
+  proporción para que el mes más bajo dé 237.0 kWh, es decir, unos 16 100 colones;
 - diciembre: según el grupo es el mes de mayor consumo; se le asigna el consumo
   del mes más alto del resto del año (el valor del ejemplo para ese mes no se usa).
 
@@ -80,7 +80,7 @@ wt.cell(16, 1, "Criterio de IVA igual al del Proyecto 1: se aplica al cargo de e
 wf = wb.create_sheet("Facturas")
 wf["A1"] = "Facturas mensuales de 2026: octubre real, demás meses estimados"; wf["A1"].font = f_t
 wf["A2"] = ("Patrón: ejemplo de JASEC de la hoja de escenarios del curso (Mes 1 = enero, supuesto). Meses por encima de octubre: "
-            "misma proporción que el ejemplo. Meses por debajo: diferencia con octubre reducida para que el mínimo dé unos ₡16 000.")
+            "misma proporción que el ejemplo. Meses por debajo: diferencia con octubre reducida para que el mínimo dé unos ₡16 100.")
 wf["A2"].font = f_n
 wf["A3"] = "Factura real de octubre:"; wf["A3"].font = f_b
 wf["C3"] = 19175; wf["C3"].font = f_in; wf["C3"].fill = fill_in; wf["C3"].number_format = "#,##0"
@@ -89,8 +89,8 @@ wf["E3"] = "kWh de octubre:"; wf["E3"].font = f_b
 wf["F3"] = 275; wf["F3"].font = f_in; wf["F3"].fill = fill_in
 wf["G3"] = "obtenido de la tarifa (ver comprobación en la columna K)"; wf["G3"].font = f_n
 wf["A4"] = "Consumo del mes más bajo:"; wf["A4"].font = f_b
-wf["C4"] = 235.3; wf["C4"].font = f_in; wf["C4"].fill = fill_in
-wf["D4"] = "kWh (≈ ₡16 000, mínimo indicado por el grupo)"; wf["D4"].font = f_n
+wf["C4"] = 237.0; wf["C4"].font = f_in; wf["C4"].fill = fill_in
+wf["D4"] = "kWh (unos ₡16 100; el grupo indica facturas de ₡16 000 en adelante)"; wf["D4"].font = f_n
 
 H = ["Mes", "Origen", "Consumo del ejemplo del curso [kWh]", "Factor respecto a octubre",
      "Consumo [kWh]", "Energía [₡]", "Alumbrado público [₡]", "Bomberos [₡]", "IVA [₡]", "Total [₡]", "Comprobación"]
