@@ -8,7 +8,9 @@ por el cliente", Mes 1 = enero, supuesto):
 - meses con consumo del ejemplo mayor o igual al de octubre: misma proporción
   que en el ejemplo (275 kWh x consumo del mes / consumo de octubre);
 - meses por debajo de octubre: la diferencia con octubre se reduce en la misma
-  proporción para que el mes más bajo dé 235.3 kWh, es decir, unos 16 000 colones.
+  proporción para que el mes más bajo dé 235.3 kWh, es decir, unos 16 000 colones;
+- diciembre: según el grupo es el mes de mayor consumo; se le asigna el consumo
+  del mes más alto del resto del año (el valor del ejemplo para ese mes no se usa).
 
 Uso: python3 generar_facturas_estimadas.py  ->  facturas_estimadas_2026.xlsx
 (después recalcular el archivo para que las fórmulas tengan valores guardados).
@@ -105,10 +107,16 @@ for i in range(12):
     r = R0 + i
     real = MES[i] == "oct"
     wf.cell(r, 1, MES[i])
-    wf.cell(r, 2, "Real" if real else "Estimado")
+    dic = MES[i] == "dic"
+    wf.cell(r, 2, "Real" if real else ("Ajuste" if dic else "Estimado"))
     c = wf.cell(r, 3, EC[i]); c.font = f_in; c.fill = fill_in; c.number_format = "0.0"
-    wf.cell(r, 4, f"=C{r}/$C${OCT}").number_format = "0.000"
-    wf.cell(r, 5, f"=ROUND(IF(C{r}>=$C${OCT},$F$3*D{r},$F$3-($F$3-$C$4)*($C${OCT}-C{r})/($C${OCT}-MIN($C${R0}:$C${R0+11}))),1)").number_format = "0.0"
+    if dic:
+        # Diciembre: mes de mayor consumo según el grupo; se le asigna el consumo del mes más alto del resto del año
+        wf.cell(r, 4, "no se usa")
+        wf.cell(r, 5, f"=MAX(E{R0}:E{R0+10})").number_format = "0.0"
+    else:
+        wf.cell(r, 4, f"=C{r}/$C${OCT}").number_format = "0.000"
+        wf.cell(r, 5, f"=ROUND(IF(C{r}>=$C${OCT},$F$3*D{r},$F$3-($F$3-$C$4)*($C${OCT}-C{r})/($C${OCT}-MIN($C${R0}:$C${R0+10}))),1)").number_format = "0.0"
     e = f"E{r}"
     wf.cell(r, 6, f"={ref['fijo']}+{ref['b1']}*MAX(0,MIN({e},200)-30)+{ref['b2']}*MAX(0,{e}-200)").number_format = "#,##0"
     wf.cell(r, 7, f"={ref['ap0']}+{ref['ap1']}*MAX(0,{e}-30)").number_format = "#,##0"
@@ -135,6 +143,7 @@ wf.cell(RT + 3, 5, f'=COUNTIF(E{R0}:E{RT-1},">"&{ref["ivamin"]})').font = f_b
 wf.cell(RT + 3, 7, "Factura mínima y máxima:").font = f_n
 wf.cell(RT + 3, 9, f"=MIN(J{R0}:J{RT-1})").number_format = "#,##0"
 wf.cell(RT + 3, 10, f"=MAX(J{R0}:J{RT-1})").number_format = "#,##0"
+wf.cell(RT + 6, 1, "Diciembre: según el grupo es el mes de mayor consumo; se le asigna el consumo del mes más alto del resto del año (el valor del ejemplo no se usa).").font = f_n
 wf.cell(RT + 5, 1, "El total de cada factura se redondea al múltiplo de ₡5 más cercano, como en las facturas de JASEC.").font = f_n
 wf.cell(RT + 4, 1, "Leyenda: amarillo con texto azul = dato de entrada; verde = mes con factura real.").font = f_n
 wf.freeze_panes = "A6"
