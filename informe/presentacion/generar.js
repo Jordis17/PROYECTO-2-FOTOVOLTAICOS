@@ -288,7 +288,7 @@ const pv = R.recurso.pv;
   dato(s, 10.4, 2.95, 2.3, "¢128 165", "ahorro del año 1 (54 % de la factura)", { big: 24, hl: 0.6 });
   dato(s, 10.4, 4.1, 2.3, "−¢8.0 M", "VAN; no se recupera en 25 años", { big: 24, hl: 0.6, color: ORANGE });
   dato(s, 10.4, 5.25, 2.3, "¢533/kWh", "costo de la energía respaldada", { big: 24, hl: 0.6 });
-  s.addNotes("[6:00 – 6:40 · J. Segura] El sistema cuesta unos 7.1 millones de colones; casi la mitad son las baterías. Las cargas críticas son el 47 % del consumo de la casa, así que la factura baja de 237 000 a 109 000 colones al año: un ahorro de 128 000. Ese ahorro apenas supera el mantenimiento supuesto, y con los reemplazos del inversor y de las baterías la inversión no se recupera en 25 años: el VAN es de −8 millones y la energía respaldada cuesta 533 colones por kWh, frente a unos 90 de la red. Económicamente no se justifica por ahorro; su valor es mantener la comida refrigerada y las comunicaciones cuando falla la red.");
+  s.addNotes("[6:00 – 6:40 · J. Segura] El sistema cuesta unos 7.1 millones de colones; casi la mitad son las baterías. Las cargas críticas son el 49 % del consumo de la casa, así que la factura baja de 237 000 a 109 000 colones al año: un ahorro de 128 000. Ese ahorro apenas supera el mantenimiento supuesto, y con los reemplazos del inversor y de las baterías la inversión no se recupera en 25 años: el VAN es de −8 millones y la energía respaldada cuesta 533 colones por kWh, frente a unos 90 de la red. Económicamente no se justifica por ahorro; su valor es mantener la comida refrigerada y las comunicaciones cuando falla la red.");
 }
 
 // ------------------------------------------------------------------ 12. Cierre

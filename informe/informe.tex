@@ -1,0 +1,79 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={.},group-separator={\,},group-minimum-digits=4,detect-all}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{etoolbox}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\AtBeginEnvironment{thebibliography}{\raggedright}
+\usepackage{geometry}
+\geometry{letterpaper,left=25mm,right=25mm,top=30mm,bottom=25mm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{EL-5854 Sistemas Fotovoltaicos}
+\lhead{ITCR $\vert$ Escuela de Ingeniería Electrónica}
+\rfoot{Pág.\ \thepage}
+\lfoot{II Semestre 2026}
+\setlength{\headheight}{14pt}
+\graphicspath{{figuras/}}
+\newlength{\anchofig}\setlength{\anchofig}{0.72\textwidth}
+\newcommand{\kwhmd}{kWh/(m\textsuperscript{2}$\cdot$día)}
+\newenvironment{IEEEkeywords}{\par\smallskip\noindent\textbf{Palabras clave:} }{\par}
+\renewcommand{\thetable}{\arabic{table}}
+
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\let\figorig\figure \let\endfigorig\endfigure
+\renewenvironment{figure}[1][]{\figorig[!htbp]}{\endfigorig}
+\let\taborig\table \let\endtaborig\endtable
+\renewenvironment{table}[1][]{\taborig[!htbp]}{\endtaborig}
+\renewenvironment{figure*}[1][]{\begin{figure}}{\end{figure}}
+\renewenvironment{table*}[1][]{\begin{table}}{\end{table}}
+
+\begin{document}
+
+\title{Diseño de un sistema fotovoltaico aislado de respaldo para las cargas críticas de una vivienda en Santa Rosa de Oreamuno}
+\author{A. López, S. Rojas, J. Segura\\[2pt]
+\small Escuela de Ingeniería Electrónica, Instituto Tecnológico de Costa Rica}
+\date{II Semestre 2026}
+\thispagestyle{fancy}
+\maketitle
+\thispagestyle{fancy}
+
+\input{secciones/00_resumen}
+\input{secciones/01_introduccion}
+\input{secciones/02_lugar}
+\input{secciones/03_recurso}
+\input{secciones/04_modulo}
+\input{secciones/05_baterias}
+\input{secciones/06_aislado}
+\input{secciones/07_instalacion}
+\input{secciones/08_economia}
+\input{secciones/09_conclusiones}
+
+\section*{Herramientas de apoyo}
+
+Durante el proyecto se utilizó inteligencia artificial para revisar partes de la redacción y ayudar a preparar algunas gráficas, diagramas y scripts de cálculo. Antes de incluir los resultados en el informe, fueron revisados con los datos del sitio y las especificaciones de los equipos. La configuración propuesta y las conclusiones fueron decisiones del grupo.
+
+\input{secciones/10_bibliografia}
+\end{document}
