@@ -48,7 +48,7 @@ ax.legend(fontsize=6.5, frameon=False, ncol=2, loc="upper center")
 guardar(fig, "consumo_facturas")
 
 # 3. Diagrama cilíndrico (latitud del sitio, tiempo solar; ecuaciones del curso)
-PHI = 9.938834
+PHI = 9.935845
 def decl(d):
     db = d * 2 * np.pi / 365.25
     return np.degrees(np.arcsin(0.3978 * np.sin(db - 1.400 + 0.0355 * np.sin(db - 0.0489))))
