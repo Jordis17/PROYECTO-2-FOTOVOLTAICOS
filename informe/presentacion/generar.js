@@ -332,5 +332,7 @@ const pv = R.recurso.pv;
 (async () => {
   await pres.writeFile({ fileName: OUT });
   await applyTheme(OUT, THEME);
+  // cuadro de cámara (cameo) en cada diapositiva, para grabar la exposición
+  require("child_process").execFileSync("python3", [path.join(__dirname, "camara.py"), OUT], { stdio: "inherit" });
   console.log("ok", OUT, num);
 })();
