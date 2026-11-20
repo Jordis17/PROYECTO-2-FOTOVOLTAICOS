@@ -20,9 +20,60 @@ donde $h$ es la altura solar y $\alpha$ el acimut medido desde el sur (en la fig
 
 Por la cercanía al ecuador, el Sol pasa alto todo el año: al mediodía solar la altura es de \SI{56.6}{\degree} el 21 de diciembre, la menor del año, y de \SI{80.3}{\degree} el 21 de marzo. Entre abril y agosto el Sol pasa al norte del cenit y en el resto del año, al sur. El día dura entre \SI{11.4}{h} y \SI{12.6}{h}. Como el Sol sale por el este todo el año, la cara este del techo recibe sol directo desde el amanecer, y la cara oeste desde el mediodía.
 
-\subsection{Radiación solar}
+\subsection{Bases de datos meteorológicas}
 
-La radiación se obtuvo de PVGIS 5.3, con la base PVGIS-ERA5 de 2005 a 2023 y el horizonte calculado con el modelo de elevación del terreno \cite{pvgis}. Se consultó la irradiación sobre el plano horizontal, sobre las dos caras del techo (\SI{12}{\degree} al este y \SI{12}{\degree} al oeste), sobre un plano de \SI{12}{\degree} al sur y sobre el plano óptimo que calcula PVGIS. La Tabla~\ref{tab:radiacion} presenta los promedios diarios de cada mes, expresados en horas solares pico (HSP), y la Fig.~\ref{fig:radiacion} los grafica.
+Se usaron dos bases de datos de libre acceso. La principal es PVGIS 5.3 \cite{pvgis}, del Centro Común de Investigación de la Comisión Europea, con la base PVGIS-ERA5, que obtiene la radiación y la temperatura del reanálisis ERA5 (celdas de unos \SI{28}{km}) para 2005 a 2023. PVGIS calcula la irradiación sobre cualquier plano inclinado y toma en cuenta el horizonte, que en este caso se calculó con el modelo de elevación del terreno. La segunda es NASA POWER \cite{nasa_power}, cuya climatología de 2001 a 2025 se basa en observaciones satelitales con celdas de \SI{1}{\degree} (unos \SI{110}{km}). Se usó para comprobar los valores de PVGIS. La celda de NASA POWER tiene una elevación media de \SI{1065}{m}, frente a los \SI{2317}{m} del sitio, de modo que sus temperaturas, de 19.1 a \SI{21.2}{\celsius} en promedio mensual, no representan el sitio; por eso las temperaturas de diseño son las registradas en la vivienda (Tabla~\ref{tab:sitio}).
+
+\subsection{Componentes de la radiación}
+
+La radiación que llega a una superficie tiene una componente directa, que viene del disco solar, y una difusa, que llega de todo el cielo después de dispersarse en la atmósfera y las nubes. La Tabla~\ref{tab:componentes} y la Fig.~\ref{fig:componentes} presentan, para cada mes, la irradiación global horizontal (GHI), la difusa horizontal (DHI) y la directa normal (DNI), que es la directa medida sobre un plano perpendicular a los rayos del Sol. En PVGIS, la difusa se obtuvo multiplicando la global por la fracción difusa mensual $K_d$.
+
+\begin{table}[!htb]
+\caption{Componentes de la radiación en el sitio [kWh/(m$^2\cdot$día)]}
+\label{tab:componentes}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l c c c c c c}
+\toprule
+ & \multicolumn{3}{c}{PVGIS-ERA5 (2005--2023)} & \multicolumn{3}{c}{NASA POWER (2001--2025)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Mes & GHI & DHI & DNI & GHI & DHI & DNI \\
+\midrule
+Ene & 5.02 & 1.35 & 5.88 & 4.56 & 1.67 & 4.40 \\
+Feb & 5.69 & 1.47 & 6.25 & 5.10 & 1.83 & 4.63 \\
+Mar & 5.88 & 1.60 & 5.93 & 5.30 & 2.04 & 4.19 \\
+Abr & 5.47 & 1.83 & 4.85 & 4.82 & 2.29 & 2.79 \\
+May & 4.44 & 1.98 & 3.37 & 4.35 & 2.31 & 2.00 \\
+Jun & 4.24 & 2.07 & 2.99 & 4.30 & 2.44 & 1.74 \\
+Jul & 4.28 & 2.06 & 2.95 & 4.17 & 2.38 & 1.67 \\
+Ago & 4.41 & 2.03 & 3.14 & 4.30 & 2.39 & 1.79 \\
+Set & 4.38 & 1.97 & 3.21 & 4.47 & 2.35 & 2.16 \\
+Oct & 3.85 & 1.79 & 2.88 & 4.03 & 2.18 & 1.95 \\
+Nov & 3.68 & 1.55 & 3.24 & 3.68 & 1.87 & 2.30 \\
+Dic & 4.45 & 1.33 & 5.14 & 4.07 & 1.67 & 3.66 \\
+\midrule
+Media anual & 4.64 & 1.75 & 4.14 & 4.42 & 2.12 & 2.76 \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+{\footnotesize GHI: global horizontal. DHI: difusa horizontal. DNI: directa normal. Fuentes: \cite{pvgis, nasa_power}.}
+\end{table}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\anchofig]{radiacion_componentes.pdf}
+\caption{Componentes de la radiación por mes según PVGIS (línea continua) y NASA POWER (línea discontinua).}
+\label{fig:componentes}
+\end{figure}
+
+Según PVGIS, la global horizontal media es de 4.64~\kwhmd{} y la difusa representa el 38\,\% de ella. De diciembre a marzo la directa normal supera los 5.1~\kwhmd{} y la difusa es de 1.6~\kwhmd{} o menos; de mayo a noviembre la directa baja a valores de 2.9 a 3.4~\kwhmd{} y la difusa sube a valores de 1.6 a 2.1~\kwhmd, por la nubosidad de la época lluviosa. Por eso la global de noviembre, 3.68~\kwhmd, es la más baja del año.
+
+En el año, PVGIS da una global 5.0\,\% mayor que NASA POWER (4.64 frente a 4.42~\kwhmd). La diferencia se concentra de diciembre a abril, cuando PVGIS es de 9 a 14\,\% mayor; de mayo a noviembre las dos bases difieren entre $-4.3$ y $+2.6$\,\%, y en noviembre las dos dan 3.68~\kwhmd. NASA POWER asigna una fracción mayor a la difusa (48\,\% en el año) y una directa menor, lo que puede deberse a la diferencia de resolución y de elevación de sus celdas. Como el diseño se hace con el mes de menor radiación y en ese mes las dos bases coinciden, se usó PVGIS, que además calcula la irradiación sobre el plano de los módulos con el horizonte del sitio.
+
+\subsection{Radiación sobre el plano de los módulos}
+
+Con PVGIS se consultó la irradiación sobre el plano horizontal, sobre las dos caras del techo (\SI{12}{\degree} al este y \SI{12}{\degree} al oeste), sobre un plano de \SI{12}{\degree} al sur y sobre el plano óptimo que calcula PVGIS \cite{pvgis}. La Tabla~\ref{tab:radiacion} presenta los promedios diarios de cada mes, expresados en horas solares pico (HSP), y la Fig.~\ref{fig:radiacion} los grafica.
 
 \begin{table}[!htb]
 \caption{Irradiación diaria media por mes [HSP = kWh/(m$^2\cdot$día)] y temperatura media}
@@ -61,10 +112,10 @@ Año [kWh/m$^2$] & 1695 & 1721 & 1623 & 1728 & 1750 & \\
 \label{fig:radiacion}
 \end{figure}
 
-Se distinguen dos épocas: sobre la cara este, de diciembre a abril la irradiación diaria está entre 4.46 y \SI{5.94}{HSP}, y de mayo a noviembre baja a valores de 3.73 a \SI{4.55}{HSP}, con el mínimo en noviembre. En ese periodo la fracción difusa media de PVGIS sube de 0.26--0.34 a 0.43--0.49, lo que corresponde a la época lluviosa \cite{pvgis}.
+Se distinguen dos épocas: sobre la cara este, de diciembre a abril la irradiación diaria está entre 4.46 y \SI{5.94}{HSP}, y de mayo a noviembre baja a valores de 3.73 a \SI{4.55}{HSP}, con el mínimo en noviembre. Las dos épocas coinciden con las de la Tabla~\ref{tab:componentes}.
 
 \subsection{Ángulo óptimo y plano de diseño}
 
-PVGIS calcula como óptimo un plano de \SI{14}{\degree} de inclinación con acimut de \SI{-40}{\degree}, que recibe \SI{1750}{kWh/m^2} al año \cite{pvgis}. La cara este del techo, con \SI{12}{\degree}, recibe \SI{1721}{kWh/m^2}, solo 1.7\,\% menos, y la cara oeste \SI{1623}{kWh/m^2}, 5.6\,\% menos que la cara este. Por eso los módulos se colocan en la cara este, paralelos al techo: una estructura que los orientara al óptimo ganaría 1.7\,\% de energía a cambio de más material y más carga de viento sobre la lámina.
+PVGIS calcula como óptimo un plano de \SI{14}{\degree} de inclinación con acimut de \SI{-40}{\degree}, que recibe \SI{1750}{kWh/m^2} al año \cite{pvgis}. La cara este del techo, con \SI{12}{\degree}, recibe \SI{1721}{kWh/m^2}, solo 1.7\,\% menos, y la cara oeste \SI{1623}{kWh/m^2}; la cara este recibe 6.0\,\% más que la oeste. Por eso los módulos se colocan en la cara este, paralelos al techo: una estructura que los orientara al óptimo ganaría 1.7\,\% de energía a cambio de más material y más carga de viento sobre la lámina.
 
 En un sistema aislado el dimensionamiento se hace con el mes de menor radiación, porque el banco debe recargarse también en ese mes. Sobre la cara este ese mes es noviembre, con \SI{3.73}{HSP}. En noviembre el plano óptimo recibiría \SI{3.98}{HSP}, 6.7\,\% más, pero la diferencia no cambia la cantidad de módulos (Sección~\ref{sec:aislado}).

@@ -151,3 +151,28 @@ for k, lab in ((13, "Reemplazo de\ninversor y regulador"), (15, "Reemplazo de\nb
 ax.set_xlabel("Año"); ax.set_ylabel("Flujo acumulado [millones de ¢]"); ax.set_xlim(0, 25); rejilla(ax)
 guardar(fig, "flujo_acumulado")
 print("figuras listas")
+
+# 8. Componentes de la radiación (PVGIS-ERA5 y NASA POWER)
+RAIZ = AQ.parents[1]
+mr = json.load(open(RAIZ / "recurso" / "pvgis_MRcalc_mensual.json"))["outputs"]["monthly"]
+ns = json.load(open(RAIZ / "recurso" / "nasa_power_climatologia_2001-2025.json"))["properties"]["parameter"]
+dm = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+MK = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+G, Dh, B = [], [], []
+for m in range(1, 13):
+    r = [q for q in mr if q["month"] == m]; n = len(r)
+    G.append(sum(q["H(h)_m"] for q in r) / n / dm[m - 1])
+    Dh.append(sum(q["Kd"] * q["H(h)_m"] for q in r) / n / dm[m - 1])
+    B.append(sum(q["Hb(n)_m"] for q in r) / n / dm[m - 1])
+comp = dict(GHI=G, DHI=Dh, DNI=B, nasa_GHI=[ns["ALLSKY_SFC_SW_DWN"][k] for k in MK],
+            nasa_DHI=[ns["ALLSKY_SFC_SW_DIFF"][k] for k in MK], nasa_DNI=[ns["ALLSKY_SFC_SW_DNI"][k] for k in MK])
+json.dump(comp, open(AQ / "componentes.json", "w"), indent=1)
+fig, ax = plt.subplots(figsize=(3.45, 2.6))
+for k, lab, col in [("GHI", "Global horizontal (GHI)", C1), ("DNI", "Directa normal (DNI)", C2), ("DHI", "Difusa horizontal (DHI)", C3)]:
+    ax.plot(x, comp[k], color=col, lw=1.8, marker="o", ms=3, label=f"{lab}, PVGIS")
+    ax.plot(x, comp["nasa_" + k], color=col, lw=1.0, ls="--")
+ax.plot([], [], color="#555", lw=1.0, ls="--", label="NASA POWER (mismo color)")
+ax.set_xticks(x); ax.set_xticklabels(mes); ax.set_ylabel("Irradiación [kWh/m²·día]"); ax.set_ylim(0, 7.5)
+ax.legend(fontsize=6, frameon=False, ncol=2, loc="upper center"); rejilla(ax)
+guardar(fig, "radiacion_componentes")
+print("componentes listos")

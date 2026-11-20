@@ -30,7 +30,7 @@ de modo que se requieren cuatro módulos, \SI{1800}{Wp}. Ocupan \SI{8.0}{m^2} y 
 
 \subsection{Conexión de los módulos en serie y en paralelo}
 
-El método del curso limita los módulos en serie con $N_{\mathrm{serie}}=V_{\max,\mathrm{reg}}/V_{mp}=145/33.70=4.3$. Con la tensión de circuito abierto a \SI{7}{\celsius}, el límite es más estricto: $145/42.30=3.4$, es decir, hasta tres módulos en serie. Por el otro lado, el regulador seleccionado arranca cuando la tensión fotovoltaica supera la del banco en \SI{5}{V} \cite{victron_mppt}; con la tensión de absorción de \SI{28.8}{V}, la tensión de máxima potencia del arreglo debe superar \SI{33.8}{V} aun con la celda a \SI{63.2}{\celsius}, donde un módulo da \SI{29.70}{V}. Se necesitan, por tanto, al menos dos módulos en serie. Con cuatro módulos, la única configuración posible es de dos cadenas de dos módulos (2S2P). La Tabla~\ref{tab:arreglo} resume sus valores.
+El método del curso limita los módulos en serie con $N_{\mathrm{serie}}=V_{\max,\mathrm{reg}}/V_{mp}=145/33.70=4.3$. Con la tensión de circuito abierto a \SI{7}{\celsius}, el límite es más estricto: $145/42.30=3.4$, es decir, hasta tres módulos en serie. Por otro lado, el regulador seleccionado arranca cuando la tensión fotovoltaica supera la del banco en \SI{5}{V} \cite{victron_mppt}; con la tensión de absorción de \SI{28.8}{V}, la tensión de máxima potencia del arreglo debe superar \SI{33.8}{V} aun con la celda a \SI{63.2}{\celsius}, donde un módulo da \SI{29.70}{V}. Se necesitan, por tanto, al menos dos módulos en serie. Con cuatro módulos, la única configuración posible es de dos cadenas de dos módulos (2S2P). La Tabla~\ref{tab:arreglo} resume sus valores.
 
 \begin{table}[!htb]
 \caption{Valores del arreglo 2S2P y límites del regulador}
@@ -58,12 +58,7 @@ Según el método del curso, la corriente del regulador debe ser
 \begin{equation}
 i_{\mathrm{reg}} \geq \frac{P_{\max}}{V_{\mathrm{bat}}} = \frac{1800}{24} = \SI{75}{A}.
 \end{equation}
-Se seleccionó el regulador MPPT Victron SmartSolar 150/85-Tr VE.Can, cuyas características están en la Tabla~\ref{tab:regulador}. Su corriente de \SI{85}{A} cumple el criterio; el modelo 150/70 de la misma serie, de \SI{70}{A}, no lo cumple. Además, se escogió por las siguientes razones:
-\begin{itemize}
-\item Es de seguimiento del punto de máxima potencia (MPPT), lo que permite conectar los módulos en serie con una tensión mayor que la del banco.
-\item Selecciona automáticamente \SI{24}{V} y tiene un algoritmo de carga para baterías de litio, con la tensión de absorción de \SI{28.8}{V} que pide el fabricante de la batería \cite{victron_mppt, pq_manual}.
-\item Es del mismo fabricante que el inversor-cargador y se comunica con él, de modo que el sistema se puede supervisar desde una sola aplicación.
-\end{itemize}
+Se seleccionó el regulador MPPT Victron SmartSolar 150/85-Tr VE.Can, cuyas características están en la Tabla~\ref{tab:regulador}. Su corriente de \SI{85}{A} cumple el criterio; el modelo 150/70 de la misma serie, de \SI{70}{A}, no lo cumple. Además, es de seguimiento del punto de máxima potencia (MPPT), lo que permite conectar los módulos en serie con una tensión mayor que la del banco; selecciona automáticamente \SI{24}{V} y tiene un algoritmo de carga para baterías de litio, con la tensión de absorción de \SI{28.8}{V} que pide el fabricante de la batería \cite{victron_mppt, pq_manual}, y es del mismo fabricante que el inversor-cargador y se comunica con él, de modo que el sistema se puede supervisar desde una sola aplicación.
 
 \begin{table}[!htb]
 \caption{Características del regulador Victron SmartSolar MPPT 150/85-Tr VE.Can \cite{victron_mppt}}
@@ -107,13 +102,7 @@ La Fig.~\ref{fig:soa} muestra la zona en que puede operar el regulador, limitada
 
 Según el curso, el inversor de un sistema aislado se dimensiona con la potencia de las cargas de alterna que funcionan a la vez, debe soportar los picos de arranque de los motores, que pueden ser de 3 a 4 veces la potencia nominal, y debe tener corte por baja tensión del banco. La tensión de entrada es la del banco y la de salida, la de las cargas. Con las cargas críticas, la potencia simultánea es de \SI{783}{W} y el pico con el arranque de los dos compresores, de \SI{1763}{W} (Sección~\ref{sec:lugar}).
 
-Se seleccionó el inversor-cargador Victron MultiPlus-II 24/3000/70-50 de \SI{120}{V}, cuyas características están en la Tabla~\ref{tab:inversor}. Las cargas usan el 33\,\% de su potencia continua a \SI{25}{\celsius} y el 32\,\% de su potencia pico. Se escogió por las siguientes razones:
-\begin{itemize}
-\item Es el modelo de menor potencia de la serie MultiPlus-II para \SI{24}{V} y \SI{120}{V} \cite{victron_mp}.
-\item Incluye un conmutador de transferencia de \SI{50}{A}: si falla la red, pasa las cargas al inversor en menos de \SI{20}{ms}, de modo que los equipos electrónicos siguen funcionando sin interrupción \cite{victron_mp}.
-\item Incluye un cargador de \SI{70}{A} que puede recargar el banco desde la red cuando la energía solar no alcanza, y protección por baja tensión del banco \cite{victron_mp}.
-\item Su salida es de onda senoidal, apta para los compresores y para los equipos electrónicos.
-\end{itemize}
+Se seleccionó el inversor-cargador Victron MultiPlus-II 24/3000/70-50 de \SI{120}{V}, cuyas características están en la Tabla~\ref{tab:inversor}. Las cargas usan el 33\,\% de su potencia continua a \SI{25}{\celsius} y el 32\,\% de su potencia pico. Es el modelo de menor potencia de la serie MultiPlus-II para \SI{24}{V} y \SI{120}{V} \cite{victron_mp}. Incluye un conmutador de transferencia de \SI{50}{A}: si falla la red, pasa las cargas al inversor en menos de \SI{20}{ms}, de modo que los equipos electrónicos siguen funcionando sin interrupción. También incluye un cargador de \SI{70}{A}, que puede recargar el banco desde la red cuando la energía solar no alcanza, y protección por baja tensión del banco \cite{victron_mp}. Su salida es de onda senoidal, apta para los compresores y para los equipos electrónicos.
 
 \begin{table}[!htb]
 \caption{Inversor-cargador Victron MultiPlus-II 24/3000/70-50 120V \cite{victron_mp} frente a las cargas}
