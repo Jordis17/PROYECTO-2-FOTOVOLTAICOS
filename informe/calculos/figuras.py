@@ -115,7 +115,7 @@ def iv(Voc, Vmp, Isc, Imp, Vv):
     C2_ = (Vmp / Voc - 1) / np.log(1 - Imp / Isc); C1_ = (1 - Imp / Isc) * np.exp(-Vmp / (C2_ * Voc))
     return np.clip(Isc * (1 - C1_ * (np.exp(Vv / (C2_ * Voc)) - 1)), 0, None)
 tt = R["modulo"]["tabla_T"]; reg = R["regulador"]["reg"]
-fig, ax = plt.subplots(figsize=(3.45, 2.7))
+fig, ax = plt.subplots(figsize=(3.45, 2.95))
 Vmin, Vop, Vabs_, Imax, Pm = 28.8 + 5, reg["Voc_op"], reg["Voc_abs"], reg["Isc_max"], reg["P_nom24"]
 Vh = np.linspace(Vmin, Vop, 200)
 ax.fill_between(Vh, 0, np.minimum(Pm * 0 + Imax, Imax), color="#e8eef4", zorder=0, label="Zona de operación del regulador")
@@ -127,8 +127,10 @@ for t, col, lab in zip(tt, [C1, C3, C2], ["7 °C", "25 °C (STC)", "63.2 °C"]):
     Vv = np.linspace(0, 2 * t["Voc"], 300); I = 2 * iv(t["Voc"], t["Vmp"], t["Isc"], t["Imp"], Vv / 2)
     ax.plot(Vv, I, color=col, lw=1.3, label=f"Arreglo 2S2P a {lab}")
     ax.plot(2 * t["Vmp"], 2 * t["Imp"], "o", color=col, ms=4, mec="w", mew=0.6)
-ax.set_xlim(0, 160); ax.set_ylim(0, 105); ax.set_xlabel("Tensión FV [V]"); ax.set_ylabel("Corriente FV [A]")
-ax.legend(fontsize=6.2, frameon=False, loc="upper center", ncol=2); rejilla(ax, "both")
+ax.plot([], [], "o", color="#555", ms=4, mec="w", mew=0.6, label="Punto de máxima potencia")
+ax.text(Vop - 1.5, 2, "145 V", fontsize=6.5, color="#555", rotation=90, va="bottom", ha="right")
+ax.set_xlim(0, 160); ax.set_ylim(0, 90); ax.set_xlabel("Tensión FV [V]"); ax.set_ylabel("Corriente FV [A]")
+ax.legend(fontsize=6.2, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2); rejilla(ax, "both")
 guardar(fig, "soa_regulador")
 
 # 6. Energía mensual: disponible para las cargas y demanda

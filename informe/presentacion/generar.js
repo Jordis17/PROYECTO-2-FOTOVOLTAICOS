@@ -198,7 +198,7 @@ const pv = R.recurso.pv;
 // ------------------------------------------------------------------ 6. Regulador
 {
   const s = nueva("Diseño", "05 · REGULADOR DE CARGA", "Regulador MPPT de 85 A");
-  s.addImage({ path: FIG("soa_regulador.png"), x: 0.5, y: 1.85, w: 6.1, h: 4.78, altText: "Zona de operación del regulador con las curvas I-V del arreglo 2S2P a 7, 25 y 63 °C", objectName: "SOA" });
+  s.addImage({ path: FIG("soa_regulador.png"), x: 0.75, y: 1.85, w: 5.59, h: 4.78, altText: "Zona de operación del regulador con las curvas I-V del arreglo 2S2P a 7, 25 y 63 °C", objectName: "SOA" });
   tarjeta(s, 6.9, 1.95, 5.95, 4.75);
   s.addText(F("i_{reg} = P_{FV} / V_{bat} = 1800 / 24 = 75 A"), { x: 7.15, y: 2.1, w: 5.5, h: 0.45, fontSize: 18, bold: true, color: NAVY, isTextBox: true, margin: 0 });
   s.addText("Victron SmartSolar MPPT 150/85-Tr VE.Can", { x: 7.15, y: 2.6, w: 5.5, h: 0.4, fontSize: 15, bold: true, color: GOLD, isTextBox: true, margin: 0 });
