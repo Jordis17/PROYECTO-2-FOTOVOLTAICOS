@@ -104,7 +104,7 @@ const pv = R.recurso.pv;
   s.addText("Casa de Abner López · Santa Rosa, Oreamuno, Cartago", { x: 0.6, y: 3.75, w: 6, h: 0.4, fontSize: 16, color: "CDD3DA", isTextBox: true, margin: 0 });
   s.addText("Abner López · Sebastián Rojas · Jordi Segura", { x: 0.6, y: 5.6, w: 6, h: 0.35, fontSize: 15, bold: true, color: "FFFFFF", isTextBox: true, margin: 0 });
   s.addText("Escuela de Ingeniería Electrónica · II Semestre 2026", { x: 0.6, y: 6.0, w: 6, h: 0.35, fontSize: 13, color: "CDD3DA", isTextBox: true, margin: 0 });
-  s.addNotes("[0:00 – 0:20 · A. López] Buenas tardes. Presentamos el diseño de un sistema fotovoltaico aislado que respalda las cargas críticas de la casa de Abner López, en Santa Rosa de Oreamuno. La casa tiene servicio de JASEC; el sistema mantiene refrigeración, iluminación y comunicaciones durante dos días sin red ni sol, y el resto del tiempo esas cargas se alimentan con energía solar.");
+  s.addNotes("[0:00 – 0:25 · A. López] Buenas tardes. Les vamos a presentar el diseño de un sistema fotovoltaico aislado para respaldar las cargas críticas de mi casa, en Santa Rosa de Oreamuno. La casa tiene servicio de JASEC, así que la idea es que, cuando se vaya la luz, el sistema mantenga la refrigeración, la iluminación y el internet hasta por dos días, aunque no haya sol.");
 }
 
 // ------------------------------------------------------------------ 2. Sitio y consumo
@@ -126,7 +126,7 @@ const pv = R.recurso.pv;
   dato(s, 10.1, 2.05, 2.6, "4.33 kWh/día", "consumo de las cargas críticas (todas en CA, 120 V)");
   dato(s, 10.1, 3.25, 2.6, "783 W", "potencia con todo encendido a la vez");
   dato(s, 10.1, 4.45, 2.6, "3230 kWh", "consumo de la casa en 2026; 1 factura real y 11 estimadas", { hl: 0.8 });
-  s.addNotes("[0:20 – 1:00 · A. López] La casa está a 2317 m de altura. El techo es de zinc ondulado a dos aguas, con 12° hacia el este y el oeste. Las cargas críticas son el refrigerador, el congelador, ocho bombillos LED, los cargadores de celular y laptop, y el módem. Con los datos de placa suman 4.33 kWh al día; el refrigerador y el congelador son el 71 %. Si todo se enciende a la vez se piden 783 W. Para la factura teníamos una sola, la de octubre, y estimamos los otros meses con la tarifa residencial de JASEC: 3230 kWh al año.");
+  s.addNotes("[0:25 – 1:10 · A. López] La casa está a 2317 metros de altura y el techo es de zinc a dos aguas, con 12 grados hacia el este y hacia el oeste. Como cargas críticas escogimos el refrigerador, el congelador, ocho bombillos LED, los cargadores de celular y de laptop, y el módem. Con los datos de placa suman 4.33 kWh al día, y el 71 % es del refrigerador y el congelador. Con todo encendido a la vez serían 783 W. De la casa teníamos solo la factura de octubre, así que estimamos los otros meses con la tarifa residencial de JASEC: 3230 kWh al año.");
 }
 
 // ------------------------------------------------------------------ 3. Recurso solar
@@ -144,7 +144,7 @@ const pv = R.recurso.pv;
   dato(s, 0.8, 5.65, 3.6, "3.73 HSP", "noviembre a 12° al este: mes de diseño", { big: 24 });
   dato(s, 4.9, 5.65, 3.6, "1721 kWh/m²", "al año en el plano de los módulos", { big: 24 });
   dato(s, 9.0, 5.65, 3.6, "14°, acimut −40°", "ángulo óptimo de PVGIS: solo 1.7 % más", { big: 24 });
-  s.addNotes("[1:00 – 1:40 · A. López] Calculamos el recorrido del Sol para la latitud de 9.9°: pasa muy alto todo el año y de abril a agosto va por el norte. Para la radiación usamos PVGIS con las inclinaciones reales del techo. La cara este recibe 1721 kWh por metro cuadrado al año, 6 % más que la oeste, por eso los módulos van al este. El óptimo de PVGIS, 14° con acimut −40°, daría solo 1.7 % más y obligaría a una estructura inclinada, así que los módulos van paralelos al techo. El peor mes es noviembre, con 3.73 horas solares pico, y con ese valor se dimensiona.");
+  s.addNotes("[1:10 – 1:50 · A. López] Con las ecuaciones del curso sacamos el recorrido del Sol: pasa muy alto todo el año y de abril a agosto va por el norte. La radiación la tomamos de PVGIS con la inclinación real de cada cara del techo. La cara este recibe 1721 kWh por metro cuadrado al año, 6 % más que la oeste, por eso los módulos van al este. El óptimo de PVGIS, 14 grados, solo daría un 1.7 % más y pediría otra estructura, así que los dejamos paralelos al techo. El peor mes es noviembre, con 3.73 horas solares pico, y con ese valor diseñamos.");
 }
 
 // ------------------------------------------------------------------ 4. Balance y baterías (oscura)
@@ -170,7 +170,7 @@ const pv = R.recurso.pv;
   });
   s.addImage({ path: IMG("banco.png"), x: 9.25, y: 1.85, w: 3.45, h: 2.38, altText: "Cuatro baterías de 24 V y 200 Ah conectadas en paralelo a las barras positiva y negativa", objectName: "banco" });
   s.addText("Van en un cuarto techado y ventilado junto al tablero, sin sol directo: se cargan de 0 a 50 °C y en el sitio la temperatura va de 7 a 29.5 °C.", { x: 9.1, y: 4.3, w: 3.75, h: 0.75, fontSize: 11, color: "CDD3DA", isTextBox: true, margin: 0, valign: "top" });
-  s.addNotes("[1:40 – 2:20 · A. López] Con el método del curso, las cargas en alterna se dividen entre el factor de rendimiento, que con las pérdidas típicas da 0.749: la energía de diseño es 5786 Wh por día. Con 24 V, 70 % de descarga y dos días de autonomía, la capacidad es 758 Ah. Con la batería seleccionada, la Power Queen de 24 V y 200 Ah, se necesitan cuatro en paralelo, que es el máximo que permite el fabricante: 800 Ah y 20.5 kWh. En un día normal el banco se descarga cerca de 22 %, así que los ciclos no limitan su vida.");
+  s.addNotes("[1:50 – 2:30 · A. López] Para el banco dividimos el consumo entre el factor de rendimiento, que con las pérdidas típicas da 0.749, y queda una energía de diseño de 5786 Wh al día. Con 24 V, 70 % de descarga y dos días de autonomía, hacen falta 758 Ah. Escogimos la Power Queen de litio de 24 V y 200 Ah: con cuatro en paralelo, que es el máximo que permite el fabricante, tenemos 800 Ah. En un día normal el banco baja solo un 22 %. Ahora Sebastián sigue con los módulos y los equipos.");
 }
 
 // ------------------------------------------------------------------ 5. Módulo y arreglo
@@ -192,7 +192,7 @@ const pv = R.recurso.pv;
     ["Módulos en serie (curso: 145 / 33.7 = 4.3)", "2", "máx. 3 por Voc en frío"]];
   s.addTable([hdr2, ...rows2], { x: 4.8, y: 3.85, w: 8.05, colW: [3.85, 1.6, 2.6], fontSize: 13, color: INK2, border: { type: "solid", color: LINE, pt: 0.75 }, fill: { color: CARD }, rowH: 0.4, objectName: "tabla arreglo" });
   s.addText("Con 4 módulos solo caben 2S2P o 1S4P; con 1S4P la Vmp en calor (29.7 V) queda bajo el arranque del regulador.", { x: 4.8, y: 6.0, w: 8.05, h: 0.6, fontSize: 12, color: INK2, isTextBox: true, margin: 0 });
-  s.addNotes("[2:20 – 3:05 · S. Rojas] Con el peor mes, 3.73 HSP, el campo debe ser de 1551 W; con el 10 % de margen del curso salen 3.79 módulos, es decir, cuatro AIKO de 450 W, el mismo módulo del proyecto 1: 1800 Wp. Corregimos sus parámetros entre 7 °C, la mínima del último año, y 63 °C en la celda con la máxima de 29.5 °C. En frío la tensión de circuito abierto sube a 42.3 V; en calor la potencia baja a 405 W. Con cuatro módulos el arreglo queda en dos cadenas de dos: 84.6 V en frío, debajo de los 145 V del regulador, y 59.4 V en calor, encima del mínimo de arranque.");
+  s.addNotes("[2:30 – 3:10 · S. Rojas] Gracias. Con las 3.73 horas solares pico de noviembre el arreglo necesita 1551 W; con el 10 % de margen del curso salen 3.79 módulos, o sea, cuatro módulos AIKO de 450 W, el mismo del proyecto 1, para 1800 W pico. Los revisamos entre 7 grados, la mínima del último año, y 63 grados en la celda en un día caliente. Con dos cadenas de dos módulos, en frío llegan a 84.6 V, por debajo de los 145 V del regulador, y en calor quedan en 59.4 V, suficiente para que el regulador arranque.");
 }
 
 // ------------------------------------------------------------------ 6. Regulador
@@ -212,7 +212,7 @@ const pv = R.recurso.pv;
     icono(s, ic, 7.15, y, 0.4);
     s.addText(t, { x: 7.7, y: y - 0.04, w: 5.0, h: 0.5, fontSize: 13, color: INK2, isTextBox: true, margin: 0, valign: "middle" });
   });
-  s.addNotes("[3:05 – 3:45 · S. Rojas] El regulador se dimensiona con la potencia del arreglo entre la tensión del banco: 75 A. Por eso no sirve el modelo de 70 A y elegimos el SmartSolar 150/85 de Victron. En el gráfico, la zona sombreada es donde el regulador puede trabajar, y los puntos de máxima potencia del arreglo, a 7, 25 y 63 °C, quedan adentro, con la tensión entre 59 y 71 V y la corriente cerca de 28 A, lejos de los 70 A permitidos. La ficha garantiza la potencia plena hasta 2000 m y el sitio está a 2317 m; como el regulador trabaja al 75 % de su potencia nominal, tiene margen.");
+  s.addNotes("[3:10 – 3:50 · S. Rojas] La corriente del regulador sale de dividir la potencia del arreglo entre la tensión del banco: 75 A. Por eso el modelo de 70 A no servía y escogimos el SmartSolar 150/85 de Victron. En el gráfico, la zona sombreada es donde el regulador puede trabajar, y los puntos de máxima potencia a 7, 25 y 63 grados quedan adentro, cerca de 28 A, lejos del límite de 70 A. La ficha da potencia completa hasta 2000 metros y la casa está a 2317, pero el regulador solo trabaja al 75 % de su potencia.");
 }
 
 // ------------------------------------------------------------------ 7. Inversor-cargador
@@ -228,7 +228,7 @@ const pv = R.recurso.pv;
   dato(s, 8.7, 2.1, 3.9, "33 %", "de la potencia continua con todo encendido");
   dato(s, 8.7, 3.3, 3.9, "32 %", "del pico admisible al arrancar refrigerador y congelador juntos", { hl: 0.8 });
   s.addText("Es el modelo de menor potencia de la serie MultiPlus-II de 24 V y 120 V. Si falla la red, pasa las cargas al inversor en menos de 20 ms; cuando vuelve, puede recargar el banco.", { x: 8.7, y: 4.75, w: 3.9, h: 1.8, fontSize: 13, color: INK2, isTextBox: true, margin: 0, valign: "top" });
-  s.addNotes("[3:45 – 4:25 · S. Rojas] El inversor se elige por la potencia de las cargas que trabajan a la vez, no por la del arreglo. Con todo encendido son 783 W, y si el refrigerador y el congelador arrancan juntos, suponiendo cuatro veces su potencia, el pico es de 1763 W. Escogimos el MultiPlus-II de 24 V y 3000 VA, el más pequeño de la serie a 120 V: trabaja al 33 % de su potencia continua y al 32 % de su pico. Además trae el conmutador de transferencia: con red, las cargas siguen conectadas, y si la red falla pasan al inversor en menos de 20 ms. También tiene corte por baja tensión del banco, como pide el curso.");
+  s.addNotes("[3:50 – 4:30 · S. Rojas] El inversor se escoge por las cargas que pueden estar encendidas a la vez, no por los paneles. Son 783 W, y si el refrigerador y el congelador arrancan juntos, suponiendo cuatro veces su potencia, el pico llega a 1763 W. Escogimos el MultiPlus-II de 24 V y 3000 VA, el más pequeño de esa serie a 120 V: trabaja al 33 % de su potencia continua y al 32 % de su pico. Además, si la red falla, pasa las cargas al inversor en menos de 20 milisegundos. Jordi sigue con la energía y la instalación.");
 }
 
 // ------------------------------------------------------------------ 8. Estimación energética
@@ -244,7 +244,7 @@ const pv = R.recurso.pv;
   dato(s, 9.1, 3.3, 3.5, "1582 kWh", "al año que piden las cargas críticas");
   dato(s, 9.1, 4.5, 3.5, "116 %", "de cobertura en noviembre, el peor mes; el excedente se pierde", { hl: 0.8 });
   s.addText(F("E = 1.8 kW · HSP · K_{TCA} · días del mes"), { x: 9.1, y: 6.05, w: 3.6, h: 0.45, fontSize: 13, bold: true, color: NAVY, isTextBox: true, margin: 0, objectName: "formula energia" });
-  s.addNotes("[4:25 – 5:00 · J. Segura] Mes a mes multiplicamos la potencia del arreglo, las horas solares pico de la cara este, el factor de rendimiento y los días. Todos los meses la energía disponible supera la demanda: en noviembre, el peor, se cubre el 116 %, y en marzo casi el doble. En el año hay 2320 kWh disponibles y las cargas piden 1582. Lo que sobra no se puede usar porque el sistema no inyecta a la red; ese margen es el que permite recargar el banco después de días nublados.");
+  s.addNotes("[4:30 – 5:00 · J. Segura] Gracias. Para cada mes multiplicamos la potencia del arreglo por las horas solares pico, el factor de rendimiento y los días. Todos los meses hay más energía disponible que demanda: en noviembre, el peor, se cubre el 116 %, y en marzo casi el doble. Lo que sobra no se aprovecha porque el sistema no inyecta a la red, pero ese margen es el que deja recargar el banco después de días nublados.");
 }
 
 // ------------------------------------------------------------------ 9. Instalación
@@ -268,14 +268,14 @@ const pv = R.recurso.pv;
   });
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 6.25, w: 12.35, h: 0.55, fill: { color: "FBEFD9" }, line: { color: "E9C88E", width: 0.75 }, objectName: "aviso" });
   s.addText("Antes de instalar hay que medir en sitio el recorrido de los cables, la separación de las clavadoras y la capacidad del tablero principal.", { x: 0.7, y: 6.27, w: 12.0, h: 0.5, fontSize: 13, color: "8F5609", isTextBox: true, margin: 0, valign: "middle" });
-  s.addNotes("[5:00 – 5:35 · J. Segura] Los cuatro módulos van en una fila sobre dos rieles, paralelos al techo, con soportes atornillados a las clavadoras. Los conductores se dimensionaron con el NEC 2014: en el lado fotovoltaico, 1.25 por 1.25 veces la corriente de cortocircuito, y en baterías y alterna 1.25 veces la corriente máxima. El tramo más largo, del techo a los equipos, tiene 1.8 % de caída. Como son solo dos cadenas no hacen falta fusibles por cadena; hay descargador de sobretensión, protector de falla a tierra e interruptores DC en el regulador, en cada batería y en el inversor.");
+  s.addNotes("[5:00 – 5:35 · J. Segura] Los cuatro módulos van en una fila sobre dos rieles, paralelos al techo y atornillados a las clavadoras. Los cables los dimensionamos con el NEC 2014, y el tramo más largo, del techo a los equipos, tiene una caída de 1.8 %. Como son solo dos cadenas no hacen falta fusibles por cadena; sí lleva descargador de sobretensión, protector de falla a tierra e interruptores en el regulador, en cada batería y en el inversor.");
 }
 
 // ------------------------------------------------------------------ 10. Unifilar
 {
   const s = nueva("Instalación", "09 · DIAGRAMA UNIFILAR", "Diagrama unifilar (IEC 60617)");
   s.addImage({ path: path.join(__dirname, "unifilar.png"), x: 0.5, y: 1.8, w: 12.33, h: 5.05, sizing: { type: "contain", w: 12.33, h: 5.05 }, altText: "Diagrama unifilar del sistema aislado con simbología IEC 60617", objectName: "unifilar" });
-  s.addNotes("[5:35 – 6:00 · J. Segura] En el unifilar, las dos cadenas llegan a la caja combinadora con su descargador, pasan por el protector de falla a tierra al regulador, y de ahí a la barra de 24 V, donde están las cuatro baterías, cada una con su interruptor. De la barra sale el inversor-cargador. Su entrada AC viene del tablero principal de JASEC y su salida alimenta el subtablero de cargas críticas, donde se reubican los circuitos del refrigerador, el congelador, las luces y los tomas.");
+  s.addNotes("[5:35 – 6:00 · J. Segura] En el unifilar, las dos cadenas pasan por la caja combinadora y el protector de falla a tierra hasta el regulador, y de ahí a la barra de 24 V con las cuatro baterías, cada una con su interruptor. De la barra sale el inversor, que toma la red del tablero principal y alimenta un subtablero aparte con los circuitos de las cargas críticas.");
 }
 
 // ------------------------------------------------------------------ 11. Costos y proyección financiera
@@ -302,7 +302,7 @@ const pv = R.recurso.pv;
   dato(s, 10.4, 2.95, 2.3, "¢128 165", "ahorro del año 1 (54 % de la factura)", { big: 24, hl: 0.6 });
   dato(s, 10.4, 4.1, 2.3, "−¢8.0 M", "VAN; no se recupera en 25 años", { big: 24, hl: 0.6, color: ORANGE });
   dato(s, 10.4, 5.25, 2.3, "¢533/kWh", "costo de la energía respaldada", { big: 24, hl: 0.6 });
-  s.addNotes("[6:00 – 6:40 · J. Segura] El sistema cuesta unos 7.1 millones de colones; casi la mitad son las baterías. Las cargas críticas son el 49 % del consumo de la casa, así que la factura baja de 237 000 a 109 000 colones al año: un ahorro de 128 000. Ese ahorro apenas supera el mantenimiento supuesto, y con los reemplazos del inversor y de las baterías la inversión no se recupera en 25 años: el VAN es de −8 millones y la energía respaldada cuesta 533 colones por kWh, frente a unos 90 de la red. Económicamente no se justifica por ahorro; su valor es mantener la comida refrigerada y las comunicaciones cuando falla la red.");
+  s.addNotes("[6:00 – 6:40 · J. Segura] El sistema cuesta unos 7.1 millones de colones, y casi la mitad son las baterías. Como las cargas críticas son el 49 % del consumo, el ahorro es de 128 000 colones al año. Pero el mantenimiento se lleva unos 71 000 al año y después hay que reemplazar el inversor y las baterías, así que en 25 años no se recupera la inversión: el VAN da menos 8 millones. Entonces el sistema no se justifica por el ahorro, sino porque la comida se mantiene refrigerada y la casa sigue comunicada cuando se va la luz.");
 }
 
 // ------------------------------------------------------------------ 12. Cierre
@@ -326,7 +326,7 @@ const pv = R.recurso.pv;
   });
   s.addImage({ path: IMG("noche.png"), x: 8.95, y: 1.95, w: 3.9, h: 4.29, altText: "Ilustración de la casa de noche con las luces encendidas gracias al banco de baterías", objectName: "imagen cierre" });
   s.addText("Por confirmar antes de construir: cotizaciones locales, distancias y estado de la estructura del techo.", { x: 0.5, y: 6.35, w: 12.3, h: 0.45, fontSize: 14, color: "CDD3DA", isTextBox: true, margin: 0 });
-  s.addNotes("[6:40 – 7:00 · J. Segura] Con 1.8 kWp y un banco de 800 Ah la casa mantiene sus cargas críticas por más de dos días sin red ni sol, y en un día normal esas cargas funcionan con energía solar. Los equipos cumplen los límites de tensión, corriente y potencia revisados. El sistema no se paga con el ahorro en la factura; su justificación es la continuidad del servicio. Muchas gracias; quedamos atentos a sus preguntas.");
+  s.addNotes("[6:40 – 7:00 · J. Segura] Para cerrar: con 1.8 kWp y 800 Ah de baterías, la casa mantiene sus cargas críticas por más de dos días sin red ni sol, y todos los equipos quedan dentro de sus límites de tensión, corriente y potencia. Muchas gracias, quedamos atentos a sus preguntas.");
 }
 
 (async () => {
