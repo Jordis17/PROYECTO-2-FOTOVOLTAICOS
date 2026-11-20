@@ -50,14 +50,13 @@ function nav(s, act, oscuro) {
     x += w + 0.05;
   });
 }
-function nueva(sec, kicker, titulo, fuente) {
+function nueva(sec, kicker, titulo) {
   num += 1;
   pres.addSection && null;
   const s = pres.addSlide({ masterName: "CONTENIDO" });
   nav(s, sec);
   s.addText(kicker, { placeholder: "kicker" });
   s.addText(titulo, { placeholder: "title" });
-  if (fuente) s.addText(fuente, { x: 0.5, y: 7.0, w: 11.2, h: 0.3, fontSize: 10, color: MUTED, isTextBox: true, margin: 0, objectName: "fuente" });
   return s;
 }
 function tarjeta(s, x, y, w, h, fill) {
@@ -110,10 +109,9 @@ const pv = R.recurso.pv;
 
 // ------------------------------------------------------------------ 2. Sitio y consumo
 {
-  const s = nueva("Sitio", "01 · LUGAR Y CONSUMO", "Cargas críticas de la casa",
-    "Datos de placa de los equipos (nov. 2026) · 9.9358° N, 83.8273° O; elevación de 2317 m según PVGIS · Imagen: Google Earth");
+  const s = nueva("Sitio", "01 · LUGAR Y CONSUMO", "Cargas críticas de la casa");
   s.addImage({ path: FIG("ubicacion_satelital.jpg"), x: 0.5, y: 1.95, w: 4.2, h: 2.62, sizing: { type: "cover", w: 4.2, h: 2.62 }, altText: "Vista satelital de la casa en Santa Rosa de Oreamuno, con el techo marcado", objectName: "vista satelital" });
-  s.addText("Techo de zinc ondulado a dos aguas, 12° hacia el este y el oeste, unos 85 m²", { x: 0.5, y: 4.62, w: 4.2, h: 0.5, fontSize: 12, color: INK2, isTextBox: true, margin: 0 });
+  s.addText("Techo de zinc ondulado a dos aguas, 12° hacia el este y el oeste, unos 85 m². Imagen de Google Earth.", { x: 0.5, y: 4.62, w: 4.2, h: 0.5, fontSize: 12, color: INK2, isTextBox: true, margin: 0 });
   const cs = c.cargas.slice().sort((a, x) => x.E - a.E);
   const lab = cs.map((x) => x.eq.replace(/ \(grupo \d\)/, "").replace("Bombillos LED 15 W", `${x.N} bombillos LED`).replace("Bombillo LED 15 W", "1 bombillo LED")
     .replace(" Atlas AC12SSAAWA", "").replace(" Daytron MCHF90", "").replace(" Nexxt Nebula N300", ""));
@@ -133,8 +131,7 @@ const pv = R.recurso.pv;
 
 // ------------------------------------------------------------------ 3. Recurso solar
 {
-  const s = nueva("Recurso", "02 · RECURSO SOLAR", "Radiación sobre el techo y peor mes",
-    "PVGIS 5.3 (ERA5, 2005–2023) · Diagrama cilíndrico con las ecuaciones del curso, tiempo solar");
+  const s = nueva("Recurso", "02 · RECURSO SOLAR", "Radiación sobre el techo y peor mes");
   s.addImage({ path: FIG("diagrama_cilindrico.png"), x: 0.5, y: 1.9, w: 6.2, h: 2.92, altText: "Diagrama cilíndrico del recorrido solar del sitio para el día 21 de cada mes", objectName: "cilindrico" });
   s.addText("El Sol pasa al norte del cenit de abril a agosto; al mediodía del 21 de diciembre la altura es de 56.6°.", { x: 0.5, y: 4.9, w: 6.2, h: 0.55, fontSize: 12, color: INK2, isTextBox: true, margin: 0 });
   const ser = [["horizontal", "Horizontal", GREY], ["oeste", "12° oeste", ORANGE], ["este", "12° este (diseño)", BLUE]];
@@ -178,8 +175,7 @@ const pv = R.recurso.pv;
 
 // ------------------------------------------------------------------ 5. Módulo y arreglo
 {
-  const s = nueva("Diseño", "04 · MÓDULOS Y ARREGLO", "Cuatro módulos AIKO de 450 W en 2S2P",
-    "Ficha AIKO-A450-MAH54Mb · NOCT estimado de 47 °C con los datos NOCT de la ficha · T ambiente de 7 a 29.5 °C");
+  const s = nueva("Diseño", "04 · MÓDULOS Y ARREGLO", "Cuatro módulos AIKO de 450 W en 2S2P");
   tarjeta(s, 0.5, 1.95, 4.0, 4.8);
   s.addText(F("P_{campo} = 5786 / 3.73 = 1551 W"), { x: 0.75, y: 2.1, w: 3.6, h: 0.4, fontSize: 14, bold: true, color: NAVY, isTextBox: true, margin: 0 });
   s.addText("N = 1.1 · 1551 / 450 = 3.79 → 4 módulos", { x: 0.75, y: 2.55, w: 3.6, h: 0.4, fontSize: 14, bold: true, color: NAVY, isTextBox: true, margin: 0 });
@@ -201,8 +197,7 @@ const pv = R.recurso.pv;
 
 // ------------------------------------------------------------------ 6. Regulador
 {
-  const s = nueva("Diseño", "05 · REGULADOR DE CARGA", "Regulador MPPT de 85 A",
-    "Especificaciones oficiales Victron SmartSolar MPPT 150/70 a 150/100 VE.Can · Curvas I-V del arreglo con los parámetros corregidos");
+  const s = nueva("Diseño", "05 · REGULADOR DE CARGA", "Regulador MPPT de 85 A");
   s.addImage({ path: FIG("soa_regulador.png"), x: 0.5, y: 1.85, w: 6.1, h: 4.78, altText: "Zona de operación del regulador con las curvas I-V del arreglo 2S2P a 7, 25 y 63 °C", objectName: "SOA" });
   tarjeta(s, 6.9, 1.95, 5.95, 4.75);
   s.addText(F("i_{reg} = P_{FV} / V_{bat} = 1800 / 24 = 75 A"), { x: 7.15, y: 2.1, w: 5.5, h: 0.45, fontSize: 18, bold: true, color: NAVY, isTextBox: true, margin: 0 });
@@ -222,10 +217,9 @@ const pv = R.recurso.pv;
 
 // ------------------------------------------------------------------ 7. Inversor-cargador
 {
-  const s = nueva("Diseño", "06 · INVERSOR-CARGADOR", "Inversor-cargador con transferencia automática",
-    "Ficha Victron MultiPlus-II 120 V · Arranque de compresores supuesto en 4 veces su potencia nominal (cota alta de 3 a 4 veces vista en clase)");
+  const s = nueva("Diseño", "06 · INVERSOR-CARGADOR", "Inversor-cargador con transferencia automática");
   const hdr = ["Parámetro", "Cargas críticas", "MultiPlus-II 24/3000/70-50"].map((t) => ({ text: t, options: { bold: true, color: "FFFFFF", fill: { color: NAVY } } }));
-  const rows = [["Potencia continua", "783 W", "2400 W a 25 °C · 2200 W a 40 °C"], ["Pico (arranque de compresores)", "1763 W", "5500 W"],
+  const rows = [["Potencia continua", "783 W", "2400 W a 25 °C · 2200 W a 40 °C"], ["Pico (arranque de compresores, supuesto 4 veces su potencia)", "1763 W", "5500 W"],
     ["Tensión DC", "24 V (banco)", "19 a 33 V"], ["Salida AC", "120 V, 60 Hz", "120 V ± 2 %, 60 Hz, onda senoidal"],
     ["Corriente de batería", "34 A (77 A en el pico)", "hasta 114 A a plena potencia"], ["Transferencia", "con red de JASEC", "50 A, menos de 20 ms"],
     ["Cargador desde la red", "", "70 A"], ["Eficiencia máxima", "", "94 %"]];
@@ -239,8 +233,7 @@ const pv = R.recurso.pv;
 
 // ------------------------------------------------------------------ 8. Estimación energética
 {
-  const s = nueva("Energía", "07 · ESTIMACIÓN ENERGÉTICA", "Energía disponible contra demanda",
-    F("Energía disponible = 1.8 kW · HSP (12° este, PVGIS) · K_{TCA} (0.749) · días del mes"));
+  const s = nueva("Energía", "07 · ESTIMACIÓN ENERGÉTICA", "Energía disponible contra demanda");
   s.addChart(pres.charts.BAR, [
     { name: "Disponible para las cargas", labels: M, values: e.mensual.map((x) => +x.E_util.toFixed(1)) },
     { name: "Demanda de las cargas críticas", labels: M, values: e.mensual.map((x) => +x.E_dem.toFixed(1)) },
@@ -250,13 +243,13 @@ const pv = R.recurso.pv;
   dato(s, 9.1, 2.1, 3.5, "2320 kWh", "al año disponibles para las cargas");
   dato(s, 9.1, 3.3, 3.5, "1582 kWh", "al año que piden las cargas críticas");
   dato(s, 9.1, 4.5, 3.5, "116 %", "de cobertura en noviembre, el peor mes; el excedente se pierde", { hl: 0.8 });
+  s.addText(F("E = 1.8 kW · HSP · K_{TCA} · días del mes"), { x: 9.1, y: 6.05, w: 3.6, h: 0.45, fontSize: 13, bold: true, color: NAVY, isTextBox: true, margin: 0, objectName: "formula energia" });
   s.addNotes("[4:25 – 5:00 · J. Segura] Mes a mes multiplicamos la potencia del arreglo, las horas solares pico de la cara este, el factor de rendimiento y los días. Todos los meses la energía disponible supera la demanda: en noviembre, el peor, se cubre el 116 %, y en marzo casi el doble. En el año hay 2320 kWh disponibles y las cargas piden 1582. Lo que sobra no se puede usar porque el sistema no inyecta a la red; ese margen es el que permite recargar el banco después de días nublados.");
 }
 
 // ------------------------------------------------------------------ 9. Instalación
 {
-  const s = nueva("Instalación", "08 · ELEMENTOS DE INSTALACIÓN", "Montaje, cableado y protecciones",
-    F("Conductores según NEC 2014: i_{w} = 1.25 · 1.25 · I_{sc} en el lado FV y 1.25 · I_{máx} en baterías y CA · Distancias supuestas: 10 m techo–equipos, 2 m banco–inversor, 5 m al tablero"));
+  const s = nueva("Instalación", "08 · ELEMENTOS DE INSTALACIÓN", "Montaje, cableado y protecciones");
   const cols = [
     ["Estructura", "FaScrewdriverWrench", ["2 rieles Unirac SM cortados a 4.7 m", "10 soportes L-Foot atornillados a las clavadoras, con sello", "6 grapas intermedias con unión a tierra y 4 de extremo", "Módulos paralelos al techo (12°), cara este"]],
     ["Cableado", "FaPlug", ["T1 cadenas: 10 AWG PV Wire, 10 m, caída 1.82 %", "T3 regulador–barra: 2 AWG, 106 A", "T5 barra–inversor: 2/0 AWG, 143 A", "T6 y T7 en CA: 8 AWG THHN, 31 A, caída 0.52 %"]],
@@ -274,25 +267,24 @@ const pv = R.recurso.pv;
     });
   });
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 6.25, w: 12.35, h: 0.55, fill: { color: "FBEFD9" }, line: { color: "E9C88E", width: 0.75 }, objectName: "aviso" });
-  s.addText("Por verificar en sitio: las distancias reales, la separación de las clavadoras para los soportes y la capacidad del tablero principal.", { x: 0.7, y: 6.27, w: 12.0, h: 0.5, fontSize: 13, color: "8F5609", isTextBox: true, margin: 0, valign: "middle" });
+  s.addText("Distancias supuestas: 10 m del techo a los equipos, 2 m del banco al inversor y 5 m al tablero. Se deben verificar en sitio, junto con la separación de las clavadoras y la capacidad del tablero.", { x: 0.7, y: 6.27, w: 12.0, h: 0.5, fontSize: 13, color: "8F5609", isTextBox: true, margin: 0, valign: "middle" });
   s.addNotes("[5:00 – 5:35 · J. Segura] Los cuatro módulos van en una fila sobre dos rieles, paralelos al techo, con soportes atornillados a las clavadoras. Los conductores se dimensionaron con el NEC 2014: en el lado fotovoltaico, 1.25 por 1.25 veces la corriente de cortocircuito, y en baterías y alterna 1.25 veces la corriente máxima. El tramo más largo, del techo a los equipos, tiene 1.8 % de caída. Como son solo dos cadenas no hacen falta fusibles por cadena; hay descargador de sobretensión, protector de falla a tierra e interruptores DC en el regulador, en cada batería y en el inversor.");
 }
 
 // ------------------------------------------------------------------ 10. Unifilar
 {
-  const s = nueva("Instalación", "09 · DIAGRAMA UNIFILAR", "Diagrama unifilar (IEC 60617)", "Diagrama completo en el informe");
+  const s = nueva("Instalación", "09 · DIAGRAMA UNIFILAR", "Diagrama unifilar (IEC 60617)");
   s.addImage({ path: path.join(__dirname, "unifilar.png"), x: 0.5, y: 1.8, w: 12.33, h: 5.05, sizing: { type: "contain", w: 12.33, h: 5.05 }, altText: "Diagrama unifilar del sistema aislado con simbología IEC 60617", objectName: "unifilar" });
   s.addNotes("[5:35 – 6:00 · J. Segura] En el unifilar, las dos cadenas llegan a la caja combinadora con su descargador, pasan por el protector de falla a tierra al regulador, y de ahí a la barra de 24 V, donde están las cuatro baterías, cada una con su interruptor. De la barra sale el inversor-cargador. Su entrada AC viene del tablero principal de JASEC y su salida alimenta el subtablero de cargas críticas, donde se reubican los circuitos del refrigerador, el congelador, las luces y los tomas.");
 }
 
 // ------------------------------------------------------------------ 11. Costos y proyección financiera
 {
-  const s = nueva("Economía", "10 · COSTOS Y PROYECCIÓN FINANCIERA", "Costo del sistema y flujo de caja",
-    "Precios de nov. 2026 (Kuat, DRSA, PES Supply, Cambio Energético) · ¢447.54/USD (BCCR) · Tasa 7 %, O&M 1 %/año, 25 años · Reemplazos supuestos: equipos año 13, baterías año 15");
+  const s = nueva("Economía", "10 · COSTOS Y PROYECCIÓN FINANCIERA", "Costo del sistema y flujo de caja");
   const cc = co.crc;
   const rows = [["Baterías (4 × ¢850 000)", cc["Baterías Power Queen 24 V 200 Ah (4 x ¢850 000)"]],
     ["Inversor-cargador MultiPlus-II", cc["Inversor-cargador Victron MultiPlus-II 24/3000/70-50 120V"]],
-    ["Protecciones, tableros y otros", cc["Protecciones y tableros"] + cc["Otros materiales eléctricos (15 %)"]],
+    ["Protecciones, tableros y otros", cc["Protecciones y tableros"] + cc["Otros materiales eléctricos (15 %)"]],
     ["Conductores", cc["Conductores"]], ["Módulos (4)", cc["Módulos AIKO 450 W (4 x 128.96 EUR)"]],
     ["Regulador SmartSolar 150/85", cc["Regulador Victron SmartSolar 150/85-Tr VE.Can"]], ["Estructura", cc["Estructura de montaje"]],
     ["Diseño, CFIA e instalación", Object.values(co.serv).reduce((a, x) => a + x, 0)], ["Ganancia del instalador (20 %)", co.ganancia]];
@@ -301,9 +293,10 @@ const pv = R.recurso.pv;
   body.push([{ text: "Precio del sistema", options: { bold: true } }, { text: fmt(co.I0), options: { bold: true, align: "right" } }]);
   s.addTable([hdr, ...body], { x: 0.5, y: 1.9, w: 5.2, colW: [3.5, 1.7], fontSize: 12, color: INK2, border: { type: "solid", color: LINE, pt: 0.75 }, fill: { color: CARD }, rowH: 0.38, objectName: "tabla costos" });
   s.addChart(pres.charts.LINE, [{ name: "Flujo acumulado", labels: f.acum.map((_, k) => String(k)), values: f.acum.map((v) => +(v / 1e6).toFixed(2)) }], ejes({
-    x: 5.95, y: 1.85, w: 4.0, h: 4.95, chartColors: [ORANGE], lineSize: 2, lineDataSymbol: "none", showLegend: false,
+    x: 5.95, y: 1.85, w: 4.0, h: 3.95, chartColors: [ORANGE], lineSize: 2, lineDataSymbol: "none", showLegend: false,
     showTitle: true, title: "Flujo acumulado [millones de ¢]", titleFontSize: 12, titleColor: INK2, catAxisLabelFrequency: 5,
     valAxisMinVal: -12, valAxisMaxVal: 0, valAxisMajorUnit: 2, catAxisLabelPos: "low", catAxisLabelRotate: 0, objectName: "grafico flujo" }));
+  s.addText("Tasa de 7 %, mantenimiento de 1 % al año y 25 años. Se supone el reemplazo de los equipos en el año 13 y de las baterías en el 15. Precios de nov. 2026 a ¢447.54/USD.", { x: 6.1, y: 5.85, w: 3.85, h: 0.95, fontSize: 11, color: INK2, isTextBox: true, margin: 0, valign: "top", objectName: "supuestos" });
   tarjeta(s, 10.2, 1.95, 2.65, 4.85);
   dato(s, 10.4, 2.0, 2.3, "¢7.10 M", "precio del sistema", { big: 24, hl: 0.35 });
   dato(s, 10.4, 2.95, 2.3, "¢128 165", "ahorro del año 1 (54 % de la factura)", { big: 24, hl: 0.6 });
