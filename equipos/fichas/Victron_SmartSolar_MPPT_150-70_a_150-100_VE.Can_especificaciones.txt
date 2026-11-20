@@ -1,0 +1,44 @@
+Fuente: https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-70_up_to_250-100_VE.Can/en/technical-specifications.html (consultado nov. 2026)
+
+9.1. Specifications 150/70, 150/85 and 150/100 | 150/70 | 150/857 | 150/1007 | 
+Battery Voltage | 12/24/48V7 auto select, 36V: manual select | 
+Maximum battery current 1a,b | 70A | 85A | 100A | 
+Nominal PV power, 12V 1a,b | 1000W | 1200W | 1450W | 
+Nominal PV power, 24V 1a,b | 2000W | 2400W | 2900W | 
+Nominal PV power, 36V 1a,b | 3000W | 3600W | 4350W | 
+Nominal PV power, 48V 1a,b | 4000W | 4900W | 5800W | 
+Max. PV short circuit current 2,3 | 50A | 70A | 
+Max. PV Open circuit Voltage | 150V absolute maximum coldest conditions145V start-up and operating maximum | 
+Peak efficiency | 98% | 
+Self-consumption | 12V: less than 35mA / 48V: less than 20mA | 
+Charge voltage 'absorption' | Default setting: 14.4V / 28.8V / 57.6V (adjustable) | 
+Charge voltage 'float' | Default setting: 13.8V / 27.6V / 55,2V (adjustable) | 
+Charge voltage 'equalize' 4 | Default setting: 16.2V / 32.4V / 64.8V (adjustable) | 
+Charge algorithm | multi-stage adaptive (eight pre-programmed algorithms) or user defined algorithm | 
+Temperature compensation | -16mV/°C / -32 mV/°C / -48 mV/°C / -64 mV/°C | 
+Protection | PV reverse polarity / Output short circuit / Over temperature | 
+Operating temperature | -30°C to +60°C (full rated output up to 40°C) | 
+Humidity | 95%, non-condensing | 
+Maximum altitude | 5000m (full rated output up to 2000m) | 
+Environmental condition | Indoor, unconditioned | 
+Pollution degree | PD3 | 
+Data communication | VE.Can ports 5VE.Direct port 5Bluetooth, via the VictronConnect app | 
+Remote on/off | Yes, 2 pole terminal | 
+Programmable relay | SPDT AC rating: 4A up to 240Vac / DC rating: 4A up to 35Vdc, 1A up to 60Vdc | 
+Parallel operation | Yes, parallel synchronised operation via VE.Can (max. 25 units) or via Bluetooth, (max. 10 units). | 
+ENCLOSURE | 
+Colour | Blue (RAL 5012) | 
+PV terminals | Tr models: 35 mm² / AWG2MC4 models: 2 pairs of MC4 connectors 3,6 | Tr models: 35 mm² / AWG2MC4 models: 3 pairs of MC4 connectors 3,6 | 
+Battery terminals | 35 mm² / AWG2 | 
+Protection category | IP43 (electronic components), IP22 (connection area) | 
+Weight | 3kg | 4.5kg | 
+Dimensions (h x w x d) | Tr models: 185 x 250 x 95mmMC4 models: 215 x 250 x 95mm | Tr models: 216 x 295 x 103mmMC4 models: 246 x 295 x 103mm | 
+STANDARDS | 
+Safety | EN/IEC 62109-1, UL 1741, CSA C22.2 | 
+1a) The solar charger will limit input power if more PV power is connected.1b) The PV voltage must exceed Vbat + 5V for the controller to start. Thereafter the minimum PV voltage is Vbat + 1V.2) A higher short circuit current may damage the solar charger in case of reverse polarity connection of the PV array.3) Maximum current per MC4 connector is 30A.4) Equalization is by default disabled.5) For more information on data communication see the data communication paper in the Technical information section on our website. For VE.Can specifications see the VE.Can ports chapter.6) MC4 models: several splitter pairs may be needed to parallel the strings of solar panels. The MC4 connectors are internally parallel connected to a single MPPT tracker.7) Note that below list of part numbers are 12/24V only. Not for 36/48V. And even if VictronConnect allows selecting 36 or 48V, they are still not to be sold or used as such. As per labels on the unit which indicate 12/24V only.Model | Part number | 
+SmartSolar 150/85-Tr VE.Can | SCC115085412 | 
+SmartSolar 150/85-MC4 VE.Can | SCC115085512 | 
+SmartSolar 150/100-Tr VE.Can | SCC115110412 | 
+SmartSolar 150/100-MC4 VE.Can | SCC115110512 | 
+ | 
+ 

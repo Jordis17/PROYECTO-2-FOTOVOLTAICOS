@@ -1,0 +1,5 @@
+Fuente: https://www.bccr.fi.cr/ (indicadores 317, 318 y 333, consulta JSON de la página principal)
+Consultado: 20 nov. 2026
+Tipo de cambio de referencia de compra: 443.93 CRC/USD (fecha 2026-11-19)
+Tipo de cambio de referencia de venta: 447.54 CRC/USD (fecha 2026-11-19)
+Euro: 1.0997 USD/EUR (fecha 2026-11-19)
