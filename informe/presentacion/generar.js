@@ -244,7 +244,7 @@ const pv = R.recurso.pv;
   dato(s, 9.1, 3.3, 3.5, "1582 kWh", "al año que piden las cargas críticas");
   dato(s, 9.1, 4.5, 3.5, "116 %", "de cobertura en noviembre, el peor mes; el excedente se pierde", { hl: 0.8 });
   s.addText(F("E = 1.8 kW · HSP · K_{TCA} · días del mes"), { x: 9.1, y: 6.05, w: 3.6, h: 0.45, fontSize: 13, bold: true, color: NAVY, isTextBox: true, margin: 0, objectName: "formula energia" });
-  s.addNotes("[6:40 – 7:15 · J. Segura] Gracias. Con el sistema ya definido, revisamos si la energía alcanza todos los meses. En el gráfico, las barras azules son la energía que el sistema puede entregar y las grises lo que piden los equipos. Todos los meses alcanza: en noviembre, el peor, cubre un 116 %, y en marzo casi el doble. Lo que sobra no se aprovecha porque el sistema no le vende energía a la red, pero ese margen es el que permite volver a cargar las baterías después de varios días nublados.");
+  s.addNotes("[6:40 – 7:20 · J. Segura] Gracias. Una vez definido el sistema, revisamos si la energía es suficiente para cubrir el consumo durante todo el año. En el gráfico, las barras azules muestran la energía que el sistema puede entregar cada mes y las grises el consumo de los equipos. Todos los meses hay más energía de la que se necesita: en noviembre, el mes con menor radiación, se alcanza un 116 % de la demanda, y en marzo casi el doble. Ese excedente no se aprovecha porque el sistema no inyecta energía a la red, pero da un margen para recargar las baterías después de varios días nublados.");
 }
 
 // ------------------------------------------------------------------ 9. Instalación
@@ -268,14 +268,14 @@ const pv = R.recurso.pv;
   });
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 6.25, w: 12.35, h: 0.55, fill: { color: "FBEFD9" }, line: { color: "E9C88E", width: 0.75 }, objectName: "aviso" });
   s.addText("Antes de instalar hay que medir en sitio el recorrido de los cables, la separación de las clavadoras y la capacidad del tablero principal.", { x: 0.7, y: 6.27, w: 12.0, h: 0.5, fontSize: 13, color: "8F5609", isTextBox: true, margin: 0, valign: "middle" });
-  s.addNotes("[7:15 – 8:05 · J. Segura] Para la instalación, los cuatro paneles van en una fila, sobre dos rieles atornillados a las clavadoras, y quedan pegados al techo con su misma inclinación. Los cables se escogieron con el código eléctrico NEC, dejando un margen sobre la corriente máxima de cada tramo. El tramo más largo, del techo a los equipos, pierde un 1.8 % de la tensión, menos del 3 % que se recomienda. En protecciones, hay un descargador para sobretensiones como las de los rayos, un protector de falla a tierra en la entrada de los paneles y un interruptor para cada equipo y para cada batería, para poder desconectar cada parte por separado.");
+  s.addNotes("[7:20 – 8:00 · J. Segura] En cuanto a la instalación, los cuatro paneles se colocan en una sola fila, sobre dos rieles fijados a las clavadoras del techo, con la misma inclinación de este. Los cables se seleccionaron con el código eléctrico NEC, dejando un margen sobre la corriente máxima de cada tramo. El tramo más largo, del techo a los equipos, tiene una caída de tensión del 1.8 %, por debajo del 3 % recomendado. En protecciones se incluyen un descargador de sobretensiones, un protector contra fallas a tierra en la entrada de los paneles y un interruptor para cada equipo y cada batería, lo que permite desconectar cada parte por separado.");
 }
 
 // ------------------------------------------------------------------ 10. Unifilar
 {
   const s = nueva("Instalación", "09 · DIAGRAMA UNIFILAR", "Diagrama unifilar (IEC 60617)");
   s.addImage({ path: path.join(__dirname, "unifilar.png"), x: 0.5, y: 1.8, w: 12.33, h: 5.05, sizing: { type: "contain", w: 12.33, h: 5.05 }, altText: "Diagrama unifilar del sistema aislado con simbología IEC 60617", objectName: "unifilar" });
-  s.addNotes("[8:05 – 8:40 · J. Segura] En el diagrama unifilar se ve todo el recorrido de la energía. Los dos grupos de paneles llegan a la caja combinadora, pasan por el protector y llegan al regulador. Del regulador la energía va a una barra de 24 V, donde están conectadas las cuatro baterías y el inversor. El inversor toma la red del tablero principal y alimenta un tablero aparte, al que se pasan los circuitos del refrigerador, el congelador, las luces y los tomacorrientes.");
+  s.addNotes("[8:00 – 8:35 · J. Segura] En el diagrama unifilar se muestran las conexiones entre los equipos y el recorrido de la energía. Los dos grupos de paneles llegan a la caja combinadora, pasan por el protector de falla a tierra y se conectan al regulador. Desde ahí, la energía llega a una barra de 24 V, donde están conectadas las cuatro baterías y el inversor. Por último, el inversor se conecta al tablero principal de la vivienda y alimenta un tablero independiente con los circuitos del refrigerador, el congelador, la iluminación y los tomacorrientes.");
 }
 
 // ------------------------------------------------------------------ 11. Costos y proyección financiera
@@ -302,7 +302,7 @@ const pv = R.recurso.pv;
   dato(s, 10.4, 2.95, 2.3, "¢128 165", "ahorro del año 1 (54 % de la factura)", { big: 24, hl: 0.6 });
   dato(s, 10.4, 4.1, 2.3, "−¢8.0 M", "VAN; no se recupera en 25 años", { big: 24, hl: 0.6, color: ORANGE });
   dato(s, 10.4, 5.25, 2.3, "¢533/kWh", "costo de la energía respaldada", { big: 24, hl: 0.6 });
-  s.addNotes("[8:40 – 9:35 · J. Segura] El sistema cuesta unos 7.1 millones de colones, y casi la mitad son las baterías. La factura de la casa baja unos 128 000 colones al año. Pero el mantenimiento cuesta unos 71 000 colones al año, en el año 13 hay que cambiar el inversor y el regulador, y en el 15 las baterías. Con todo eso, en 25 años la inversión no se recupera: el valor actual neto es de 8 millones negativos. Cada kWh que entrega el sistema cuesta 533 colones, unas siete veces la tarifa base de JASEC. Por eso el sistema no se justifica por el ahorro, sino porque la comida se mantiene fría y la casa sigue con luz e internet cuando falla la red.");
+  s.addNotes("[8:35 – 9:20 · J. Segura] El sistema tiene un costo aproximado de 7.1 millones de colones, y casi la mitad corresponde a las baterías. Al alimentar los equipos críticos con el sistema solar, la factura de la casa se reduce en unos 128 000 colones al año. Sin embargo, el mantenimiento cuesta unos 71 000 colones anuales, y hay que reemplazar el inversor y el regulador en el año 13 y las baterías en el año 15. Con todos estos gastos, la inversión no se recupera en los 25 años de análisis: el valor actual neto es de unos 8 millones de colones negativos, y cada kWh que entrega el sistema cuesta 533 colones, unas siete veces la tarifa base de JASEC.");
 }
 
 // ------------------------------------------------------------------ 12. Cierre
@@ -326,7 +326,7 @@ const pv = R.recurso.pv;
   });
   s.addImage({ path: IMG("noche.png"), x: 8.95, y: 1.95, w: 3.9, h: 4.29, altText: "Ilustración de la casa de noche con las luces encendidas gracias al banco de baterías", objectName: "imagen cierre" });
   s.addText("Por confirmar antes de construir: cotizaciones locales, distancias y estado de la estructura del techo.", { x: 0.5, y: 6.35, w: 12.3, h: 0.45, fontSize: 14, color: "CDD3DA", isTextBox: true, margin: 0 });
-  s.addNotes("[9:35 – 10:00 · J. Segura] Para cerrar: con cuatro paneles y cuatro baterías, la casa mantiene sus equipos críticos más de dos días sin red ni sol, y en un día normal esos equipos funcionan con energía solar. El regulador y el inversor trabajan dentro de sus límites, con capacidad de sobra. Es una inversión en seguridad, no en ahorro. Muchas gracias, quedamos atentos a sus preguntas.");
+  s.addNotes("[9:20 – 10:00 · J. Segura] Para cerrar, con cuatro módulos de 450 W, el sistema logra cubrir el consumo de los equipos durante todo el año, incluso en noviembre, cuando alcanza un 116 % de la demanda. Las cuatro baterías Power Queen permiten una autonomía de aproximadamente 2.3 días, considerando una profundidad de descarga del 70 %. El regulador de 85 A y el inversor de 3000 VA trabajan dentro de sus límites de operación. Además, cuando se interrumpe el servicio eléctrico, el inversor transfiere la alimentación a las baterías en menos de 20 milisegundos. Aunque la inversión no se recupera mediante el ahorro en la factura eléctrica, el sistema permite mantener funcionando los equipos esenciales durante los cortes de electricidad. Muchas gracias, quedamos atentos a sus preguntas.");
 }
 
 (async () => {
