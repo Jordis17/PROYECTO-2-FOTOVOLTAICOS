@@ -1,4 +1,4 @@
-\documentclass[tikz,border=1.5mm]{standalone}
+\documentclass[tikz,border=2mm]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -7,210 +7,207 @@
 \usepackage{amssymb,textcomp}
 \usepackage{sansmath}
 \usetikzlibrary{arrows.meta,calc}
-\renewcommand{\arraystretch}{1.12}
-\setlength{\tabcolsep}{2.6pt}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{3pt}
 \tikzset{
-  F3/.style={font=\fontsize{4.2}{5}\selectfont},
-  F4/.style={font=\fontsize{5}{6}\selectfont},
-  F4b/.style={font=\fontsize{5}{6}\selectfont\bfseries},
-  F5/.style={font=\fontsize{5.6}{6.6}\selectfont},
-  F5b/.style={font=\fontsize{5.8}{6.8}\selectfont\bfseries},
-  F6b/.style={font=\fontsize{6.8}{8}\selectfont\bfseries},
-  enc/.style={densely dashed,line width=0.4pt},
-  tag/.style={F4b,draw,rounded corners=1.2pt,fill=white,inner sep=0.8pt},
+  Fs/.style={font=\fontsize{5.8}{7}\selectfont},
+  Fn/.style={font=\fontsize{6.6}{8}\selectfont},
+  Fb/.style={font=\fontsize{6.8}{8.2}\selectfont\bfseries},
+  Ft/.style={font=\fontsize{9}{11}\selectfont\bfseries},
+  enc/.style={densely dashed,line width=0.45pt},
+  tag/.style={font=\fontsize{6.2}{7}\selectfont\bfseries,draw,rounded corners=1.5pt,fill=white,inner sep=1pt},
   % ---------------- símbolos IEC 60617 ----------------
-  % módulo FV (celda con diodo), centrado en el punto, conexiones arriba y abajo
+  % módulo FV: rectángulo con diodo, centrado en el punto
   pics/fv/.style={code={
-    \draw[fill=white] (-0.11,-0.10) rectangle (0.11,0.10);
-    \draw (-0.065,0.06) -- (0.065,0.06) -- (0,-0.06) -- cycle;
-    \draw (-0.065,-0.06) -- (0.065,-0.06);}},
-  % interruptor automático horizontal de (0,0) a (0.7,0)
+    \draw[fill=white] (-0.16,-0.15) rectangle (0.16,0.15);
+    \draw (-0.09,0.08) -- (0.09,0.08) -- (0,-0.08) -- cycle;
+    \draw (-0.09,-0.08) -- (0.09,-0.08);}},
+  % interruptor automático horizontal de (0,0) a (0.8,0); la cuchilla sube
   pics/tm/.style={code={
-    \draw (0,0) -- (0.14,0); \draw (0.14,0) -- (0.59,0.17); \draw (0.56,0) -- (0.70,0);
-    \draw (0.52,-0.04) -- (0.60,0.04); \draw (0.52,0.04) -- (0.60,-0.04);}},
-  % interruptor automático vertical de (0,0) a (0,-0.7)
+    \draw (0,0) -- (0.16,0); \draw (0.16,0) -- (0.66,0.2); \draw (0.64,0) -- (0.8,0);
+    \draw (0.59,-0.05) -- (0.69,0.05); \draw (0.59,0.05) -- (0.69,-0.05);}},
+  % interruptor automático vertical de (0,0) a (0,-0.8); la cuchilla va a la izquierda
   pics/tmv/.style={code={
-    \draw (0,0) -- (0,-0.14); \draw (0,-0.14) -- (-0.17,-0.59); \draw (0,-0.56) -- (0,-0.70);
-    \draw (-0.04,-0.52) -- (0.04,-0.60); \draw (0.04,-0.52) -- (-0.04,-0.60);}},
-  % tierra
+    \draw (0,0) -- (0,-0.16); \draw (0,-0.16) -- (-0.2,-0.66); \draw (0,-0.64) -- (0,-0.8);
+    \draw (-0.05,-0.59) -- (0.05,-0.69); \draw (0.05,-0.59) -- (-0.05,-0.69);}},
+  % tierra, conectada desde arriba en (0,0)
   pics/tierra/.style={code={
-    \draw (0,0) -- (0,-0.10); \draw (-0.10,-0.10) -- (0.10,-0.10);
-    \draw (-0.065,-0.145) -- (0.065,-0.145); \draw (-0.03,-0.19) -- (0.03,-0.19);}},
-  % DPS conectado hacia abajo desde (0,0), con tierra
+    \draw (0,0) -- (0,-0.12); \draw (-0.13,-0.12) -- (0.13,-0.12);
+    \draw (-0.085,-0.17) -- (0.085,-0.17); \draw (-0.04,-0.22) -- (0.04,-0.22);}},
+  % DPS conectado hacia abajo desde (0,0), con su tierra
   pics/dps/.style={code={
-    \fill (0,0) circle (0.03); \draw (0,0) -- (0,-0.10);
-    \draw (-0.08,-0.10) rectangle (0.08,-0.38);
-    \draw[-{Stealth[length=0.9mm,width=0.8mm]}] (0,-0.13) -- (0,-0.34);
-    \draw (0,-0.38) -- (0,-0.45); \pic at (0,-0.45) {tierra};}},
-  % batería (celda) vertical, + arriba
-  pics/bat/.style={code={
-    \draw (0,0.25) -- (0,0.05); \draw[line width=0.8pt] (-0.15,0.05) -- (0.15,0.05);
-    \draw[line width=1.6pt] (-0.07,-0.03) -- (0.07,-0.03); \draw (0,-0.03) -- (0,-0.25);
-    \node[F3] at (0.2,0.12) {+};}},
-  % convertidor genérico: cuadrado con diagonal (lado 0.9) centrado; #1 arriba-izq, #2 abajo-der
+    \fill (0,0) circle (0.035); \draw (0,0) -- (0,-0.12);
+    \draw (-0.1,-0.12) rectangle (0.1,-0.46);
+    \draw[-{Stealth[length=1mm,width=0.9mm]}] (0,-0.16) -- (0,-0.42);
+    \draw (0,-0.46) -- (0,-0.55); \pic at (0,-0.55) {tierra};}},
+  % batería horizontal: entra por la izquierda en (0,0), placa larga (+) a la izquierda
+  pics/bath/.style={code={
+    \draw (0,0) -- (0.22,0); \draw[line width=0.8pt] (0.22,-0.18) -- (0.22,0.18);
+    \draw[line width=1.8pt] (0.32,-0.09) -- (0.32,0.09); \draw (0.32,0) -- (0.54,0);
+    \node[Fs,anchor=south] at (0.14,0.12) {+};}},
+  % convertidor: cuadrado con diagonal (lado 1.0) centrado; #1 entrada, #2 salida
   pics/conv/.style 2 args={code={
-    \draw[fill=white] (-0.45,-0.45) rectangle (0.45,0.45); \draw (-0.45,-0.45) -- (0.45,0.45);
-    \node[F5] at (-0.22,0.22) {#1}; \node[F5] at (0.22,-0.22) {#2};}},
+    \draw[fill=white] (-0.5,-0.5) rectangle (0.5,0.5); \draw (-0.5,-0.5) -- (0.5,0.5);
+    \node[Fn] at (-0.24,0.24) {#1}; \node[Fn] at (0.24,-0.24) {#2};}},
 }
-\newcommand{\cc}{\begin{tikzpicture}[baseline=-0.6ex]\draw (0,0.03)--(0.22,0.03);\draw[densely dashed] (0,-0.03)--(0.22,-0.03);\end{tikzpicture}}
-\newcommand{\ca}{\begin{tikzpicture}[baseline=-0.6ex]\draw plot[domain=0:1,samples=20,smooth] ({0.22*\x},{0.04*sin(360*\x)});\end{tikzpicture}}
+\newcommand{\cc}{\begin{tikzpicture}[baseline=-0.6ex]\draw (0,0.035)--(0.26,0.035);\draw[densely dashed] (0,-0.035)--(0.26,-0.035);\end{tikzpicture}}
+\newcommand{\ca}{\begin{tikzpicture}[baseline=-0.6ex]\draw plot[domain=0:1,samples=20,smooth] ({0.26*\x},{0.05*sin(360*\x)});\end{tikzpicture}}
 \begin{document}
 \sansmath
-\begin{tikzpicture}[line width=0.45pt,line cap=round,line join=round]
-% ---------------------------------------------------------------- título
-\node[F6b,anchor=west,inner sep=0.5pt] at (0,0) {DIAGRAMA UNIFILAR \textendash{} Sistema FV aislado de respaldo de 1.8 kWp, banco de 24 V y 800 Ah \textendash{} Casa de Abner López, Santa Rosa de Oreamuno};
-\node[F4,anchor=east,inner sep=0.5pt] at (19.5,0) {Sin escala};
-\draw[line width=0.6pt] (0,-0.2) -- (19.5,-0.2);
+\begin{tikzpicture}[line width=0.5pt,line cap=round,line join=round]
 
-% ---------------------------------------------------------------- arreglo FV (2 cadenas de 2 módulos)
-\draw[enc] (0.2,-0.6) rectangle (2.75,-3.2);
-\node[F5b,anchor=north west] at (0.25,-0.62) {ARREGLO FV};
-\node[F4,anchor=north west,align=left] at (0.25,-0.84) {4 $\times$ AIKO-A450-MAH54Mb\\1.8 kWp, 2S2P, 12$^\circ$ al este\\(2 cadenas de 2 módulos)};
-\foreach \x/\n in {0.9/C1,1.8/C2}{
-  \pic at (\x,-1.75) {fv}; \draw (\x,-1.85) -- (\x,-2.15); \pic at (\x,-2.25) {fv};
-  \draw (\x,-2.35) -- (\x,-3.2);
-  \node[F4,anchor=east] at (\x-0.15,-2.0) {\n};
+% ================================================================ título
+\node[Ft,anchor=west,inner sep=0] at (0,7.2) {DIAGRAMA UNIFILAR \textendash{} Sistema FV aislado de respaldo de 1.8 kWp con banco de 24 V y 800 Ah \textendash{} Casa de Abner López, Santa Rosa de Oreamuno};
+\node[Fn,anchor=east,inner sep=0] at (27.5,7.2) {Sin escala};
+\draw[line width=0.7pt] (0,6.9) -- (27.5,6.9);
+
+% ================================================================ arreglo FV
+\draw[enc] (0.3,0.9) rectangle (3.9,6.3);
+\node[Fb,anchor=north west] at (0.45,6.2) {ARREGLO FV};
+\node[Fn,anchor=north west,align=left] at (0.45,5.85) {4 $\times$ AIKO-A450-MAH54Mb\\1.8 kWp, arreglo 2S2P\\12$^\circ$, cara este del techo};
+\foreach \x/\n in {1.5/C1,2.9/C2}{
+  \draw (\x,4.0) -- (\x,4.2);
+  \pic at (\x,3.85) {fv}; \draw (\x,3.7) -- (\x,3.15); \pic at (\x,3.0) {fv};
+  \draw (\x,2.85) -- (\x,0.9);
+  \node[Fn,anchor=east] at (\x-0.25,3.42) {\n};
 }
+% cadenas hacia la caja combinadora
+\draw (2.9,0.9) -- (2.9,0.25) -- (6.2,0.25);
+\draw (1.5,0.9) -- (1.5,-0.25) -- (6.2,-0.25);
+\node[tag] at (4.9,0.25) {T1};
+\node[Fs,anchor=north,align=center] at (4.6,-0.45) {2 cadenas: 2 $\times$ 10 AWG\\PV Wire + T 10 AWG\\10 m};
 
-\draw (0.9,-3.2) -- (0.9,-3.65) -- (3.2,-3.65);
-\draw (1.8,-3.2) -- (1.8,-3.45) -- (3.2,-3.45);
-\node[tag] at (2.6,-3.55) {T1};
-\node[F4,anchor=north] at (2.05,-3.75) {2 $\times$ (2$\times$10 AWG PV Wire)};
-\node[F4,anchor=north] at (2.05,-3.93) {+ T 10 AWG \textperiodcentered{} 10 m};
+% ================================================================ caja combinadora
+\draw[enc] (5.9,-2.6) rectangle (8.9,1.6);
+\node[Fb,anchor=north west] at (6.0,1.5) {CAJA COMBINADORA};
+\node[Fn,anchor=north west] at (6.0,1.15) {MidNite MNPV3};
+\draw[line width=2pt] (6.4,-0.45) -- (6.4,0.45);
+\draw (6.2,0.25) -- (6.4,0.25); \draw (6.2,-0.25) -- (6.4,-0.25);
+\draw (6.4,0) -- (8.9,0);
+\pic at (7.7,0) {dps};
+\node[Fs,anchor=north,align=center] at (7.7,-0.85) {DPS DC\\MNSPD-115};
+\node[Fs,anchor=north west,align=left] at (6.0,-1.75) {Sin fusibles de cadena\\(solo 2 cadenas)};
 
-% ---------------------------------------------------------------- caja combinadora
-\draw[enc] (3.2,-2.7) rectangle (5.3,-5.0);
-\node[F4b,anchor=north west] at (3.23,-2.74) {CAJA COMBINADORA};
-\node[F4,anchor=north west] at (3.23,-2.94) {MidNite MNPV3};
-\draw[line width=1.6pt] (3.6,-3.35) -- (3.6,-3.75);
-\draw (3.2,-3.45) -- (3.6,-3.45); \draw (3.2,-3.65) -- (3.6,-3.65);
-\draw (3.6,-3.55) -- (5.0,-3.55);
-\pic at (4.4,-3.55) {dps};
-\node[F4,anchor=east] at (4.3,-3.9) {DPS DC};
-\node[F3,anchor=north west,align=left] at (3.23,-4.3) {MNSPD-115 (115 V)\\sin fusibles de cadena\\(solo 2 cadenas)};
+% ================================================================ T2 y protector de falla a tierra
+\draw (8.9,0) -- (10.0,0);
+\node[tag] at (9.45,0) {T2};
+\node[Fs,anchor=north,align=center] at (9.5,-0.25) {2 $\times$ 8 AWG\\1.5 m};
+\pic at (10.0,0) {tm};
+\node[Fs,anchor=south,align=center] at (10.4,0.35) {MNDC-GFP80\\GFP 80 A, 150 V};
+\draw (10.8,0) -- (11.7,0);
 
-% ---------------------------------------------------------------- T2 y protector de falla a tierra
-\draw (5.0,-3.55) -- (5.8,-3.55);
-\node[tag] at (5.55,-3.55) {T2};
-\node[F4,anchor=north west] at (5.4,-3.70) {2$\times$8 AWG};
-\pic at (5.8,-3.55) {tm};
-\node[F4,anchor=south] at (6.15,-3.08) {MNDC-GFP80};
-\node[F4,anchor=south] at (6.15,-3.26) {GFP 80 A, 150 V};
-\draw (6.5,-3.55) -- (7.15,-3.55);
+% ================================================================ regulador MPPT
+\pic at (12.2,0) {conv={\cc}{\cc}};
+\node[Fb,anchor=north] at (12.2,-0.65) {REGULADOR MPPT};
+\node[Fn,anchor=north,align=center] at (12.2,-1.0) {Victron SmartSolar\\150/85-Tr VE.Can\\85 A; 2400 W a 24 V};
+\draw (12.7,0) -- (13.4,0);
+\pic at (13.4,0) {tm};
+\node[Fs,anchor=south,align=center] at (13.8,0.35) {MNEDC125\\125 A};
+\draw (14.2,0) -- (16.3,0);
+\node[tag] at (15.25,0) {T3};
+\node[Fs,anchor=north,align=center] at (15.25,-0.25) {2 $\times$ 2 AWG\\1.5 m};
 
-% ---------------------------------------------------------------- regulador MPPT
-\pic at (7.6,-3.55) {conv={\cc}{\cc}};
-\node[F5b,anchor=north] at (7.6,-4.08) {REGULADOR MPPT};
-\node[F4,anchor=north,align=center] at (7.6,-4.30) {Victron SmartSolar\\150/85-Tr VE.Can\\85 A, 2400 W a 24 V};
-\draw (8.05,-3.55) -- (8.6,-3.55);
-\pic at (8.6,-3.55) {tm};
-\node[F4,anchor=south] at (8.95,-3.26) {MNEDC125, 125 A};
-\draw (9.3,-3.55) -- (10.8,-3.55);
-\node[tag] at (10.05,-3.55) {T3};
-\node[F4,anchor=north] at (9.85,-3.70) {2$\times$2 AWG \textperiodcentered{} 1.5 m};
+% ================================================================ barra DC
+\draw[line width=2.2pt] (16.3,3.2) -- (16.3,-6.0);
+\node[Fb,anchor=south] at (16.3,3.3) {BARRA DC 24 V};
 
-% ---------------------------------------------------------------- barra DC y banco de baterías
-\draw[line width=1.8pt] (10.8,-2.4) -- (10.8,-7.6);
-\node[F5b,anchor=south] at (10.8,-2.36) {BARRA DC 24 V};
-\foreach \y/\n in {-4.9/B1,-5.8/B2,-6.7/B3,-7.5/B4}{
-  \draw (10.8,\y) -- (11.2,\y); \pic at (11.2,\y) {tm}; \draw (11.9,\y) -- (12.55,\y);
-  \pic[rotate=90] at (12.8,\y) {bat};
-  \node[F4,anchor=west] at (13.1,\y) {\n};
+% ================================================================ banco de baterías
+\foreach \y/\n in {-1.3/B1,-2.6/B2,-3.9/B3,-5.2/B4}{
+  \draw (16.3,\y) -- (16.7,\y); \pic at (16.7,\y) {tm}; \draw (17.5,\y) -- (18.6,\y);
+  \pic at (18.6,\y) {bath};
+  \node[Fn,anchor=west] at (19.25,\y) {\n};
 }
-\node[F3,anchor=south west] at (10.95,-4.66) {MNEDC100, 100 A (c/u)};
-\node[tag] at (12.25,-5.8) {T4};
-\draw[enc] (12.45,-4.62) rectangle (13.5,-7.8);
-\node[F5b,anchor=north west,align=left] at (13.7,-4.6) {BANCO DE BATERÍAS};
-\node[F4,anchor=north west,align=left] at (13.7,-4.82) {4 $\times$ Power Queen 24 V 200 Ah\\LiFePO$_4$ con BMS integrado\\en paralelo: 800 Ah, 20.48 kWh\\T4: 2$\times$2 AWG, 1 m, igual\\longitud en las 4 baterías};
+\node[Fs,anchor=south west,align=left] at (16.45,-0.95) {MNEDC100\\100 A c/u};
+\node[tag] at (18.05,-1.3) {T4};
+\draw[enc] (18.35,-0.75) rectangle (19.75,-5.75);
+\node[Fb,anchor=north west] at (20.0,-0.9) {BANCO DE BATERÍAS};
+\node[Fn,anchor=north west,align=left] at (20.0,-1.3) {4 $\times$ Power Queen 24 V 200 Ah\\LiFePO$_4$ con BMS integrado\\En paralelo: 800 Ah, 20.48 kWh\\T4: 2 $\times$ 2 AWG, 1 m,\\igual longitud en las 4};
 
-% ---------------------------------------------------------------- inversor-cargador
-\draw (10.8,-2.9) -- (11.2,-2.9); \pic at (11.2,-2.9) {tm};
-\node[F4,anchor=south west] at (11.0,-2.62) {MNEDC175, 175 A};
-\draw (11.9,-2.9) -- (13.45,-2.9);
-\node[tag] at (12.6,-2.9) {T5};
-\node[F4,anchor=north] at (12.4,-3.05) {2$\times$2/0 AWG \textperiodcentered{} 2 m};
-\draw[enc] (13.2,-0.75) rectangle (16.2,-4.0);
-\node[F5b,anchor=north west] at (13.23,-0.77) {INVERSOR-CARGADOR};
-\node[F4,anchor=north west,align=left] at (13.23,-0.99) {Victron MultiPlus-II\\24/3000/70-50 120V};
-\pic at (13.9,-2.9) {conv={\cc}{\ca}};
-\node[F3,anchor=north,align=center] at (13.9,-3.4) {inversor 2400 W\\cargador 70 A};
-\draw (14.35,-2.9) -- (14.95,-2.9); \fill (14.95,-2.9) circle (0.025);
-\fill (14.95,-2.45) circle (0.025); \draw (14.95,-2.45) -- (14.95,-2.0) -- (16.2,-2.0);
-\fill (15.45,-2.9) circle (0.025); \draw (15.45,-2.9) -- (15.0,-2.5); \draw (15.45,-2.9) -- (16.2,-2.9);
-\node[F3,anchor=north,align=center] at (15.3,-3.05) {transferencia\\automática\\50 A, $<$20 ms};
-\node[F3,anchor=south] at (15.85,-2.0) {AC-in};
-\node[F3,anchor=south] at (15.85,-2.9) {AC-out1};
+% ================================================================ inversor-cargador
+\draw (16.3,1.8) -- (16.7,1.8); \pic at (16.7,1.8) {tm};
+\node[Fs,anchor=south,align=center] at (17.1,2.15) {MNEDC175\\175 A};
+\draw (17.5,1.8) -- (19.6,1.8);
+\node[tag] at (18.2,1.8) {T5};
+\node[Fs,anchor=north,align=center] at (18.2,1.55) {2 $\times$ 2/0 AWG\\2 m};
+\draw[enc] (19.0,-0.3) rectangle (23.2,4.6);
+\node[Fb,anchor=north west] at (19.1,4.5) {INVERSOR-CARGADOR};
+\node[Fn,anchor=north west,align=left] at (19.1,4.15) {Victron MultiPlus-II\\24/3000/70-50 120V};
+\pic at (20.1,1.8) {conv={\cc}{\ca}};
+\node[Fs,anchor=north,align=center] at (20.1,1.15) {Inversor 2400 W\\Cargador 70 A};
+% conmutador de transferencia
+\draw (20.6,1.8) -- (21.3,1.8); \fill (21.3,1.8) circle (0.035);
+\fill (21.3,2.7) circle (0.035);
+\fill (22.2,1.8) circle (0.035);
+\draw (22.2,1.8) -- (21.38,2.62);
+\draw (21.3,2.7) -- (23.2,2.7);
+\draw (22.2,1.8) -- (23.2,1.8);
+\node[Fs,anchor=south] at (22.75,2.72) {AC-in};
+\node[Fs,anchor=south] at (22.75,1.82) {AC-out1};
+\node[Fs,anchor=north,align=center] at (21.8,1.15) {Transferencia\\automática\\50 A, $<$20 ms};
 
-% ---------------------------------------------------------------- red y tablero principal
-\node[F5b,anchor=south] at (18.2,-0.62) {RED JASEC 120/240 V};
-\draw (18.2,-0.62) -- (18.2,-0.7);
-\draw[fill=white] (17.85,-0.7) rectangle (18.55,-1.15); \draw (17.85,-0.86) -- (18.55,-0.86);
-\node[F3] at (18.2,-0.78) {kWh}; \node[F4] at (18.2,-1.0) {$\rightarrow$};
-\draw (18.2,-1.15) -- (18.2,-1.5);
-\draw[enc] (16.9,-1.5) rectangle (19.5,-2.75);
-\node[F4b,anchor=south east] at (19.45,-2.7) {TABLERO PRINCIPAL};
-\node[F3,anchor=south east] at (19.45,-2.5) {(existente)};
-\draw[line width=1.6pt] (17.9,-1.65) -- (17.9,-2.35);
-\draw (18.2,-1.5) -- (18.2,-1.6) -- (17.9,-1.6) -- (17.9,-1.65);
-\pic[rotate=180] at (17.9,-2.0) {tm};
-\node[F3,anchor=south] at (17.45,-1.92) {QO 1P 40 A};
-\draw (17.2,-2.0) -- (16.2,-2.0);
-\node[tag] at (16.6,-2.0) {T6};
+% ================================================================ red y tablero principal
+\node[Fb,anchor=south] at (25.4,6.25) {RED JASEC 120/240 V};
+\draw (25.4,6.25) -- (25.4,6.0);
+\draw[fill=white] (25.0,5.3) rectangle (25.8,6.0); \draw (25.0,5.75) -- (25.8,5.75);
+\node[Fs] at (25.4,5.875) {kWh}; \node[Fn] at (25.4,5.52) {$\rightarrow$};
+\draw (25.4,5.3) -- (25.4,4.2);
+\draw[enc] (23.9,2.1) rectangle (27.5,4.6);
+\node[Fb,anchor=north east,align=right] at (27.4,4.5) {TABLERO\\PRINCIPAL};
+\node[Fs,anchor=north east] at (27.4,3.85) {(existente)};
+\draw[line width=2pt] (25.4,4.2) -- (25.4,2.4);
+\pic[rotate=180] at (25.4,2.7) {tm};
+\node[Fs,anchor=south east] at (25.2,2.95) {QO 1P 40 A};
+\draw (24.6,2.7) -- (23.2,2.7);
+\node[tag] at (23.55,2.7) {T6};
 
-% ---------------------------------------------------------------- subtablero de cargas críticas
-\draw (16.2,-2.9) -- (17.4,-2.9) -- (17.4,-3.55);
-\node[tag] at (16.6,-2.9) {T7};
+% ================================================================ subtablero de cargas críticas
+\draw (23.2,1.8) -- (24.4,1.8) -- (24.4,0.8);
+\node[tag] at (23.55,1.8) {T7};
+\draw[enc] (23.9,-3.2) rectangle (27.5,1.3);
+\node[Fb,anchor=north east,align=right] at (27.4,1.2) {SUBTABLERO DE\\CARGAS CRÍTICAS};
 
-
-
-\node[F3,anchor=north] at (16.6,-1.4) {};
-\draw[enc] (16.9,-3.35) rectangle (19.5,-6.35);
-\node[F4b,anchor=north east,align=right] at (19.45,-3.4) {SUBTABLERO DE\\CARGAS CRÍTICAS};
-\node[F3,anchor=north] at (18.2,-6.05) {Square D QO816L100F};
-\pic at (17.4,-3.55) {tmv};
-\node[F3,anchor=west] at (17.5,-4.1) {40 A};
-\draw (17.4,-4.25) -- (17.4,-4.45);
-\draw[line width=1.6pt] (17.2,-4.45) -- (19.3,-4.45);
-\foreach \x/\t in {17.5/Refrig.,18.05/Congel.,18.6/Luces,19.15/Tomas}{
-  \draw (\x,-4.45) -- (\x,-4.6); \pic at (\x,-4.6) {tmv};
-  \draw (\x,-5.3) -- (\x,-5.45);
-  \draw[-{Stealth[length=0.9mm,width=0.8mm]}] (\x,-5.45) -- (\x,-5.65);
-  \node[F3,anchor=north] at (\x,-5.68) {\t};
+\pic at (24.4,0.8) {tmv};
+\node[Fs,anchor=west] at (24.5,0.35) {40 A};
+\draw (24.4,0.0) -- (24.4,-0.4);
+\draw[line width=2pt] (24.2,-0.4) -- (27.15,-0.4);
+\foreach \x/\t in {24.6/Refrig.,25.4/Congel.,26.2/Luces,26.95/Tomas}{
+  \draw (\x,-0.4) -- (\x,-0.55); \pic at (\x,-0.55) {tmv};
+  \draw[-{Stealth[length=1.1mm,width=1mm]}] (\x,-1.35) -- (\x,-1.9);
+  \node[Fs,anchor=north] at (\x,-1.95) {\t};
 }
-\node[F3,anchor=north] at (18.2,-5.88) {circuitos existentes reubicados};
+\node[Fs,anchor=north,align=center] at (25.7,-2.4) {Circuitos existentes reubicados\\Square D QO816L100F};
 
-% ---------------------------------------------------------------- puesta a tierra
-\draw[densely dotted] (0.2,-2.9) -- (0.1,-2.9) -- (0.1,-8.1) -- (13.0,-8.1) -- (13.0,-7.8);
-\pic at (0.6,-8.1) {tierra};
-\node[F3,anchor=north] at (0.6,-8.35) {varilla de tierra};
-\node[F3,anchor=south west] at (1.5,-8.08) {Tierra de equipos (Cu 8 AWG): marcos, rieles, caja combinadora, regulador, inversor, gabinetes y polo $-$ del banco};
+% ================================================================ puesta a tierra
+\draw[densely dotted,line width=0.6pt] (0.3,1.5) -- (0.1,1.5) -- (0.1,-6.6) -- (19.05,-6.6) -- (19.05,-5.75);
+\pic at (1.0,-6.6) {tierra};
+\node[Fs,anchor=north] at (1.0,-6.9) {Varilla de tierra};
+\node[Fs,anchor=south west] at (2.0,-6.55) {Tierra de equipos (Cu 8 AWG): marcos, rieles, caja combinadora, regulador, inversor, gabinetes y polo negativo del banco};
 
-% ---------------------------------------------------------------- simbología
-\node[F5b,anchor=north west] at (0.1,-8.75) {SIMBOLOGÍA (IEC 60617)};
-\draw (0.5,-9.1) -- (0.5,-9.2); \pic at (0.5,-9.3) {fv}; \draw (0.5,-9.4) -- (0.5,-9.5);
-\node[F4,anchor=west] at (1.0,-9.3) {Módulo fotovoltaico};
-\pic at (0.15,-9.85) {tm}; \node[F4,anchor=west] at (1.0,-9.85) {Interruptor automático};
-\pic at (0.5,-10.2) {dps}; \node[F4,anchor=west] at (1.0,-10.4) {DPS (descargador)};
-\draw (0.15,-11.05) -- (0.25,-11.05); \pic[rotate=90] at (0.5,-11.05) {bat}; \draw (0.75,-11.05) -- (0.85,-11.05);
-\node[F4,anchor=west] at (1.0,-11.05) {Batería};
-\pic at (3.6,-9.35) {conv={\cc}{\cc}}; \node[F4,anchor=west] at (4.15,-9.35) {Convertidor DC/DC (regulador MPPT)};
-\pic at (3.6,-10.45) {conv={\cc}{\ca}}; \node[F4,anchor=west] at (4.15,-10.45) {Inversor DC/AC (con cargador)};
-\draw[line width=1.6pt] (3.25,-11.15) -- (3.95,-11.15); \node[F4,anchor=west] at (4.15,-11.15) {Barra};
-\pic at (7.45,-9.15) {tierra}; \node[F4,anchor=west] at (7.75,-9.3) {Puesta a tierra};
-\draw[fill=white] (7.2,-9.7) rectangle (7.7,-10.05); \draw (7.2,-9.82) -- (7.7,-9.82);
-\node[F3] at (7.45,-9.76) {kWh}; \node[F4,anchor=west] at (7.75,-9.87) {Medidor de energía};
-\draw[enc] (7.2,-10.3) rectangle (7.7,-10.55); \node[F4,anchor=west] at (7.75,-10.42) {Gabinete o equipo};
-\draw (7.2,-10.95) -- (7.45,-10.95) -- (7.65,-10.75); \fill (7.45,-10.95) circle (0.02); \fill (7.7,-10.7) circle (0.02);
-\node[F4,anchor=west] at (7.75,-10.9) {Conmutador};
+% ================================================================ simbología
+\node[Fb,anchor=north west] at (0.1,-7.6) {SIMBOLOGÍA (IEC 60617)};
+\pic at (0.6,-8.45) {fv}; \draw (0.6,-8.3) -- (0.6,-8.15); \draw (0.6,-8.6) -- (0.6,-8.75);
+\node[Fn,anchor=west] at (1.3,-8.45) {Módulo fotovoltaico};
+\pic at (0.2,-9.3) {tm}; \node[Fn,anchor=west] at (1.3,-9.3) {Interruptor automático};
+\pic at (0.6,-9.85) {dps}; \node[Fn,anchor=west] at (1.3,-10.15) {DPS (descargador)};
+\pic at (0.33,-11.1) {bath}; \node[Fn,anchor=west] at (1.3,-11.1) {Batería};
+\pic at (5.0,-8.6) {conv={\cc}{\cc}}; \node[Fn,anchor=west] at (5.75,-8.6) {Convertidor DC/DC (regulador MPPT)};
+\pic at (5.0,-10.0) {conv={\cc}{\ca}}; \node[Fn,anchor=west] at (5.75,-10.0) {Inversor DC/AC (con cargador)};
+\draw[line width=2pt] (4.55,-11.1) -- (5.45,-11.1); \node[Fn,anchor=west] at (5.75,-11.1) {Barra};
+\pic at (10.6,-8.35) {tierra}; \node[Fn,anchor=west] at (11.1,-8.5) {Puesta a tierra};
+\draw[fill=white] (10.25,-9.05) rectangle (10.95,-9.55); \draw (10.25,-9.25) -- (10.95,-9.25);
+\node[Fs] at (10.6,-9.15) {kWh}; \node[Fn,anchor=west] at (11.1,-9.3) {Medidor de energía};
+\draw[enc] (10.25,-9.9) rectangle (10.95,-10.3); \node[Fn,anchor=west] at (11.1,-10.1) {Gabinete o equipo};
+\draw (10.2,-11.15) -- (10.45,-11.15) -- (10.85,-10.85); \fill (10.45,-11.15) circle (0.03); \fill (10.95,-10.8) circle (0.03);
+\node[Fn,anchor=west] at (11.1,-11.0) {Conmutador};
 
-% ---------------------------------------------------------------- tabla de conductores
-\node[F4,anchor=north west,inner sep=0pt] at (11.2,-8.75) {\begin{tabular}{@{}c l c c c@{}}Tramo & Conductor & $i_w$ & $L$ & Caída\\\hline
-T1 & 2$\times$10 AWG PV Wire (por cadena) & 22.5 A & 10 m & 1.82 \%\\
-T2 & 2$\times$8 AWG THHN & 45.0 A & 1.5 m & 0.35 \%\\
-T3 & 2$\times$2 AWG & 106.2 A & 1.5 m & 0.67 \%\\
-T4 & 2$\times$2 AWG (por batería) & 96.9 A & 1 m & 0.41 \%\\
-T5 & 2$\times$2/0 AWG & 142.5 A & 2 m & 0.60 \%\\
-T6, T7 & 2$\times$8 AWG THHN + T 8 AWG & 31.2 A & 5 m & 0.52 \%\\\hline
+% ================================================================ tabla de conductores
+\node[Fn,anchor=north west,inner sep=0] at (16.6,-7.6) {\begin{tabular}{@{}c l r r r@{}}\textbf{Tramo} & \textbf{Conductor} & $i_w$ & $L$ & \textbf{Caída}\\\hline
+T1 & 2 $\times$ 10 AWG PV Wire (por cadena) & 22.5 A & 10 m & 1.82 \%\\
+T2 & 2 $\times$ 8 AWG THHN & 45.0 A & 1.5 m & 0.35 \%\\
+T3 & 2 $\times$ 2 AWG & 106.2 A & 1.5 m & 0.67 \%\\
+T4 & 2 $\times$ 2 AWG (por batería) & 96.9 A & 1 m & 0.41 \%\\
+T5 & 2 $\times$ 2/0 AWG & 142.5 A & 2 m & 0.60 \%\\
+T6, T7 & 2 $\times$ 8 AWG THHN + T 8 AWG & 31.2 A & 5 m & 0.52 \%\\\hline
 \multicolumn{5}{@{}l}{$i_w$: corriente de diseño. $L$: longitud estimada en un sentido (supuesto).}\end{tabular}};
 \end{tikzpicture}
 \end{document}
