@@ -22,7 +22,7 @@ Indicación del profesor: seleccionar las baterías del Proyecto 2 con la **mism
 
 ## Sitio del proyecto
 - **Casa de Abner López**, en Santa Rosa, distrito del cantón de Oreamuno, provincia de Cartago, Costa Rica.
-- Coordenadas (dadas por el grupo en el informe del examen 4): **9.938834° N, 83.831893° O**.
+- Coordenadas (dadas por el grupo en el informe del examen 4): **9.938834° N, 83.831893° O**. **Decidido por el grupo (21 nov. 2026):** el informe y la presentación del Proyecto 2 usan estas mismas coordenadas (elevación de PVGIS: 2415 m); las consultas de PVGIS y NASA POWER en `recurso/` están hechas con este punto.
 - Características del techo: **pendientes**, el grupo las aporta. No las inventes; pedilas. La lista de equipos ya está en `examen4/calculos/levantamiento_cargas_casa.xlsx`.
 - Como la casa tiene servicio eléctrico, el proyecto puede plantearse como el segundo caso del instructivo (sistema de respaldo) o como un conjunto de cargas que se alimentan solo con el sistema aislado. Esa decisión la toma el grupo.
 - **Decidido por el grupo (5 nov. 2026):** sistema de **respaldo de cargas críticas** con **2 días de autonomía**.

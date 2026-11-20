@@ -97,7 +97,7 @@ const pv = R.recurso.pv;
 // ------------------------------------------------------------------ 2. Sitio y consumo
 {
   const s = nueva("Sitio", "01 · LUGAR Y CONSUMO", "Cargas críticas de la casa",
-    "Placas de los equipos y lista del grupo (nov. 2026) · Imagen: Google Earth (9.9357° N, 83.8274° O, 2317 m)");
+    "Placas de los equipos y lista del grupo (nov. 2026) · 9.9388° N, 83.8319° O; elevación de 2415 m según PVGIS · Imagen: Google Earth");
   s.addImage({ path: FIG("techo_medicion.jpg"), x: 0.5, y: 1.95, w: 4.2, h: 2.62, altText: "Medición del techo en Google Earth: 85 m² y 2313 a 2315 m de elevación", objectName: "techo" });
   s.addText("Techo de zinc ondulado a dos aguas, 12° hacia el este y el oeste, unos 85 m²", { x: 0.5, y: 4.62, w: 4.2, h: 0.5, fontSize: 12, color: INK2, isTextBox: true, margin: 0 });
   const cs = c.cargas.slice().sort((a, x) => x.E - a.E);
@@ -114,7 +114,7 @@ const pv = R.recurso.pv;
   dato(s, 10.1, 2.05, 2.6, "4.33 kWh/día", "consumo de las cargas críticas (todas en CA, 120 V)");
   dato(s, 10.1, 3.25, 2.6, "783 W", "potencia con todo encendido a la vez");
   dato(s, 10.1, 4.45, 2.6, "3230 kWh", "consumo de la casa en 2026; 1 factura real y 11 estimadas", { hl: 0.8 });
-  s.addNotes("[0:20 – 1:00 · A. López] La casa está a 2317 m de altura. El techo es de zinc ondulado a dos aguas, con 12° hacia el este y el oeste. Con el grupo definimos las cargas críticas: refrigerador, congelador, ocho bombillos LED, cargadores de celular y laptop, y el módem. Con los datos de placa suman 4.33 kWh al día; el refrigerador y el congelador son el 71 %. Si todo se enciende a la vez se piden 783 W. Para la factura teníamos una sola, la de octubre, y estimamos los otros meses con la tarifa residencial de JASEC: 3230 kWh al año.");
+  s.addNotes("[0:20 – 1:00 · A. López] La casa está a 2415 m de altura. El techo es de zinc ondulado a dos aguas, con 12° hacia el este y el oeste. Con el grupo definimos las cargas críticas: refrigerador, congelador, ocho bombillos LED, cargadores de celular y laptop, y el módem. Con los datos de placa suman 4.33 kWh al día; el refrigerador y el congelador son el 71 %. Si todo se enciende a la vez se piden 783 W. Para la factura teníamos una sola, la de octubre, y estimamos los otros meses con la tarifa residencial de JASEC: 3230 kWh al año.");
 }
 
 // ------------------------------------------------------------------ 3. Recurso solar
@@ -131,9 +131,9 @@ const pv = R.recurso.pv;
   }));
   tarjeta(s, 0.5, 5.6, 12.35, 1.15);
   dato(s, 0.8, 5.65, 3.6, "3.73 HSP", "noviembre a 12° al este: mes de diseño", { big: 24 });
-  dato(s, 4.9, 5.65, 3.6, "1721 kWh/m²", "al año en el plano de los módulos", { big: 24 });
-  dato(s, 9.0, 5.65, 3.6, "14°, acimut −40°", "ángulo óptimo de PVGIS: solo 1.7 % más", { big: 24 });
-  s.addNotes("[1:00 – 1:40 · A. López] Calculamos el recorrido del Sol para la latitud de 9.9°: pasa muy alto todo el año y de abril a agosto va por el norte. Para la radiación usamos PVGIS con las inclinaciones reales del techo. La cara este recibe 1721 kWh por metro cuadrado al año, 6 % más que la oeste, por eso los módulos van al este. El óptimo de PVGIS, 14° con acimut −40°, daría solo 1.7 % más y obligaría a una estructura inclinada, así que los módulos van paralelos al techo. El peor mes es noviembre, con 3.73 horas solares pico, y con ese valor se dimensiona.");
+  dato(s, 4.9, 5.65, 3.6, "1720 kWh/m²", "al año en el plano de los módulos", { big: 24 });
+  dato(s, 9.0, 5.65, 3.6, "14°, acimut −42°", "ángulo óptimo de PVGIS: solo 1.7 % más", { big: 24 });
+  s.addNotes("[1:00 – 1:40 · A. López] Calculamos el recorrido del Sol para la latitud de 9.9°: pasa muy alto todo el año y de abril a agosto va por el norte. Para la radiación usamos PVGIS con las inclinaciones reales del techo. La cara este recibe 1720 kWh por metro cuadrado al año, 6.5 % más que la oeste, por eso los módulos van al este. El óptimo de PVGIS, 14° con acimut −42°, daría solo 1.7 % más y obligaría a una estructura inclinada, así que los módulos van paralelos al techo. El peor mes es noviembre, con 3.73 horas solares pico, y con ese valor se dimensiona.");
 }
 
 // ------------------------------------------------------------------ 4. Balance y baterías (oscura)
@@ -198,9 +198,9 @@ const pv = R.recurso.pv;
     { text: "Voc máx. 150 V; arranca con Vpv > Vbat + 5 V", options: { bullet: true, breakLine: true } },
     { text: "Isc máx. 70 A; el arreglo da 28.8 A", options: { bullet: true, breakLine: true } },
     { text: "Eficiencia 98 %, perfil de carga para litio, 28.8 V absorción", options: { bullet: true, breakLine: true } },
-    { text: "Potencia plena hasta 2000 m; el sitio está a 2317 m, pero solo usa el 75 % de su potencia", options: { bullet: true } },
+    { text: "Potencia plena hasta 2000 m; el sitio está a 2415 m, pero solo usa el 75 % de su potencia", options: { bullet: true } },
   ], { x: 7.15, y: 3.1, w: 5.5, h: 3.4, fontSize: 14, color: INK2, isTextBox: true, margin: 0, paraSpaceAfter: 6, valign: "top" });
-  s.addNotes("[3:05 – 3:45 · S. Rojas] El regulador se dimensiona con la potencia del arreglo entre la tensión del banco: 75 A. Por eso no sirve el modelo de 70 A y elegimos el SmartSolar 150/85 de Victron. En el gráfico, la zona sombreada es donde el regulador puede trabajar, y los puntos de máxima potencia del arreglo, a 7, 25 y 63 °C, quedan adentro, con la tensión entre 59 y 71 V y la corriente cerca de 28 A, lejos de los 70 A permitidos. La ficha garantiza la potencia plena hasta 2000 m y el sitio está a 2317 m; como el regulador trabaja al 75 % de su potencia nominal, tiene margen.");
+  s.addNotes("[3:05 – 3:45 · S. Rojas] El regulador se dimensiona con la potencia del arreglo entre la tensión del banco: 75 A. Por eso no sirve el modelo de 70 A y elegimos el SmartSolar 150/85 de Victron. En el gráfico, la zona sombreada es donde el regulador puede trabajar, y los puntos de máxima potencia del arreglo, a 7, 25 y 63 °C, quedan adentro, con la tensión entre 59 y 71 V y la corriente cerca de 28 A, lejos de los 70 A permitidos. La ficha garantiza la potencia plena hasta 2000 m y el sitio está a 2415 m; como el regulador trabaja al 75 % de su potencia nominal, tiene margen.");
 }
 
 // ------------------------------------------------------------------ 7. Inversor-cargador
@@ -230,10 +230,10 @@ const pv = R.recurso.pv;
   ], ejes({ x: 0.5, y: 1.85, w: 8.0, h: 4.95, barDir: "col", chartColors: [BLUE, GREY], barGapWidthPct: 60, showLegend: true, legendPos: "t",
     showValAxisTitle: true, valAxisTitle: "kWh/mes", valAxisMaxVal: 300, objectName: "grafico energia" }));
   tarjeta(s, 8.8, 1.95, 4.05, 4.75);
-  dato(s, 9.1, 2.1, 3.5, "2320 kWh", "al año disponibles para las cargas");
+  dato(s, 9.1, 2.1, 3.5, "2319 kWh", "al año disponibles para las cargas");
   dato(s, 9.1, 3.3, 3.5, "1582 kWh", "al año que piden las cargas críticas");
   dato(s, 9.1, 4.5, 3.5, "116 %", "de cobertura en noviembre, el peor mes; el excedente se pierde", { hl: 0.8 });
-  s.addNotes("[4:25 – 5:00 · J. Segura] Mes a mes multiplicamos la potencia del arreglo, las horas solares pico de la cara este, el factor de rendimiento y los días. Todos los meses la energía disponible supera la demanda: en noviembre, el peor, se cubre el 116 %, y en marzo casi el doble. En el año hay 2320 kWh disponibles y las cargas piden 1582. Lo que sobra no se puede usar porque el sistema no inyecta a la red; ese margen es el que permite recargar el banco después de días nublados.");
+  s.addNotes("[4:25 – 5:00 · J. Segura] Mes a mes multiplicamos la potencia del arreglo, las horas solares pico de la cara este, el factor de rendimiento y los días. Todos los meses la energía disponible supera la demanda: en noviembre, el peor, se cubre el 116 %, y en marzo casi el doble. En el año hay 2319 kWh disponibles y las cargas piden 1582. Lo que sobra no se puede usar porque el sistema no inyecta a la red; ese margen es el que permite recargar el banco después de días nublados.");
 }
 
 // ------------------------------------------------------------------ 9. Instalación
