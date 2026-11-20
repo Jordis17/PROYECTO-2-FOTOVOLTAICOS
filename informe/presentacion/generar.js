@@ -314,15 +314,15 @@ const pv = R.recurso.pv;
   s.addText("11 · CONCLUSIONES", { placeholder: "kicker" });
   s.addText([{ text: "Respaldo de 2 días para las cargas críticas", options: { color: "FFFFFF" } }], { placeholder: "title" });
   const pts = [
-    ["1.8 kWp", "4 módulos AIKO en 2S2P, a 12° en la cara este; cubren la demanda aun en noviembre (116 %)."],
-    ["800 Ah", "4 Power Queen de 24 V en paralelo, 20.5 kWh: 2.3 días de autonomía al 70 % de descarga."],
-    ["85 A · 3000 VA", "Regulador SmartSolar 150/85 y MultiPlus-II con transferencia en menos de 20 ms."],
-    ["¢7.10 M", "No se paga con el ahorro (VAN −¢8.0 M): es una inversión en continuidad del servicio."],
+    ["1.8 kWp", "Con cuatro módulos fotovoltaicos AIKO se logra cubrir el consumo de los equipos incluso en noviembre, el mes con menor radiación solar, alcanzando un 116\u00a0% de la demanda."],
+    ["800 Ah", "Contar con cuatro baterías Power Queen de 24 V permite una autonomía de aproximadamente 2.3 días, considerando una descarga máxima del 70\u00a0%."],
+    ["85 A · 3000 VA", "El regulador de 85 A y el inversor de 3000 VA permiten aprovechar la energía de los paneles, almacenarla en las baterías y suministrarla a la vivienda. Además, el inversor permite cambiar a la alimentación de las baterías en menos de 20 ms cuando falla la red eléctrica."],
+    ["₡7.10 millones", "El análisis económico muestra que la inversión no se recupera mediante el ahorro en la factura eléctrica (VAN de −₡8 millones). Su principal beneficio es mantener funcionando los equipos esenciales durante los cortes de electricidad."],
   ];
   pts.forEach(([v, t], i) => {
-    const y = 2.0 + i * 1.05;
-    s.addText(v, { x: 0.5, y, w: 2.7, h: 0.8, fontSize: 24, bold: true, color: GOLD, isTextBox: true, margin: 0, valign: "middle" });
-    s.addText(t, { x: 3.25, y, w: 5.4, h: 0.9, fontSize: 15, color: "FFFFFF", isTextBox: true, margin: 0, valign: "middle" });
+    const y = 1.95 + i * 1.08;
+    s.addText(v, { x: 0.5, y, w: 2.7, h: 1.0, fontSize: 22, bold: true, color: GOLD, isTextBox: true, margin: 0, valign: "middle" });
+    s.addText(t, { x: 3.25, y, w: 5.45, h: 1.0, fontSize: 13, color: "FFFFFF", isTextBox: true, margin: 0, valign: "middle" });
   });
   s.addImage({ path: IMG("noche.png"), x: 8.95, y: 1.95, w: 3.9, h: 4.29, altText: "Ilustración de la casa de noche con las luces encendidas gracias al banco de baterías", objectName: "imagen cierre" });
   s.addText("Por confirmar antes de construir: cotizaciones locales, distancias y estado de la estructura del techo.", { x: 0.5, y: 6.35, w: 12.3, h: 0.45, fontSize: 14, color: "CDD3DA", isTextBox: true, margin: 0 });
