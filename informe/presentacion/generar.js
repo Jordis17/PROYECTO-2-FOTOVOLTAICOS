@@ -267,7 +267,7 @@ const pv = R.recurso.pv;
     });
   });
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 6.25, w: 12.35, h: 0.55, fill: { color: "FBEFD9" }, line: { color: "E9C88E", width: 0.75 }, objectName: "aviso" });
-  s.addText("Distancias supuestas: 10 m del techo a los equipos, 2 m del banco al inversor y 5 m al tablero. Se deben verificar en sitio, junto con la separación de las clavadoras y la capacidad del tablero.", { x: 0.7, y: 6.27, w: 12.0, h: 0.5, fontSize: 13, color: "8F5609", isTextBox: true, margin: 0, valign: "middle" });
+  s.addText("Antes de instalar hay que medir en sitio el recorrido de los cables, la separación de las clavadoras y la capacidad del tablero principal.", { x: 0.7, y: 6.27, w: 12.0, h: 0.5, fontSize: 13, color: "8F5609", isTextBox: true, margin: 0, valign: "middle" });
   s.addNotes("[5:00 – 5:35 · J. Segura] Los cuatro módulos van en una fila sobre dos rieles, paralelos al techo, con soportes atornillados a las clavadoras. Los conductores se dimensionaron con el NEC 2014: en el lado fotovoltaico, 1.25 por 1.25 veces la corriente de cortocircuito, y en baterías y alterna 1.25 veces la corriente máxima. El tramo más largo, del techo a los equipos, tiene 1.8 % de caída. Como son solo dos cadenas no hacen falta fusibles por cadena; hay descargador de sobretensión, protector de falla a tierra e interruptores DC en el regulador, en cada batería y en el inversor.");
 }
 
