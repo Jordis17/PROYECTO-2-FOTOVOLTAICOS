@@ -24,6 +24,8 @@ pres.title = "Sistema FV aislado de respaldo, casa de Abner López";
 pres.author = "Abner López, Sebastián Rojas, Jordi Segura";
 const C = pres.SchemeColor;
 
+const ICONOS = { FaBolt: "rayo", FaSolarPanel: "panel solar", FaGaugeHigh: "medidor", FaPlug: "enchufe", FaCarBattery: "batería",
+  FaMountain: "montaña", FaScrewdriverWrench: "herramientas", FaShieldHalved: "escudo", FaSun: "sol", FaTemperatureHalf: "termómetro" };
 const SECC = ["Sitio", "Recurso", "Diseño", "Energía", "Instalación", "Economía", "Cierre"];
 const N_TOT = 12;
 let num = 0;
@@ -72,7 +74,8 @@ const IMG = (n) => path.join(__dirname, "img", n);
 function icono(s, nombre, x, y, d = 0.5, fondo = GOLD) {
   s.addShape(pres.shapes.OVAL, { x, y, w: d, h: d, fill: { color: fondo }, line: { color: fondo, width: 0 }, objectName: "círculo " + nombre });
   const p = d * 0.26;
-  s.addImage({ path: IMG("ico_" + nombre + ".png"), x: x + p, y: y + p, w: d - 2 * p, h: d - 2 * p, altText: "", objectName: "ícono " + nombre });
+  const nom = ICONOS[nombre] || "decorativo";
+  s.addImage({ path: IMG("ico_" + nombre + ".png"), x: x + p, y: y + p, w: d - 2 * p, h: d - 2 * p, altText: "Ícono: " + nom, objectName: "ícono " + nom });
 }
 // Fórmulas con subíndices: "E_{T} = E_{CA} / K_{TCA}" -> runs con subscript
 function F(t, opts = {}) {
@@ -159,7 +162,7 @@ const pv = R.recurso.pv;
     ...F("E_{T} = E_{CA} / K_{TCA} = 4334 / 0.749 = 5786 Wh/día"), { text: "", options: { breakLine: true } },
     ...F("Q = 1.1 · E_{T} · D / (V · DOD) = 1.1 · 5786 · 2 / (24 · 0.7) = 758 Ah"),
   ], { x: 0.5, y: 2.0, w: 8.3, h: 0.95, fontSize: 16, color: "FFFFFF", isTextBox: true, margin: 0, paraSpaceAfter: 6 });
-  s.addText("Pérdidas de clase: cables 2 %, dispersión 4 %, suciedad 5 %, MPPT 2 %, regulador 5 %, batería 1 %, inversor 5 % y autodescarga de 0.5 % diaria.", { x: 0.5, y: 3.25, w: 8.3, h: 0.7, fontSize: 13, color: "CDD3DA", isTextBox: true, margin: 0 });
+  s.addText("Pérdidas típicas de un sistema aislado: cables 2 %, dispersión 4 %, suciedad 5 %, MPPT 2 %, regulador 5 %, batería 1 %, inversor 5 % y autodescarga de 0.5 % diaria.", { x: 0.5, y: 3.25, w: 8.3, h: 0.7, fontSize: 13, color: "CDD3DA", isTextBox: true, margin: 0 });
   s.addText("Batería seleccionada: Power Queen 24 V 200 Ah (LiFePO₄). El fabricante admite hasta 4 en paralelo; ¢850 000 cada una en Kuat (nov. 2026).", { x: 0.5, y: 4.0, w: 8.3, h: 0.7, fontSize: 13, color: "CDD3DA", isTextBox: true, margin: 0 });
   const st = [["4 × 200 Ah", "en paralelo: 800 Ah ≥ 758 Ah"], ["20.48 kWh", "energía nominal del banco"], ["2.3 días", "de autonomía real al 70 % de descarga"], ["22 %", "de descarga en un día normal"]];
   st.forEach(([v, t], i) => {
@@ -189,7 +192,7 @@ const pv = R.recurso.pv;
   const rows2 = [["Voc con 7 °C (2 en serie)", ca.Voc_frio.toFixed(1) + " V", "≤ 145 V"],
     ["Vmp con 63.2 °C", ca.Vmp_cal.toFixed(1) + " V", "≥ 28.8 + 5 = 33.8 V"],
     ["Isc con 63.2 °C (2 en paralelo)", ca.Isc_cal.toFixed(1) + " A", "≤ 70 A"],
-    ["Módulos en serie (curso: 145 / 33.7 = 4.3)", "2", "máx. 3 por Voc en frío"]];
+    ["Módulos en serie (145 / 33.7 = 4.3)", "2", "máx. 3 por Voc en frío"]];
   s.addTable([hdr2, ...rows2], { x: 4.8, y: 3.85, w: 8.05, colW: [3.85, 1.6, 2.6], fontSize: 13, color: INK2, border: { type: "solid", color: LINE, pt: 0.75 }, fill: { color: CARD }, rowH: 0.4, objectName: "tabla arreglo" });
   s.addText("Con 4 módulos solo caben 2S2P o 1S4P; con 1S4P la Vmp en calor (29.7 V) queda bajo el arranque del regulador.", { x: 4.8, y: 6.0, w: 8.05, h: 0.6, fontSize: 12, color: INK2, isTextBox: true, margin: 0 });
   s.addNotes("[3:35 – 4:45 · S. Rojas] Gracias. Para los paneles nos preguntamos cuánta potencia hace falta para producir 5.79 kWh al día en noviembre. Si dividimos esa energía entre las 3.73 horas solares pico, salen 1551 W. Con un margen de 10 %, necesitamos cuatro paneles AIKO de 450 W, o sea 1800 W. La temperatura cambia el comportamiento de los paneles: en frío la tensión sube y en calor la potencia baja. Por eso revisamos dos extremos: 7 grados, la mínima del año, y 63 grados en el panel en un día caliente. En frío cada panel puede llegar a 42.3 V, y en calor baja a 405 W. Los cuatro paneles se conectan en dos grupos de dos en serie. Así, en frío la tensión llega a 84.6 V, que el regulador soporta, y en calor queda en 59.4 V, suficiente para que el regulador pueda cargar las baterías. Si los pusiéramos los cuatro en paralelo, en calor quedarían en 29.7 V y no alcanzaría.");
@@ -202,7 +205,7 @@ const pv = R.recurso.pv;
   tarjeta(s, 6.9, 1.95, 5.95, 4.75);
   s.addText(F("i_{reg} = P_{FV} / V_{bat} = 1800 / 24 = 75 A"), { x: 7.15, y: 2.1, w: 5.5, h: 0.45, fontSize: 18, bold: true, color: NAVY, isTextBox: true, margin: 0 });
   s.addText("Victron SmartSolar MPPT 150/85-Tr VE.Can", { x: 7.15, y: 2.6, w: 5.5, h: 0.4, fontSize: 15, bold: true, color: GOLD, isTextBox: true, margin: 0 });
-  [["FaBolt", "85 A de salida ≥ 75 A; el de 70 A no cumple el criterio del curso"],
+  [["FaBolt", "85 A de salida ≥ 75 A; el de 70 A no alcanza los 75 A"],
    ["FaSolarPanel", "2400 W nominales a 24 V para 1800 Wp"],
    ["FaGaugeHigh", "Voc máx. 150 V; arranca con Vpv > Vbat + 5 V"],
    ["FaPlug", "Isc máx. 70 A; el arreglo da 28.8 A"],
