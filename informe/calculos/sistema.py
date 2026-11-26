@@ -136,7 +136,7 @@ R["energia"] = dict(mensual=mensual, E_gen_y=sum(m["E_gen"] for m in mensual), E
 
 # ----------------------------------------------------------------------------- 8. Cableado (NEC 2014)
 # Resistencia DC, NEC Cap. 9 Tabla 8 (cobre trenzado, 75 °C) [ohm/km]; ampacidad Tabla 310.15(B)(16)
-Rk = {"10": 4.07, "8": 2.55, "2": 0.634, "1/0": 0.399, "2/0": 0.317}
+Rk = {"10": 3.97, "8": 2.51, "2": 0.634, "1/0": 0.399, "2/0": 0.317}
 amp75 = {"10": 35, "8": 50, "2": 115, "1/0": 150, "2/0": 175}
 amp90 = {"10": 40, "8": 55, "2": 130, "1/0": 170, "2/0": 195}
 L_pv, L_reg, L_bat, L_inv, L_ac = 10.0, 1.5, 1.0, 2.0, 5.0   # SUPUESTOS de distancia (aceptados por el grupo)
@@ -254,9 +254,8 @@ rep = {13: (costos_crc["Regulador Victron SmartSolar 150/85-Tr VE.Can"] + costos
        15: 4 * 850000}
 F = [-I0]
 for k in range(1, anos + 1):
-    # La degradación del módulo (9.4 % en 25 años, ficha AIKO) no reduce el ahorro: la cobertura de noviembre
-    # sigue por encima de 100 % (116 % · 0.906 = 105 % en el año 25), así que las cargas se siguen cubriendo.
-    a = ahorro1 * (1 + esc) ** (k - 1)
+    a = ahorro1 * (1 - 0.01 - 0.0035 * (k - 1)) * (1 + esc) ** (k - 1)  # degradación del módulo (ficha AIKO), supuesto conservador
+    a = min(a, ahorro1 * (1 + esc) ** (k - 1))
     F.append(a - om * I0 - rep.get(k, 0))
 VAN = sum(f / (1 + tasa) ** k for k, f in enumerate(F))
 acum = []; s = 0
@@ -271,7 +270,7 @@ def tir(F):
         if npv(lo) * npv(mid) <= 0: hi = mid
         else: lo = mid
     return mid
-VP_E = sum(sum(E_crit_m) / (1 + tasa) ** k for k in range(1, anos + 1))
+VP_E = sum(sum(E_crit_m) * (1 - 0.01 - 0.0035 * (k - 1)) / (1 + tasa) ** k for k in range(1, anos + 1))
 VP_C = I0 + sum((om * I0 + rep.get(k, 0)) / (1 + tasa) ** k for k in range(1, anos + 1))
 R["finanzas"] = dict(LCOE=VP_C / VP_E, DOD_diaria=E_CA / (1 - pi) / (R["balance"]["E_banco"] * 1000), kWh=kWh, E_crit_m=E_crit_m, sin=sin, con=con, ahorro1=ahorro1,
                      ahorro_pct=ahorro1 / sum(sin), F=F, acum=acum, VAN=VAN, TIR=tir(F), PRI=pri,
