@@ -84,7 +84,7 @@
 \draw (6.2,0.25) -- (6.4,0.25); \draw (6.2,-0.25) -- (6.4,-0.25);
 \draw (6.4,0) -- (8.9,0);
 \pic at (7.7,0) {dps};
-\node[Fs,anchor=north,align=center] at (7.7,-0.85) {DPS DC\\MNSPD-115};
+\node[Fs,anchor=north,align=center] at (7.7,-0.85) {DPS CC\\MNSPD-115};
 
 % ================================================================ T2 y protector de falla a tierra
 \draw (8.9,0) -- (10.0,0);
@@ -99,13 +99,13 @@
 \node[Fn,anchor=north,align=center] at (12.2,-1.0) {Victron SmartSolar\\150/85-Tr VE.Can\\85 A; 2400 W a 24 V};
 \draw (12.7,0) -- (13.4,0);
 \pic at (13.4,0) {tm};
-\node[Fs,anchor=south,align=center] at (13.8,0.35) {MNEDC125\\125 A};
+\node[Fs,anchor=south,align=center] at (13.8,0.35) {MNEDC125RT\\125 A};
 \draw (14.2,0) -- (16.3,0);
 \node[tag] at (15.25,0) {T3};
 
-% ================================================================ barra DC
+% ================================================================ barra CC
 \draw[line width=2.2pt] (16.3,3.2) -- (16.3,-6.0);
-\node[Fb,anchor=south] at (16.3,3.3) {BARRA DC 24 V};
+\node[Fb,anchor=south] at (16.3,3.3) {BARRA CC 24 V};
 
 % ================================================================ banco de baterías
 \foreach \y/\n in {-1.3/B1,-2.6/B2,-3.9/B3,-5.2/B4}{
@@ -176,7 +176,7 @@
 \draw[densely dotted,line width=0.6pt] (0.3,1.5) -- (0.1,1.5) -- (0.1,-6.6) -- (19.05,-6.6) -- (19.05,-5.75);
 \pic at (1.0,-6.6) {tierra};
 \node[Fs,anchor=north] at (1.0,-6.9) {Varilla de tierra};
-\node[Fs,anchor=south west] at (2.0,-6.55) {Tierra de equipos (Cu 8 AWG): marcos, rieles, gabinetes y equipos. El negativo se une a tierra solo a través del GFP.};
+\node[Fs,anchor=south west] at (2.0,-6.55) {Tierra de equipos (Cu 6 AWG): marcos, rieles, gabinetes y equipos. El negativo se une a tierra solo a través del GFP.};
 
 % ================================================================ simbología
 \node[Fb,anchor=north west] at (0.1,-7.6) {SIMBOLOGÍA (IEC 60617)};
@@ -185,8 +185,8 @@
 \pic at (0.2,-9.3) {tm}; \node[Fn,anchor=west] at (1.3,-9.3) {Interruptor automático};
 \pic at (0.6,-9.85) {dps}; \node[Fn,anchor=west] at (1.3,-10.15) {DPS (descargador)};
 \pic at (0.33,-11.1) {bath}; \node[Fn,anchor=west] at (1.3,-11.1) {Batería};
-\pic at (5.0,-8.6) {conv={\cc}{\cc}}; \node[Fn,anchor=west] at (5.75,-8.6) {Convertidor DC/DC (regulador MPPT)};
-\pic at (5.0,-10.0) {conv={\cc}{\ca}}; \node[Fn,anchor=west] at (5.75,-10.0) {Inversor DC/AC (con cargador)};
+\pic at (5.0,-8.6) {conv={\cc}{\cc}}; \node[Fn,anchor=west] at (5.75,-8.6) {Convertidor CC/CC (regulador MPPT)};
+\pic at (5.0,-10.0) {conv={\cc}{\ca}}; \node[Fn,anchor=west] at (5.75,-10.0) {Inversor CC/CA (con cargador)};
 \draw[line width=2pt] (4.55,-11.1) -- (5.45,-11.1); \node[Fn,anchor=west] at (5.75,-11.1) {Barra};
 \pic at (10.6,-8.35) {tierra}; \node[Fn,anchor=west] at (11.1,-8.5) {Puesta a tierra};
 \draw[fill=white] (10.25,-9.05) rectangle (10.95,-9.55); \draw (10.25,-9.25) -- (10.95,-9.25);
@@ -197,12 +197,12 @@
 
 % ================================================================ tabla de conductores
 \node[Fn,anchor=north west,inner sep=0] at (16.6,-7.6) {\begin{tabular}{@{}c l r r r@{}}\textbf{Tramo} & \textbf{Conductor} & $i_w$ & $L$ & \textbf{Caída}\\\hline
-T1 & 2 $\times$ 10 AWG PV Wire (por cadena) & 22.5 A & 10 m & 1.82 \%\\
+T1 & 2 $\times$ 10 AWG PV Wire (por cadena) & 22.5 A & 10 m & 1.87 \%\\
 T2 & 2 $\times$ 8 AWG THHN & 45.0 A & 1.5 m & 0.35 \%\\
 T3 & 2 $\times$ 2 AWG & 106.2 A & 1.5 m & 0.67 \%\\
 T4 & 2 $\times$ 2 AWG (por batería) & 96.9 A & 1 m & 0.41 \%\\
 T5 & 2 $\times$ 2/0 AWG & 142.5 A & 2 m & 0.60 \%\\
-T6, T7 & 2 $\times$ 8 AWG THHN + T 8 AWG & 31.2 A & 5 m & 0.52 \%\\\hline
+T6, T7 & 2 $\times$ 8 AWG THHN + T 8 AWG & 31.2 A & 5 m & 0.53 \%\\\hline
 \multicolumn{5}{@{}l}{$i_w$: corriente de diseño. $L$: longitud estimada en un sentido (supuesto).}\end{tabular}};
 \end{tikzpicture}
 \end{document}

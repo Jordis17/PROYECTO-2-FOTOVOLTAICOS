@@ -18,7 +18,7 @@ donde $h$ es la altura solar y $\alpha$ el acimut medido desde el sur (en la fig
 \label{fig:cilindrico}
 \end{figure*}
 
-Por la cercanía al ecuador, el Sol pasa alto todo el año: al mediodía solar la altura es de \SI{56.6}{\degree} el 21 de diciembre, la menor del año, y de \SI{80.3}{\degree} el 21 de marzo. Entre abril y agosto el Sol pasa al norte del cenit y en el resto del año, al sur. El día dura entre \SI{11.4}{h} y \SI{12.6}{h}. Como el Sol sale por el este todo el año, la cara este del techo recibe sol directo desde el amanecer, y la cara oeste desde el mediodía.
+Por la cercanía al ecuador, el Sol pasa alto todo el año: al mediodía solar la altura es de \SI{56.6}{\degree} el 21 de diciembre, la menor del año, y de \SI{80.3}{\degree} el 21 de marzo. Entre abril y agosto el Sol pasa al norte del cenit y en el resto del año, al sur. El día dura entre \SI{11.4}{h} y \SI{12.6}{h}. Como el Sol sale por el este todo el año, la cara este del techo recibe sol directo desde el amanecer, y la cara oeste desde que el Sol supera unos \SI{12}{\degree} de altura, alrededor de las 7:00 en tiempo solar.
 
 \subsection{Bases de datos meteorológicas}
 
@@ -116,6 +116,6 @@ Se distinguen dos épocas: sobre la cara este, de diciembre a abril la irradiaci
 
 \subsection{Ángulo óptimo y plano de diseño}
 
-PVGIS calcula como óptimo un plano de \SI{14}{\degree} de inclinación con acimut de \SI{-40}{\degree}, que recibe \SI{1750}{kWh/m^2} al año \cite{pvgis}. La cara este del techo, con \SI{12}{\degree}, recibe \SI{1721}{kWh/m^2}, de modo que el plano óptimo recibe 1.7\,\% más, y la cara oeste \SI{1623}{kWh/m^2}; la cara este recibe 6.0\,\% más que la oeste. Por eso los módulos se colocan en la cara este, paralelos al techo: una estructura que los orientara al óptimo ganaría 1.7\,\% de energía a cambio de más material y más carga de viento sobre la lámina.
+PVGIS calcula como óptimo un plano de \SI{14}{\degree} de inclinación con acimut de \SI{-40}{\degree}, que recibe \SI{1750}{kWh/m^2} al año \cite{pvgis}. PVGIS obtiene ese plano buscando la inclinación y el acimut con los que la irradiación anual sobre los módulos es máxima, con los datos horarios de radiación del sitio. La cara este del techo, con \SI{12}{\degree}, recibe \SI{1721}{kWh/m^2}, de modo que el plano óptimo recibe 1.7\,\% más, y la cara oeste \SI{1623}{kWh/m^2}; la cara este recibe 6.0\,\% más que la oeste. Por eso los módulos se colocan en la cara este, paralelos al techo: una estructura que los orientara al óptimo ganaría 1.7\,\% de energía a cambio de más material y más carga de viento sobre la lámina.
 
 En un sistema aislado el dimensionamiento se hace con el mes de menor radiación, porque el banco debe recargarse también en ese mes. Sobre la cara este ese mes es noviembre, con \SI{3.73}{HSP}. En noviembre el plano óptimo recibiría \SI{3.98}{HSP}, 6.7\,\% más, pero la diferencia no cambia la cantidad de módulos (Sección~\ref{sec:aislado}).

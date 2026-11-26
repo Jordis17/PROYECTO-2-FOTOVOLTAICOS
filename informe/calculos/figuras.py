@@ -80,14 +80,19 @@ for (lab, ms), col in zip(grupos, cols):
 dd = np.arange(1, 366, 2); od = np.argsort(decl(dd))
 for t in range(6, 19):
     H, A = sunpos(dd, t); H, A = H[od], A[od]; mk = H > 0
-    if mk.sum() < 2 or t == 12: continue
+    if mk.sum() < 2: continue
+    i = np.argmin(decl(dd)[od])
+    if t == 12:   # al mediodía el Sol está en el meridiano: se rotula sobre la curva de diciembre
+        ax.text(183, H[i] - 2, "12:00", fontsize=8, ha="left", va="top", color="#444"); continue
     ax.plot(A[mk], H[mk], color="#888", lw=0.6, ls=":")
-    i = np.argmin(decl(dd)[od]); ax.text(A[i] + (3 if A[i] > 180 else -3), H[i] - 1.5, f"{t}:00", fontsize=6.5,
-                                        ha="left" if A[i] > 180 else "right", va="top", color="#444")
+    if H[i] < 3: continue   # 6:00 y 18:00: en diciembre el Sol aún no sale; la línea queda sin rótulo
+    ax.text(A[i] + (3 if A[i] > 180 else -3), H[i] - 1.5, f"{t}:00", fontsize=8,
+            ha="left" if A[i] > 180 else "right", va="top", color="#444")
 ax.set_xlim(0, 360); ax.set_ylim(0, 90); ax.set_xticks(range(0, 361, 30)); ax.set_yticks(range(0, 91, 15))
 ax.set_xlabel(r"Acimut solar [°]  (0° = N, 90° = E, 180° = S, 270° = O)"); ax.set_ylabel(r"Altura solar $h$ [°]")
 rejilla(ax, "both")
-ax.legend(fontsize=6.5, ncol=4, loc="upper center", bbox_to_anchor=(0.5, 1.17), frameon=False)
+ax.legend(fontsize=8, ncol=4, loc="upper center", bbox_to_anchor=(0.5, 1.2), frameon=False)
+ax.tick_params(labelsize=8.5); ax.xaxis.label.set_size(9.5); ax.yaxis.label.set_size(9.5)
 guardar(fig, "diagrama_cilindrico")
 cil = {}
 for m in ("21 dic", "21 jun", "21 mar"):
