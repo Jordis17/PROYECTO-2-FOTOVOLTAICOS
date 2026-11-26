@@ -2,7 +2,7 @@
 
 \subsection{Configuración del sistema}
 
-El sistema es de respaldo: las cargas críticas se trasladan a un subtablero que se alimenta desde la salida del inversor-cargador. El generador fotovoltaico, formado por el arreglo de módulos, carga el banco de baterías por medio de un regulador MPPT, y el inversor-cargador convierte la energía del banco a \SI{120}{V} de corriente alterna. La red de JASEC llega a la entrada de corriente alterna del inversor-cargador; si el banco llega a su descarga máxima, la red alimenta las cargas y puede recargar el banco, y si la red falla, el equipo pasa las cargas al inversor. El sistema no entrega energía a la red.
+El sistema es de respaldo: las cargas críticas se trasladan a un subtablero que se alimenta desde la salida del inversor-cargador. Los módulos cargan el banco de baterías por medio de un regulador MPPT, y el inversor-cargador convierte la energía del banco a \SI{120}{V} de corriente alterna. La red de JASEC llega a la entrada de corriente alterna del inversor-cargador; si el banco llega a su descarga máxima, la red alimenta las cargas y puede recargar el banco, y si la red falla, el equipo pasa las cargas al inversor. El sistema no entrega energía a la red.
 
 \subsection{Balance de energía y capacidad del banco}\label{sec:balance}
 
@@ -16,7 +16,7 @@ La capacidad del banco es
 \begin{equation}
 Q = \frac{1.1\,E_T\,D}{V\cdot\mathrm{DOD}} = \frac{1.1\cdot5786\cdot2}{24\cdot0.7} = \SI{758}{Ah},
 \end{equation}
-donde el factor 1.1 es el margen de seguridad del método. Con la batería seleccionada, de \SI{200}{Ah}, se requieren cuatro en paralelo, \SI{800}{Ah} y \SI{20.48}{kWh} nominales, que es el máximo que admite el fabricante \cite{pq_manual}. Al 70\,\% de descarga el banco entrega $24\cdot800\cdot0.7=\SI{13.44}{kWh}$, que alcanzan para 2.3 días de $E_T$. Esta autonomía supone que el banco está lleno cuando empieza el corte. Como el banco también alimenta las cargas en días normales, si el corte llega después de un día en que el banco entregó la energía de diseño, quedan $13.44-5.79=\SI{7.65}{kWh}$, 1.3 días de $E_T$. En un día normal, si toda la energía de las cargas sale del banco, la descarga es de \SI{4334.5}{Wh}$/(0.95\cdot\SI{20480}{Wh})=22.3$\,\%. Esta cifra usa la energía que realmente entrega el banco al inversor y la capacidad nominal; con la base del dimensionamiento, $E_T$ sobre $24\cdot\SI{800}{Ah}$, sería de 30.1\,\%.
+donde el factor 1.1 es el margen de seguridad del método. Con la batería seleccionada, de \SI{200}{Ah}, se requieren cuatro en paralelo, \SI{800}{Ah} y \SI{20.48}{kWh} nominales, que es el máximo que admite el fabricante \cite{pq_manual}. Al 70\,\% de descarga el banco entrega $24\cdot800\cdot0.7=\SI{13.44}{kWh}$, que alcanzan para 2.3 días de consumo de diseño. Esta autonomía supone que el banco está lleno cuando empieza el corte. Como el banco también alimenta las cargas en días normales, si el corte llega después de un día en que el banco entregó la energía de diseño, quedan $13.44-5.79=\SI{7.65}{kWh}$, 1.3 días de consumo de diseño. En un día normal, si toda la energía de las cargas sale del banco, la descarga es de \SI{4334.5}{Wh}$/(0.95\cdot\SI{20480}{Wh})=22.3$\,\%.
 
 La corriente máxima de cada batería es de \SI{200}{A} continuos \cite{pq_manual}. Con las cargas críticas encendidas a la vez, la corriente del banco es $I=P/(V\,(1-p_i))=783/(24\cdot0.95)=\SI{34.3}{A}$, y en el arranque de los compresores, \SI{77.3}{A}: son el 4.3\,\% y el 9.7\,\% de los \SI{800}{A} que admiten las cuatro baterías en paralelo.
 
@@ -26,7 +26,7 @@ La potencia del generador se calculó con la irradiación del peor mes sobre la 
 \begin{equation}
 P_{\mathrm{campo}} = \frac{E_T}{\mathrm{HSP}} = \frac{5786}{3.73} = \SI{1551}{W}, \qquad N = \frac{1.1\,P_{\mathrm{campo}}}{P_{\mathrm{mod}}} = \frac{1.1\cdot1551}{450} = 3.79,
 \end{equation}
-de modo que se requieren cuatro módulos, \SI{1800}{Wp}. Ocupan \SI{8.0}{m^2} y pesan \SI{86}{kg}, y caben en una fila de cuatro módulos en vertical sobre la cara este, que mide \SI{4.7}{m} sobre la pendiente y \SI{9.2}{m} de largo.
+así que se requieren cuatro módulos, \SI{1800}{Wp}. Ocupan \SI{8.0}{m^2} y pesan \SI{86}{kg}, y caben en una fila de cuatro módulos en vertical sobre la cara este, que mide \SI{4.7}{m} sobre la pendiente y \SI{9.2}{m} de largo.
 
 \subsection{Conexión de los módulos en serie y en paralelo}
 
@@ -58,7 +58,7 @@ La corriente del regulador debe ser
 \begin{equation}
 i_{\mathrm{reg}} \geq \frac{P_{\max}}{V_{\mathrm{bat}}} = \frac{1800}{24} = \SI{75}{A}.
 \end{equation}
-Se seleccionó el regulador MPPT Victron SmartSolar 150/85-Tr VE.Can, cuyas características están en la Tabla~\ref{tab:regulador}. Su corriente de \SI{85}{A} cumple el criterio; el modelo 150/70 de la misma serie, de \SI{70}{A}, no lo cumple. Además, es de seguimiento del punto de máxima potencia (MPPT), lo que permite conectar los módulos en serie con una tensión mayor que la del banco. Selecciona automáticamente \SI{24}{V} y tiene un algoritmo de carga para baterías de litio, con la tensión de absorción de \SI{28.8}{V} que pide el fabricante de la batería \cite{victron_mppt, pq_manual}. Es del mismo fabricante que el inversor-cargador y se comunica con él, de modo que el sistema se puede supervisar desde una sola aplicación.
+Se seleccionó el regulador MPPT Victron SmartSolar 150/85-Tr VE.Can, cuyas características están en la Tabla~\ref{tab:regulador}. Su corriente de \SI{85}{A} cumple el criterio; el modelo 150/70 de la misma serie, de \SI{70}{A}, no lo cumple. Al ser MPPT, permite conectar los módulos en serie con una tensión mayor que la del banco. Selecciona automáticamente \SI{24}{V} y tiene un algoritmo de carga para baterías de litio, con la tensión de absorción de \SI{28.8}{V} que pide el fabricante de la batería \cite{victron_mppt, pq_manual}. Es del mismo fabricante que el inversor-cargador y se comunica con él, así que el sistema se puede supervisar desde una sola aplicación.
 
 \begin{table}[!htb]
 \caption{Características del regulador Victron SmartSolar MPPT 150/85-Tr VE.Can \cite{victron_mppt}}
@@ -85,7 +85,7 @@ Masa & \SI{4.5}{kg} \\
 \end{tabular}
 \end{table}
 
-La ficha declara la potencia plena hasta \SI{2000}{m} de altitud y el sitio está a \SI{2317}{m}. El arreglo tiene \SI{1800}{W}, el 75\,\% de la potencia nominal del regulador a \SI{24}{V}, y la corriente real hacia el banco es de $1800\cdot0.98/28.8=\SI{61.3}{A}$, el 72\,\% de su capacidad, de modo que una reducción de la potencia por altitud de hasta 25\,\% no limitaría la carga. La ficha no indica cuánto se reduce la potencia por encima de \SI{2000}{m}, por lo que conviene confirmarlo con el fabricante.
+La ficha declara la potencia plena hasta \SI{2000}{m} de altitud y el sitio está a \SI{2317}{m}. El arreglo tiene \SI{1800}{W}, el 75\,\% de la potencia nominal del regulador a \SI{24}{V}, y la corriente real hacia el banco es de $1800\cdot0.98/28.8=\SI{61.3}{A}$, el 72\,\% de su capacidad. Una reducción de la potencia por altitud de hasta 25\,\% no limitaría la carga. La ficha no indica cuánto se reduce la potencia por encima de \SI{2000}{m}, por lo que conviene confirmarlo con el fabricante.
 
 \subsubsection{Área de operación segura}
 
@@ -102,7 +102,7 @@ La Fig.~\ref{fig:soa} muestra la zona en que puede operar el regulador, limitada
 
 El inversor de un sistema aislado se dimensiona con la potencia de las cargas de alterna que funcionan a la vez, debe soportar los picos de arranque de los motores, que pueden ser de 3 a 4 veces la potencia nominal, y debe tener corte por baja tensión del banco. La tensión de entrada es la del banco y la de salida, la de las cargas. Con las cargas críticas, la potencia simultánea es de \SI{783}{W} y el pico con el arranque de los dos compresores, de \SI{1763}{W} (Sección~\ref{sec:lugar}).
 
-Se seleccionó el inversor-cargador Victron MultiPlus-II 24/3000/70-50 de \SI{120}{V}, cuyas características están en la Tabla~\ref{tab:inversor}. Las cargas usan el 33\,\% de su potencia continua a \SI{25}{\celsius} y el 32\,\% de su potencia pico. Es el modelo de menor potencia de la serie MultiPlus-II para \SI{24}{V} y \SI{120}{V} \cite{victron_mp}. Incluye un conmutador de transferencia de \SI{50}{A}: si falla la red, pasa las cargas al inversor en menos de \SI{20}{ms}, de modo que los equipos electrónicos siguen funcionando durante el cambio. También incluye un cargador de \SI{70}{A}, que puede recargar el banco desde la red cuando la energía solar no alcanza, y protección por baja tensión del banco \cite{victron_mp}. Su salida es de onda senoidal, apta para los compresores y para los equipos electrónicos.
+Se seleccionó el inversor-cargador Victron MultiPlus-II 24/3000/70-50 de \SI{120}{V}, cuyas características están en la Tabla~\ref{tab:inversor}. Las cargas usan el 33\,\% de su potencia continua a \SI{25}{\celsius} y el 32\,\% de su potencia pico. Es el modelo de menor potencia de la serie MultiPlus-II para \SI{24}{V} y \SI{120}{V} \cite{victron_mp}. Incluye un conmutador de transferencia de \SI{50}{A}: si falla la red, pasa las cargas al inversor en menos de \SI{20}{ms}, y los equipos electrónicos siguen funcionando durante el cambio. También incluye un cargador de \SI{70}{A}, que puede recargar el banco desde la red cuando la energía solar no alcanza, y protección por baja tensión del banco \cite{victron_mp}. Su salida es de onda senoidal, apta para los compresores y para los equipos electrónicos.
 
 \begin{table}[!htb]
 \caption{Inversor-cargador Victron MultiPlus-II 24/3000/70-50 de \SI{120}{V} \cite{victron_mp} frente a las cargas}
@@ -172,4 +172,4 @@ Año & & 3096 & 2320 & 1582 & 147\,\% \\
 \label{fig:energia}
 \end{figure}
 
-Todos los meses la energía disponible supera la demanda: en noviembre, el mes de diseño, la cobertura es de 116\,\%, y en marzo llega a 185\,\%. En el año hay \SI{2320}{kWh} disponibles para \SI{1582}{kWh} de demanda. El excedente no se aprovecha, porque el sistema no entrega energía a la red, pero permite recargar el banco después de días nublados: en noviembre el excedente medio es de \SI{0.70}{kWh} por día, de modo que recargar los \SI{13.44}{kWh} de los dos días de autonomía tomaría unos 19 días de radiación media, o unas 7~h con el cargador de \SI{70}{A} desde la red ($\SI{13.44}{kWh}/(\SI{70}{A}\cdot\SI{28.8}{V})$, sin pérdidas). Como comparación, PVGIS estima para \SI{1.8}{kWp} en la cara este, con 14\,\% de pérdidas del sistema y las pérdidas por temperatura y ángulo de incidencia, \SI{2401}{kWh} al año y \SI{156}{kWh} en noviembre \cite{pvgis}, 3.5\,\% y 3.4\,\% mayores que la energía disponible estimada.
+Todos los meses la energía disponible supera la demanda: en noviembre, el mes de diseño, la cobertura es de 116\,\%, y en marzo llega a 185\,\%. En el año hay \SI{2320}{kWh} disponibles para \SI{1582}{kWh} de demanda. El excedente no se aprovecha, porque el sistema no entrega energía a la red, pero permite recargar el banco después de días nublados. En noviembre el excedente medio es de \SI{0.70}{kWh} por día, así que recargar los \SI{13.44}{kWh} de los dos días de autonomía tomaría unos 19 días de radiación media. Con el cargador de \SI{70}{A} desde la red, la recarga tomaría unas 7~h (\SI{13.44}{kWh} entre $\SI{70}{A}\cdot\SI{28.8}{V}$, sin pérdidas). Como comparación, PVGIS estima para \SI{1.8}{kWp} en la cara este, con 14\,\% de pérdidas del sistema y las pérdidas por temperatura y ángulo de incidencia, \SI{2401}{kWh} al año y \SI{156}{kWh} en noviembre \cite{pvgis}, 3.5\,\% y 3.4\,\% mayores que la energía disponible estimada.
